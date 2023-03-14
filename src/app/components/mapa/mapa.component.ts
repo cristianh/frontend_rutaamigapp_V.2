@@ -96,7 +96,7 @@ export class MapaComponent {
       style: this.style, // style URL
       center: [lng, lat], // starting position [lng, lat]
       zoom: 14, // starting zoom
-      /*  projection: 'globe' */ // display the map as a 3D globe
+      //projection: 'globe' // display the map as a 3D globe
     });
     this.map.on('style.load', () => {
       this.map.setFog({}); // Set the default atmosphere style
@@ -143,7 +143,8 @@ export class MapaComponent {
 
       // We load the point of the bus on the map with the corridors
       console.log("coordenadas", this.dataPointsBus.features[0].geometry.coordinates)
-      this.pointBus = new mapboxgl.Marker(el).setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
+      this.pointBus = new mapboxgl.Marker(el).setLngLat([lng, lat])
+      //this.pointBus = new mapboxgl.Marker(el).setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
         .addTo(this.map)
         .setPopup(this.popupText);
 

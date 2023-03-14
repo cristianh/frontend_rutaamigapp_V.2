@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders  } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 /* import { environment } from '../../environments/environment'; */
 
 @Injectable({
@@ -12,12 +13,21 @@ export class UsuarioService {
 
   configUrl = 'assets/config.json';
   //baseUrl=environment.API_URL;
-  baseUrl = 'http://localhost:3000/api';
+  baseUrl = 'http://localhost:3000/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private auth:AuthService) { }
 
   getAllUsuarios(route: string) {
-    return this.http.get(route)
+
+    let reqHeaders = new HttpHeaders();
+
+    reqHeaders.append('api-token', this.auth.getToken() ?? '');
+    
+    return this.http.get(route,{
+      headers: reqHeaders,
+      responseType: "json",
+      withCredentials: true,
+    })
   }
 
   saveUsuario(route: string, usuariodata: Usuario) {

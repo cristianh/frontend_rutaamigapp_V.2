@@ -26,7 +26,8 @@ export class ListUsersComponent {
   ngOnInit(): void {
 
     //Realizamos la peticion de los usuarios
-    this.usuarioservice.getAllUsuarios(`${this.url}/usuario?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+  /*   this.usuarioservice.getAllUsuarios(`${this.url}/usuario?limit=${this.pageLimit}&skip=${this.take}`).subscribe( */
+  this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`).subscribe( 
 
       (data): any => { this.usuarios = Object.values(data); 
         //console.log(data.usuario); 
@@ -35,7 +36,7 @@ export class ListUsersComponent {
 
 
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/usuario`).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`).subscribe(
 
       (data): any => {
         this.paginado = Object.values(data).length;

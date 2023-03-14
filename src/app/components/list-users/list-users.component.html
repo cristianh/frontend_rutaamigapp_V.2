@@ -32,12 +32,12 @@
                         <ng-template #tableUsuario>
                             <tr *ngFor="let usuario of usuarios">
                                 <th scope="row">{{usuario.idusuario}}</th>
-                                <td scope="row">{{usuario.nombre_usuario}}</td>
-                                <td scope="row">{{usuario.apellido_usuario}}</td>
-                                <td scope="row">{{usuario.correo_usuario}}</td>
+                                <td scope="row">{{usuario.user_name}}</td>
+                                <td scope="row">{{usuario.user_lastname}}</td>
+                                <td scope="row">{{usuario.user_email}}</td>
                                 <td scope="row"
-                                    [ngClass]="{'bg-success':usuario.estado_usuario,'bg-danger':!usuario.estado_usuario}">
-                                    {{usuario.estado_usuario?'Activo':'Inactivo'}}</td>
+                                    [ngClass]="{'bg-success':usuario.user_status,'bg-danger':!usuario.user_status}">
+                                    {{usuario.user_status?'Activo':'Inactivo'}}</td>
                                 <td scope="row">{{usuario.fecha_creacion}}</td>
                                 <td scope="row"><button class="btn btn-danger"
                                         (click)="deleteUsuario(usuario.idusuario)">ELIMINAR</button></td>

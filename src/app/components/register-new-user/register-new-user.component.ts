@@ -37,16 +37,16 @@ export class RegisterNewUserComponent {
 
     if (this.formRegister.valid) {
       usuario = new Usuario()
-      usuario.nombre_usuario = this.formRegister.value.nombreUsuario
-      usuario.apellido_usuario = this.formRegister.value.apellidoUsuario
-      usuario.correo_usuario = this.formRegister.value.correoUsuario
-      usuario.estado_usuario = true
+      usuario.user_name = this.formRegister.value.nombreUsuario
+      usuario.user_lastname = this.formRegister.value.apellidoUsuario
+      usuario.user_email = this.formRegister.value.correoUsuario
+      usuario.user_status = true
 
       //TODO:REVISIAR PORQUE AL ENVIAR UN CORREO QUE YA EXISTE LA PETICION RETORNA UN STATUS 400
 
       //VALIDATE MATCH PASSWORD1 AND PASSWORD2
       if (this.formRegister.value.Password1 === this.formRegister.value.Password2) {
-        usuario.password_usuario = this.formRegister.value.Password1
+        usuario.user_password = this.formRegister.value.Password1
         //SEND DATA TO SERVICES
         this.usuarioservice.saveUsuario('/usuario/registro', usuario).subscribe(
           //SEND NEW USUARIO

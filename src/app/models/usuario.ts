@@ -2,15 +2,20 @@
 
 export interface Usuario {
     idusuario: number;
-    nombre_usuario: string;
-    apellido_usuario: string;
-    correo_usuario: string;
-    password_usuario: string;
-    estado_usuario: boolean;
+    user_name: string;
+    user_lastname: string;
+    user_email: string;
+    user_password: string;
+    user_status: boolean;
     fecha_creacion: string;
-   /*  fecha_actualizacion: string;
-    fecha_eliminacion: null; */
+ 
 }
+
+
+/* user_name: user_name,
+user_lastname: user_lastname,
+user_email: user_email,
+user_password: bcrypGenerateEncript(user_password) */
 
 
 export class Usuario implements Usuario{
