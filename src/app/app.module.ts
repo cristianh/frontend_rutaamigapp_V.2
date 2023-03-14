@@ -14,6 +14,10 @@ import { MyBtnPrimaryComponent } from './components/my-btn-primary/my-btn-primar
 import { NavComponent } from './components/nav/nav.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { ContainerMapaComponent } from './components/container-mapa/container-mapa.component';
+import { ContainerRegisterComponent } from './components/container-register/container-register.component';
+import { RegisterNewUserComponent } from './components/register-new-user/register-new-user.component';
+import { ListUsersComponent } from './components/list-users/list-users.component';
+import { ContainerListUsersComponent } from './components/container-list-users/container-list-users.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
 
@@ -25,7 +29,11 @@ const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
     MyBtnPrimaryComponent,
     NavComponent,
     MapaComponent,
-    ContainerMapaComponent
+    ContainerMapaComponent,
+    ContainerRegisterComponent,
+    RegisterNewUserComponent,
+    ListUsersComponent,
+    ContainerListUsersComponent
   ],
   imports: [
     [BrowserModule, SocketIoModule.forRoot(config)],

@@ -3,9 +3,17 @@ $color_2: rgb(255, 255, 255);
 $color_3: white;
 $background-color_1: rgb(255, 255, 255);
 $background-color_2: var(--btn-primary-border-color);
-$background-color_3: rgb(38, 115, 101);
 
 /*Contenedor formulario*/
+/*Medio contenedor*/
+/*Tomar el primer hijo de medio contenedor (izquierda)*/
+/*Tomar el segundo hijo de medio contenedor (derecha)*/
+/*Busca el formulario que esta dentro de la clase mid-container*/
+/*Responsivo para la  imagen PENDIENTE*/
+/*Contenedor imagen*/
+/*Titulo principal*/
+/*Todos los input del formulario*/
+/*Terminos y condiciones, log-in*/
 .form-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -16,14 +24,11 @@ $background-color_3: rgb(38, 115, 101);
 	left: 50%;
 	bottom: 0;
 	right: 0;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -63%);
 }
-
-/*Medio contenedor*/
 .mid-container {
 	border: 1px solid orange;
 	padding: 2em;
-    /*Tomar el primer hijo de medio contenedor (izquierda)*/
 	&:nth-child(1) {
 		background: linear-gradient(180deg, #F2CB05 0%, #F29F05 45.31%, #F28705 100%);
 		box-shadow: 4px -4px 4px rgba(0, 0, 0, 0.25);
@@ -33,35 +38,27 @@ $background-color_3: rgb(38, 115, 101);
 		align-items: center;
 		justify-content: center;
 	}
-    /*Tomar el segundo hijo de medio contenedor (derecha)*/
 	&:nth-child(2) {
 		background-color: $background-color_1;
 		box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.25);
 		border-radius: 0px 21px 21px 0px;
 	}
-    /*Busca el formulario que esta dentro de la clase mid-container*/
 	form {
 		display: flex;
 		flex-direction: column;
 		grid-gap: 12px;
 	}
 }
-
 .form-content {
 	position: relative;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50% , -50%);
 }
-/*Responsivo para la  imagen PENDIENTE*/
-
 .responsive {
 	width: 100%;
 	height: auto;
 }
-
-/*Contenedor imagen*/
-
 .logo-container {
 	width: 90%;
 	height: 90%;
@@ -69,17 +66,12 @@ $background-color_3: rgb(38, 115, 101);
 	align-items: center;
 	justify-content: center;
 }
-
-/*Titulo principal*/
 .principal-title {
 	font-size: x-large;
 	font-weight: 500;
 	margin-bottom: 0.5em;
 	color: $color_1;
 }
-
-/*Todos los input del formulario*/
-
 .input {
 	width: 90%;
 	margin: 0px auto;
@@ -89,7 +81,6 @@ $background-color_3: rgb(38, 115, 101);
 	border-bottom: 0.1em solid rgb(63, 95, 89);
 	margin: 0.4em;
 }
-/*Terminos y condiciones, log-in*/
 .terms-container {
 	text-align: center;
 }
@@ -126,4 +117,10 @@ input[type="checkbox"] {
 }
 element.style {
 	margin: auto;
+}
+.border-success {
+	border-left: 2px solid green;
+}
+.border-danger {
+	border-left: 2px solid red;
 }
