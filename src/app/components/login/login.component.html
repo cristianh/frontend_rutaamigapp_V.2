@@ -1,0 +1,27 @@
+<main>
+    <article class="principal-container">
+        <article class="form-container">
+            <section class="mid-container">
+                <article class="logo-container">
+                    <img src="../assets/img/logo.png" alt="logo" class="responsive">
+                </article>
+            </section>
+            <section class="mid-container">
+                <header>
+                    <h1 class="principal-title">LOGIN</h1>
+                </header>
+                <form [formGroup]="formLogin" (ngSubmit)="onIngresar()">
+                    <input class="input" type="text" id="email" name="email" placeholder="Correo" formControlName="email" ngModel />
+                    <input class="input" type="password" id="password" name="password" placeholder="Contraseña" formControlName="password"
+                        ngModel />
+                    <!--   <button class="my-btn-primary"  type="submit" id="ingresar" name="ingresar">INGRESAR</button> -->
+                    <app-my-btn-primary textoBoton="INGRESAR"></app-my-btn-primary>
+                    <label class="log-in">¿Ha olvidado su contraseña?  <a [routerLink]="['/reset-password']">Restablecerla</a> </label>
+                    <label class="log-in">Si no tienes cuenta registrate <a [routerLink]="['']">aquí</a> </label>
+                </form>
+            </section>
+           
+
+        </article>
+    </article>
+</main>
