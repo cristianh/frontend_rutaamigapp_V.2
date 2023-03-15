@@ -19,7 +19,11 @@ import { RegisterNewUserComponent } from './components/register-new-user/registe
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { ContainerListUsersComponent } from './components/container-list-users/container-list-users.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:8988', options: {} };
+const config: SocketIoConfig = {
+  url: 'https://socket-maptracker.onrender.com/', options: {
+    transports: ['websocket']
+  }
+};
 
 @NgModule({
   declarations: [

@@ -7,6 +7,12 @@
             </div>
 
             <div class="col-12 contenedor-table">
+
+                <span *ngIf="usuarios.length<=1; else showThis"></span>
+                <ng-template #showThis>
+                    <span>Numero de usuarios:{{usuarios.length}}</span>
+                </ng-template>
+
                 <table
                     class=" text-center table table-bordered table-responsive table-center table-hover table-striped table table-sm">
                     <thead>
@@ -28,42 +34,44 @@
                             </td>
 
                         </tr>
-                        <pre>{{usuarios}}</pre>
+                        <!-- <pre>{{usuarios}}</pre> -->
                         <ng-template #tableUsuario>
                             <tr *ngFor="let usuario of usuarios">
-                                <th scope="row">{{usuario.idusuario}}</th>
+                                <th scope="row">{{usuario.user_id}}</th>
                                 <td scope="row">{{usuario.user_name}}</td>
                                 <td scope="row">{{usuario.user_lastname}}</td>
                                 <td scope="row">{{usuario.user_email}}</td>
                                 <td scope="row"
                                     [ngClass]="{'bg-success':usuario.user_status,'bg-danger':!usuario.user_status}">
                                     {{usuario.user_status?'Activo':'Inactivo'}}</td>
-                                <td scope="row">{{usuario.fecha_creacion}}</td>
+                                <td scope="row">{{usuario.create_date | date:'MM/dd/yyyy' }}</td>
                                 <td scope="row"><button class="btn btn-danger"
-                                        (click)="deleteUsuario(usuario.idusuario)">ELIMINAR</button></td>
+                                        (click)="deleteUsuario(usuario.user_id)">ELIMINAR</button></td>
                             </tr>
                         </ng-template>
+                        <tr>
+                            <td colspan="7">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li id="btnAtras" class="page-item disabled">
+                                            <a (click)="atras()" class="page-link" tabindex="-1">Atras</a>
+                                        </li>
+                                        <!-- <li class="page-item" *ngFor='let item of [].constructor(itemsPaginado); let i = index'><a class="page-link" href="#">{{i+1}}</a></li> -->
+                                        <li id="btnSiguiente" class="page-item">
+                                            <a (click)="siguiente()" class="page-link" tabindex="1">Siguiente</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </td>
+                        </tr>
 
                     </tbody>
                 </table>
-                <span *ngIf="usuarios.length<=1; else showThis"></span>
-                <ng-template #showThis>
-                    <span>Numero de usuarios:{{usuarios.length}}</span>
-                </ng-template>
+
 
             </div>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li id="btnAtras" class="page-item disabled">
-                    <a (click)="atras()" class="page-link" tabindex="-1">Atras</a>
-                </li>
-                <!-- <li class="page-item" *ngFor='let item of [].constructor(itemsPaginado); let i = index'><a class="page-link" href="#">{{i+1}}</a></li> -->
-                <li id="btnSiguiente" class="page-item">
-                    <a (click)="siguiente()" class="page-link" tabindex="1">Siguiente</a>
-                </li>
-            </ul>
-        </nav>
+
 
     </div>
 </article>

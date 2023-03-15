@@ -10,6 +10,10 @@ export class ChatService {
     this.socket.emit('message', msg);
   }
   getMessage() {
-    return this.socket.fromEvent('message').pipe(map((data) => data));
+    return this.socket.fromEvent('mensaje_bienvenida').pipe(map((data) => data));
+  }
+
+  getMessageGPS() {
+    return this.socket.fromEvent('chat_send_server_message').pipe(map((data) => data));
   }
 }

@@ -17,17 +17,19 @@ export class UsuarioService {
 
   constructor(private http: HttpClient,private auth:AuthService) { }
 
-  getAllUsuarios(route: string) {
+  getAllUsuarios(route: string,token:string) {
 
-    let reqHeaders = new HttpHeaders();
-
-    reqHeaders.append('api-token', this.auth.getToken() ?? '');
+    console.log(token); 
+    let config:any = {
+      responseType: "json"
+    }
+    if (token){
+      const header = new HttpHeaders().set('api-token', ` ${token}`);
+      config["headers"] = header;
+    }
+    console.log(config);
     
-    return this.http.get(route,{
-      headers: reqHeaders,
-      responseType: "json",
-      withCredentials: true,
-    })
+    return this.http.get(route,config);
   }
 
   saveUsuario(route: string, usuariodata: Usuario) {

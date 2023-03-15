@@ -1,30 +1,34 @@
 import { Component } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as turf from '@turf/turf';
+import { ChatService } from 'src/app/services/socket-comunication.service';
+
 
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
-  styleUrls: ['./mapa.component.scss']
+  styleUrls: ['./mapa.component.scss'],
+  providers: [ChatService]
 })
 export class MapaComponent {
 
 
 
   // Object that will contain each of the points of the route.
- public dataPointsBus = {
+  public dataPointsBus = {
     type: 'FeatureCollection',
     features: [{
+      type: 'Feature',
       geometry: {
         coordinates: {
           lat: 0,
           lon: 0
-        },       
-      },  
-      properties:{
-        title:"",
-        description:"",
-        velocidad:0
+        },
+      },
+      properties: {
+        title: "",
+        description: "",
+        velocidad: 0
       }
     }]
   }
@@ -59,9 +63,22 @@ export class MapaComponent {
     maximumAge: 0
   };
 
-  constructor() { }
+  constructor(private socketmap: ChatService) {
+    
+    
+    this.socketmap.getMessage().subscribe(
+      (data: any) => {
+        console.log(data)
+      },
+      error => {
+        console.log(error)
+      });
+  }
   /* PROBANDO*/
   ngOnInit(): void {
+
+
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos: any) => {
 
@@ -86,7 +103,7 @@ export class MapaComponent {
 
   loadMap = (lat: number, lng: number) => {
 
-    this.from = [lng, lat]
+    this.from = turf.point([lng, lat]);
 
     mapboxgl as typeof mapboxgl;
 
@@ -142,21 +159,22 @@ export class MapaComponent {
         .addTo(this.map);
 
       // We load the point of the bus on the map with the corridors
-      console.log("coordenadas", this.dataPointsBus.features[0].geometry.coordinates)
+      
       this.pointBus = new mapboxgl.Marker(el).setLngLat([lng, lat])
-      //this.pointBus = new mapboxgl.Marker(el).setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
+        //this.pointBus = new mapboxgl.Marker(el).setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
         .addTo(this.map)
         .setPopup(this.popupText);
 
       this.velocidad = this.dataPointsBus.features[0].properties.velocidad;
 
       this.map.flyTo({
-        center: [this.dataPointsBus.features[0].geometry.coordinates.lon, this.dataPointsBus.features[0].geometry.coordinates.lat],
+        //center: [this.dataPointsBus.features[0].geometry.coordinates.lon, this.dataPointsBus.features[0].geometry.coordinates.lat],
+        center: [lng, lat],
         speed: 0.5
       });
 
       //TODO: Habilitar hasta que se tenga conexion con el socket
-      /* this.animation(this.map, this.point, this.pointBus) */
+      this.animation(this.map, this.point, this.pointBus)
       console.log('Finish carga map')
 
       //})
@@ -181,9 +199,9 @@ export class MapaComponent {
       let popup = document.getElementById('popmarketbus')
 
 
-
-
+      //redondeamos la velocidad.
       this.velocidad = Math.round(this.dataPointsBus.features[point].properties.velocidad * 3.6)
+      
 
       /* if (this.dataPointsBus.features[point].properties.velocidad !== null || this.dataPointsBus.features[point].properties.velocidad !== undefined) {
         this.popupText = `<div><h3>${this.dataPointsBus.features[point].properties.title}</h3><span>${this.dataPointsBus.features[point].properties.description}</span><br><span>Velocidad: ${this.velocidad}</span></div>`
@@ -195,9 +213,12 @@ export class MapaComponent {
       };
 
 
-      this.to = [this.dataPointsBus.features[point].geometry.coordinates.lon, this.dataPointsBus.features[point].geometry.coordinates.lon]
+      this.to = turf.point([this.dataPointsBus.features[point].geometry.coordinates.lon, this.dataPointsBus.features[point].geometry.coordinates.lat])
 
-      let distance = turf.distance(this.to, this.from, options);
+      console.log(this.to,this.from)
+
+      let distance = turf.distance(this.from,this.to, options);
+      console.log(distance)
       distance = distance * 1000
 
       this.distanciaPoint = `<br><span>Distancia: ${Math.round(distance)} m</span>`
@@ -211,7 +232,7 @@ export class MapaComponent {
         }
       }
 
-   
+
       // make a marker for each feature and add to the map
       pointMarket.setLngLat(this.dataPointsBus.features[point].geometry.coordinates)
         .addTo(map);
@@ -219,7 +240,7 @@ export class MapaComponent {
         center: [this.dataPointsBus.features[point].geometry.coordinates.lon, this.dataPointsBus.features[point].geometry.coordinates.lat],
         speed: 0.5
       });
-      point = point + 1
+      /* point = point + 1 */
 
       if ((this.dataPointsBus.features.length - 1) == point) {
         this.dataPointsBus.features.reverse()
@@ -241,6 +262,28 @@ export class MapaComponent {
 
     }
 
+    this.socketmap.getMessageGPS().subscribe(
+      (data: any) => {
+        
+        const { Latitude, Longitude, Speed } = data
+
+        this.dataPointsBus.features[this.point].geometry= {
+          coordinates: {
+            lat: Latitude,
+            lon: Longitude
+          }
+        }
+        this.dataPointsBus.features[this.point].properties= {
+          title: 'Ruta 18',
+          description: 'Norte/Sur',
+          velocidad: Speed == undefined ? '0' : Speed
+        }
+                  
+      },
+      error => {
+        console.log(error)
+      });
+
     // Make a GET request to the API and return the location of the ISS.
     /* try {
       await fetch(`https://amigaapp-f2f93-default-rtdb.firebaseio.com/dbrutas/${ruta}.json`)
@@ -248,14 +291,10 @@ export class MapaComponent {
         .then((data) => {
 
           let dataPoints = Object.values(data)
-          console.log(dataPoints)
-          type Coordenanpoints = {
-            Latitude?: number;
-            Longitude?: number;
-            Speed?: number
-          }
 
-          dataPoints.forEach((coordenadas: Coordenanpoints) => {
+          console.log(dataPoints)
+
+          dataPoints.forEach((coordenadas: any) => {
 
             const { Latitude, Longitude, Speed } = coordenadas
 
@@ -263,8 +302,10 @@ export class MapaComponent {
               {
                 type: 'Feature',
                 geometry: {
-                  type: 'Point',
-                  coordinates: [Longitude, Latitude]
+                  coordinates: {
+                    lat: Latitude,
+                    lon: Longitude
+                  }
                 },
                 properties: {
                   title: 'Ruta 18',
@@ -276,11 +317,12 @@ export class MapaComponent {
           });
 
         })
-    } catch (err) { */
-    // If the updateSource interval is defined, clear the interval to stop updating the source.
-    //if (updateSource) clearInterval(updateSource);
-    /*  throw new Error(err);
-   } */
+    } catch (err) {
+      // If the updateSource interval is defined, clear the interval to stop updating the source.
+      // if (updateSource) clearInterval(updateSource);
+      throw new Error("Error");
+
+    } */
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { AuthService } from 'src/app/services/auth.service';
 //import { environment } from '../../../environments/environment';
 
 @Component({
@@ -10,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class ListUsersComponent {
 
-  constructor(private usuarioservice: UsuarioService) { }
+  constructor(private usuarioservice: UsuarioService,private auth: AuthService) { }
 
   usuarios:Usuario[] = []
   paginado: number = 0
@@ -25,18 +26,20 @@ export class ListUsersComponent {
 
   ngOnInit(): void {
 
-    //Realizamos la peticion de los usuarios
-  /*   this.usuarioservice.getAllUsuarios(`${this.url}/usuario?limit=${this.pageLimit}&skip=${this.take}`).subscribe( */
-  this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`).subscribe( 
+    let token = this.auth.getToken()
 
-      (data): any => { this.usuarios = Object.values(data); 
-        //console.log(data.usuario); 
+    //Realizamos la peticion de los usuarios
+    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`,!token?'':token).subscribe(
+  /* this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`,!token?'':token).subscribe(  */
+
+      (data:any): any => { this.usuarios = Object.values(data.usuario); 
+        console.log(this.usuarios); 
         this.loading = false },
       error => console.log("Ha ocurrido un error en la llamada: ", error))
 
 
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`,!token?'':token).subscribe(
 
       (data): any => {
         this.paginado = Object.values(data).length;
@@ -50,11 +53,11 @@ export class ListUsersComponent {
   deleteUsuario(id: number) {
 
     if (confirm("Esta seguro que desea eliminar el usuario.")) {
-      this.usuarioservice.deleteUsuario(`${this.url}/usuario/${id}`).subscribe(
+      this.usuarioservice.deleteUsuario(`${this.url}/usuario/allusers/${id}`).subscribe(
 
         (data): any => {
           this.usuarios = this.usuarios.filter((usuario) => {
-            return usuario.idusuario !== id
+            return usuario.user_id !== id
           })
         }, error => console.log("Ha ocurrido un error en la llamada: ", error))
     }
@@ -72,7 +75,7 @@ export class ListUsersComponent {
       this.take += 6
       this.loading = true
       this.contadorSaltos += 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/usuario?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+      this.usuarioservice.navegacionUsuario(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
 
         (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
         error => console.log("Ha ocurrido un error en la llamada: ", error))
@@ -88,7 +91,7 @@ export class ListUsersComponent {
       this.take -= 6
       this.loading = true
       this.contadorSaltos -= 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/usuario?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+      this.usuarioservice.navegacionUsuario(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
         (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
         error => console.log("Ha ocurrido un error en la llamada: ", error))
       this.validarPaginado()

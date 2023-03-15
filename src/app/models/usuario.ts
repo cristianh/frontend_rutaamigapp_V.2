@@ -1,13 +1,13 @@
 
 
 export interface Usuario {
-    idusuario: number;
+    user_id: number;
     user_name: string;
     user_lastname: string;
     user_email: string;
     user_password: string;
     user_status: boolean;
-    fecha_creacion: string;
+    create_date: string;
  
 }
 
