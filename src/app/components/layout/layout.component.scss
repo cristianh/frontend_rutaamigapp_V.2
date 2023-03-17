@@ -1,0 +1,10 @@
+.dashboard{
+    display: grid;
+    grid-row-start: '.nav';
+    grid-row-end: '.footer';
+}
+
+.dashboard-content{
+    display: grid;
+	grid-template-columns: 13rem 1fr;
+}

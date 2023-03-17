@@ -38,6 +38,10 @@ $background-color_3: rgb(38, 115, 101);
 		background-color: $background-color_1;
 		box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.25);
 		border-radius: 0px 21px 21px 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
     /*Busca el formulario que esta dentro de la clase mid-container*/
 	form {

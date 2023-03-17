@@ -1,0 +1,12 @@
+<section class="dashboard">
+    <router-outlet name="header"></router-outlet>
+    <div class="dashboard-content">
+        <div class="nav-dashboard">
+            <router-outlet name="sidenav"></router-outlet>
+        </div>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <router-outlet name="footer"></router-outlet>
+</section>

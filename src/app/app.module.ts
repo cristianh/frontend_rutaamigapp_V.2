@@ -18,6 +18,16 @@ import { ContainerRegisterComponent } from './components/container-register/cont
 import { RegisterNewUserComponent } from './components/register-new-user/register-new-user.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { ContainerListUsersComponent } from './components/container-list-users/container-list-users.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NavDashboardComponent } from './components/nav-dashboard/nav-dashboard.component';
+import { ContentComponent } from './components/content/content.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FavoritosComponent } from './components/favoritos/favoritos.component';
+import { UserRoutesComponent } from './components/user-routes/user-routes.component';
+import { SettingsUserComponent } from './components/settings-user/settings-user.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 
 const config: SocketIoConfig = {
   url: 'https://socket-maptracker.onrender.com/', options: {
@@ -37,7 +47,17 @@ const config: SocketIoConfig = {
     ContainerRegisterComponent,
     RegisterNewUserComponent,
     ListUsersComponent,
-    ContainerListUsersComponent
+    ContainerListUsersComponent,
+    FooterComponent,
+    LayoutComponent,
+    NavDashboardComponent,
+    ContentComponent,
+    DashboardComponent,
+    FavoritosComponent,
+    UserRoutesComponent,
+    SettingsUserComponent,
+    UserProfileComponent,
+    UserNotifityComponent
   ],
   imports: [
     [BrowserModule, SocketIoModule.forRoot(config)],

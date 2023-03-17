@@ -10,6 +10,7 @@ $background-color_3: rgb(38, 115, 101);
 	margin: 0px;
 	padding: 0px;
 	font-family: $font-family_1;
+	overflow: hidden;
 }
 
 input {
@@ -35,6 +36,10 @@ a {
     background-color: #F29F05;
 }
 
+.bg-green-dark {
+    background-color: $color_2;
+}
+
 //CONETEDOR PRINCIPAL.
 .principal-container {
     display: flex;
@@ -47,3 +52,4 @@ a {
 	margin: 0;
 	padding: 0;
 }
+
