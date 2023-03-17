@@ -56,7 +56,7 @@ export class LoginComponent {
             this.auth.setCurrentUser(`${data.usuario.nombre} ${data.usuario.apellido}`)
             //navegamos de nuevo al home, esta vez como usuario
             //logueado
-            this.router.navigate(['/mapa'])
+            this.router.navigate(['/dashboard/listar-usuarios'])
 
             /* document.getElementById('mensaje').classList.add('hidden')
             document.getElementById('mensaje-error').innerHTML = '' */

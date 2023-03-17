@@ -1,7 +1,8 @@
 .dashboard{
-    display: grid;
-    grid-row-start: '.nav';
-    grid-row-end: '.footer';
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    height: 100vh;
 }
 
 .dashboard-content{

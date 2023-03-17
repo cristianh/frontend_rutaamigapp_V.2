@@ -1,5 +1,8 @@
 <nav class="nav-bar-dashboard">
-    <ul class="navbar-nav">
+    <article class="logo-container">
+        <img src="../assets/img/logo1 - banner.png" alt="logo" style="width: 200px;">
+    </article>
+    <ul class="navbar-nav mt-4">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/rutas-usuario']">Mis rutas</a>
         </li>
@@ -7,13 +10,15 @@
             <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/perfil-usuario']">Mi perfil</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/listar-favoritos-usuarios']">Listar favoritos</a>
+            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/listar-favoritos-usuarios']">Listar
+                favoritos</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/mensaje-usuario']">Mensajes</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/configuracion-usuario']">Configuración</a>
+            <a class="nav-link" aria-current="page"
+                [routerLink]="['/dashboard/configuracion-usuario']">Configuración</a>
         </li>
     </ul>
 </nav>
