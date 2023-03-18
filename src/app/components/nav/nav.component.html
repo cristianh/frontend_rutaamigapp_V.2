@@ -1,33 +1,34 @@
-<!-- Barra de navegación -->
-<!-- fixed-top removido momentaneamente -->
-<nav class="navbar navbar-expand-md navbar-dark  bg-orange">
-    <div class="container-fluid ">
-        <a class="navbar-brand" href="./index.html">RutaAmigapp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
-            
-           
-            <div class="d-flex">
-                <div *ngIf="auth.isLoggedIn() | async ; else nologin" class="nav-item active">
-                    <a class="nav-link">|Bienvenid@ {{auth.getCurrentUser()}}|<span class="sr-only"></span></a>
-                </div>
-                <ng-template #nologin>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" [routerLink]="['/registrar']">Registro</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" [routerLink]="['/']">Ingresar</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" aria-current="page" [routerLink]="['/listar-usuarios']">Usuarios</a>
-                        </li> -->
-                    </ul>
-                </ng-template>
-            </div>
-        </div>
+<nav class="navbar">
+    <div class="icon" href="./index.html"></div>
+    <div class="nav_items" id="_items">
+        <a href="/portafolio">Registro</a>
+        <a href="/contacto">Inicio</a>
+    </div>
+    <div class="nav_toggle" id="_toggle">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 </nav>
+<!-- Nav var
+    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div>
+        <div *ngIf="auth.isLoggedIn() | async ; else nologin" class="nav-item active">
+            <a class="nav-link">|Bienvenid@ {{auth.getCurrentUser()}}|<span class="sr-only"></span></a>
+        </div>
+        <ng-template #nologin>
+            <div >
+                <div >
+                    <a class="nav-link" aria-current="page" [routerLink]="['/registrar']">Registro</a>
+                </div>
+                <div >
+                    <a class="nav-link" aria-current="page" [routerLink]="['/']">Ingresar</a>
+                </div>
+            </div>   
+        </ng-template>    
+        </div>
+    </div>
+-->
