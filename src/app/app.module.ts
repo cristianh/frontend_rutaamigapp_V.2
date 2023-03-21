@@ -30,11 +30,18 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 
+//TOASTR NOTIFICATION
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+/* import { NotificationsComponent } from './components/notifications/notifications.component'; */
+
 const config: SocketIoConfig = {
   url: 'https://socket-maptracker.onrender.com/', options: {
     transports: ['websocket']
   }
 };
+
+
 
 @NgModule({
   declarations: [
@@ -59,14 +66,21 @@ const config: SocketIoConfig = {
     SettingsUserComponent,
     UserProfileComponent,
     UserNotifityComponent,
-    ResgisterUserListComponent
+    ResgisterUserListComponent,
+    /*  NotificationsComponent */
   ],
   imports: [
     [BrowserModule, SocketIoModule.forRoot(config)],
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressAnimation: 'increasing'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
