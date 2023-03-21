@@ -12,6 +12,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ListUsersComponent } from './components/list-users/list-users.component';
 import { NavDashboardComponent } from './components/nav-dashboard/nav-dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
+import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'listar-favoritos-usuarios', component: FavoritosComponent},
       { path: 'rutas-usuario', component: UserRoutesComponent},
       { path: 'configuracion-usuario', component: SettingsUserComponent},
+      { path: 'nuevo-usuario', component: ResgisterUserListComponent},
       { path: '', component: FooterComponent, outlet: "footer" },
     ]
   },

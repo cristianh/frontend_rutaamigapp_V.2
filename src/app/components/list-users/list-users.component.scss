@@ -41,6 +41,28 @@ $border-color_1: #FF3D00 transparent;
 		font-weight: 500;
 	}
 }
+
+.my-btn-danger {
+	background-color: $background-color_1;
+	border: 0.2em solid rgb(221, 54, 54);
+	border-radius: 5px;
+	padding: 0.2em 1em;
+	color: $color_1;
+	font-weight: 500;
+	transition: .3s;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 0px auto;
+	width: 100%;
+	&:hover {
+		background-color: $background-color_2;
+		color: $color_2;
+		font-weight: 500;
+	}
+}
+
 .contenedor-table {
 	height: 100%;
 }

@@ -2,8 +2,7 @@
 
 .navbar {
     background-color: $background-color_4;
-    
-    color: $color_4;
+    color: purple;
     width: 100vw;
     height: 3rem;
     display: flex;
@@ -12,6 +11,25 @@
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
+}
+
+
+.nav_items {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    place-items: center;
+}
+
+.nav_items_contenedor--avatar {
+    border-radius: 100%;
+}
+
+.nav_items img {
+    border-radius: 100%;
+    object-fit: cover;
+    width: 2.1em;
+    height: auto;
+    outline:1px solid rgb(212, 53, 13);
 }
 
 .icon {

@@ -28,6 +28,7 @@ import { UserRoutesComponent } from './components/user-routes/user-routes.compon
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
+import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 
 const config: SocketIoConfig = {
   url: 'https://socket-maptracker.onrender.com/', options: {
@@ -57,7 +58,8 @@ const config: SocketIoConfig = {
     UserRoutesComponent,
     SettingsUserComponent,
     UserProfileComponent,
-    UserNotifityComponent
+    UserNotifityComponent,
+    ResgisterUserListComponent
   ],
   imports: [
     [BrowserModule, SocketIoModule.forRoot(config)],

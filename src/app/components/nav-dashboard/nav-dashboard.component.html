@@ -20,6 +20,9 @@
             <a class="nav-link" aria-current="page"
                 [routerLink]="['/dashboard/configuracion-usuario']">Configuración</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" (click)="onLogOut()">Salir</a>
+        </li>
     </ul>
 </nav>
 <router-outlet></router-outlet>

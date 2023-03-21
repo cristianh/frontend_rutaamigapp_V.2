@@ -25,14 +25,13 @@ export class AuthService {
     this.isLogin.next(true);
   }
 
-  setCurrentUser(user: string): void {
-    localStorage.setItem('currentUser', user);
+  setCurrentUser(user: string,img:string): void {
+    localStorage.setItem('currentUser', JSON.stringify({usuario:user,imagen:img}));
   }
 
   //método que nos permite recuperar el nombre del usuario
-  getCurrentUser(): string {
-    return localStorage?.getItem("currentUser") ?? 'invitado';
-    
+  getCurrentUser(): string | null {
+    return localStorage?.getItem("currentUser") ;
   }
 
   getToken() {
@@ -44,7 +43,7 @@ export class AuthService {
 
    //método que nos permite eliminar el nombre de usuario
    private deleteCourrentUser() : void {
-    localStorage.removeItem('courrentUser');
+    localStorage.removeItem('currentUser');
   }
 
   //método que nos permite romover el token almacenado y el nombre del
@@ -52,13 +51,15 @@ export class AuthService {
   //su nuevo valor, en este caso false para indicar que no estamos logueados
   logout(): void {
     localStorage.removeItem('token');
-    /* this.deleteCourrentUser(); */
+    this.deleteCourrentUser();
     this.isLogin.next(false);
   }
 
   //método que nos retorna el BehaviorSubject cómo un observable
   isLoggedIn(): Observable<boolean> {
-    return this.isLogin.asObservable();
+    let logIn = new BehaviorSubject<boolean>(localStorage?.getItem("currentUser")?true:false);    
+    return logIn
+   /*  return this.isLogin.asObservable(); */
   }
 
   //método que nos retorna el BehaviorSubject admin cómo un observable
