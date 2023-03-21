@@ -1,13 +1,8 @@
 @import "../../../~variables.scss";
 
 .nav-bar-dashboard{
-<<<<<<< HEAD
-    display:inline-grid;
-    background-color:white;
-=======
     display:flex;
     background-color:$background-color_2;
->>>>>>> 6c2b481586dd53497de4fa3306249cd7f13441a8
     flex-direction: column;
     justify-content: start;
     align-items: center;
