@@ -1,4 +1,5 @@
 @import "../../../~variables.scss";
+
 .navbar {
     background-color: $background-color_3; 
     color: $color_4;
@@ -13,8 +14,8 @@
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     background-image: url("../../../assets/img/icon_amigapp.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -34,7 +35,7 @@
     left: 0;
     bottom: 0;
     width: 0;
-    height: 2px;
+    height: 0.12rem;
     background: $background-color_3;
     transition: all 0.5s;
 }
@@ -50,7 +51,7 @@
 @media (max-width: 768px) {
     .nav_items {
         position: absolute;
-        top: 60px;
+        top: 3.75rem;
         left: 0;
         background: $background-color_3;
         display: flex;
@@ -68,14 +69,14 @@
     .nav_toggle {
         display: flex !important;
         flex-direction: column;
-        margin: 15px;
+        margin: 0.94rem;
     }
 
     .nav_toggle span {
-        width: 30px;
-        height: 4px;
+        width: 1.87rem;
+        height: 0.25rem;
         background: $color_4;
-        margin-bottom: 5px;
+        margin-bottom: 0.313rem;
         border-radius: 2px;
         transform-origin: 5px 0px;
         transition: all 0.2s linear;

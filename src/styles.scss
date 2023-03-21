@@ -3,7 +3,7 @@
 $font-family_1: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 
-*{
+* {
 	margin: 0px;
 	padding: 0px;
 	font-family: $font-family_1;
@@ -17,9 +17,11 @@ input {
 		transition: .3s;
 	}
 }
+
 a {
 	text-decoration: dotted;
 	color: $color_1;
+
 	&:hover {
 		text-decoration: none;
 		color: $color_2;
@@ -27,32 +29,13 @@ a {
 	}
 }
 
-
-//FONDO DEL MENU SUPERIO.
-.bg-orange {
-    background-color: $color_1;
-}
-
-.bg-green-dark {
-    background-color: $color_2;
-}
-
-
-/* You can add global styles to this file, and also import other style files */
-/*Contenedor formulario*/
-/*Tomar el primer hijo de medio contenedor (izquierda)*/
-/*Tomar el segundo hijo de medio contenedor (derecha)*/
-/*Busca el formulario que esta dentro de la clase mid-container*/
-/*Contenedor imagen*/
-/*Titulo principal*/
-/*Todos los input del formulario*/
-/*Terminos y condiciones, log-in*/
 .center-container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+
 .principal-container {
 	height: 100vh;
 	width: 100%;
@@ -60,6 +43,7 @@ a {
 	margin: 0;
 	padding: 0;
 }
+
 .form-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -72,29 +56,37 @@ a {
 	right: 0;
 	transform: translate(-50%, -63%);
 }
+
 .mid-container {
-	border: 1px solid orange;
+	border: 1px solid $color_1;
 	padding: 2em;
+
 	&:nth-child(1) {
 		background: linear-gradient(180deg, #F2CB05 0%, #F29F05 45.31%, #F28705 100%);
-		box-shadow: 4px -4px 4px rgba(0, 0, 0, 0.25);
+		box-shadow: 4px -4px 4px $shadow_1;
 		border-radius: 21px 0px 0px 21px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 	}
+
 	&:nth-child(2) {
 		background-color: $background-color_2;
-		box-shadow: -4px -4px 4px rgba(0, 0, 0, 0.25);
+		box-shadow: -4px -4px 4px $shadow_1;
 		border-radius: 0px 21px 21px 0px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
+
 	form {
 		display: flex;
 		flex-direction: column;
 		grid-gap: 12px;
 	}
 }
+
 .logo-container {
 	width: 90%;
 	height: 90%;
@@ -102,12 +94,14 @@ a {
 	align-items: center;
 	justify-content: center;
 }
+
 .principal-title {
 	font-size: x-large;
 	font-weight: 500;
 	margin-bottom: 0.5em;
 	color: $color_1;
 }
+
 form {
 	.input {
 		width: 90%;
@@ -115,19 +109,22 @@ form {
 		border-top: 0;
 		border-left: 0;
 		border-right: 0;
-		border-bottom: 0.1em solid rgb(63, 95, 89);
+		border-bottom: 0.1em solid $color_3;
 		margin: 0.4em;
 	}
+
 	.input[type="checkbox"] {
 		appearance: none;
-		border: 0.2em solid var(--btn-primary-border-color);
+		border: 0.2em solid $color_3;
 		width: 1.1em;
 		height: 1.1em;
 		cursor: pointer;
+
 		&:checked {
 			background-color: $background-color_3;
 			color: $color_2;
 			position: relative;
+
 			&::after {
 				content: "x";
 				color: $color_3;
@@ -147,10 +144,19 @@ form {
 		}
 	}
 }
+
 .terms-container {
 	text-align: center;
 }
+
 .log-in {
 	text-align: center;
 }
 
+.border-success {
+	border-left: 2px solid $color_7;
+}
+
+.border-danger {
+	border-left: 2px solid $color_5;
+}

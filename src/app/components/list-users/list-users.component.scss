@@ -1,7 +1,4 @@
-$color_1: rgb(38, 115, 101);
-$color_2: var(--color-white);
-$background-color_1: var(--color-white);
-$background-color_2: var(--btn-primary-bg);
+@import "../../../~variables.scss";
 $border-color_1: #FF3D00 transparent;
 
 .list-users-containers{
@@ -23,7 +20,7 @@ $border-color_1: #FF3D00 transparent;
 }
 .my-btn-primary {
 	background-color: $background-color_1;
-	border: 0.2em solid rgb(38, 115, 101);
+	border: 0.2em solid $color_2;
 	border-radius: 5px;
 	padding: 0.2em 1em;
 	color: $color_1;
