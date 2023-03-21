@@ -1,11 +1,16 @@
+@import "../../../~variables.scss";
+
 .nav-bar-dashboard{
+<<<<<<< HEAD
     display:inline-grid;
     background-color:white;
+=======
+    display:flex;
+    background-color:$background-color_2;
+>>>>>>> 6c2b481586dd53497de4fa3306249cd7f13441a8
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    box-shadow: 2px 2px 3px 3px;
-    background: #FDFDFD;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     padding:20px 0px 20px 0px;
     height: 100vh;

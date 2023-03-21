@@ -1,8 +1,13 @@
-@import "../../../variables";
+@import "../../../~variables.scss";
 
 .navbar {
+<<<<<<< HEAD
     background-color: $background-color_4;
     color: purple;
+=======
+    background-color: $background-color_3; 
+    color: $color_4;
+>>>>>>> 6c2b481586dd53497de4fa3306249cd7f13441a8
     width: 100vw;
     height: 3rem;
     display: flex;
@@ -33,8 +38,8 @@
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     background-image: url("../../../assets/img/icon_amigapp.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -42,20 +47,20 @@
 }
 
 .nav_items a {
-    margin: 15px;
-    color: white;
+    margin: 1rem;
+    color: $color_4;
     position: relative;
     text-decoration: none;
 }
 
 .nav_items a::before {
-    content: "";
+    content: "$color_4";
     position: absolute;
     left: 0;
     bottom: 0;
     width: 0;
-    height: 2px;
-    background: rgb(255, 151, 5);
+    height: 0.12rem;
+    background: $background-color_3;
     transition: all 0.5s;
 }
 
@@ -70,9 +75,9 @@
 @media (max-width: 768px) {
     .nav_items {
         position: absolute;
-        top: 60px;
+        top: 3.75rem;
         left: 0;
-        background: orange;
+        background: $background-color_3;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -88,14 +93,14 @@
     .nav_toggle {
         display: flex !important;
         flex-direction: column;
-        margin: 15px;
+        margin: 0.94rem;
     }
 
     .nav_toggle span {
-        width: 30px;
-        height: 4px;
-        background: white;
-        margin-bottom: 5px;
+        width: 1.87rem;
+        height: 0.25rem;
+        background: $color_4;
+        margin-bottom: 0.313rem;
         border-radius: 2px;
         transform-origin: 5px 0px;
         transition: all 0.2s linear;

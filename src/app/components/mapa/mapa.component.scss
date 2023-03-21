@@ -1,3 +1,5 @@
+@import "../../../~variables.scss";
+
 #map {
     width: 100vw;
     height: 100vh
@@ -6,19 +8,18 @@
 .marker {
     background-image: url('../../../assets/iconbus.svg');
     background-size: cover;
-    width: 42px;
-    height: 42px;
+    width: 2.62rem;
+    height: 2.62rem;
     border-radius: 50%;
     cursor: pointer;
-    background-color: red !important
+    background-color: $background-color_4 !important
 }
 
 
 .mapboxgl-popup {
-    max-width: 200px;
+    max-width: 12.5rem;
 }
 
 .mapboxgl-popup-content {
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
 }
