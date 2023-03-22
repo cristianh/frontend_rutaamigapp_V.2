@@ -20,7 +20,12 @@ export class LoginComponent {
   public email!: string;
   public password!: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService, public auth: AuthService,private toastr: ToastrService) { }
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private usuarioservice: UsuarioService, 
+    public auth: AuthService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
@@ -63,26 +68,7 @@ export class LoginComponent {
             /* document.getElementById('mensaje').classList.add('hidden')
             document.getElementById('mensaje-error').innerHTML = '' */
             //window.location = '/map';
-          } else {
-            console.log('Success:', data)
-            /* if (response.errors) {
-                document.getElementById('mensaje').classList.remove('hidden')
-                let errorMessague = []
-                response.errors.forEach(element => {
-                    errorMessague.push(element.msg)
- 
-                });
-                document.getElementById('mensaje-error').innerHTML = ''
-                errorMessague.forEach(element => {
-                    document.getElementById('mensaje-error').innerHTML += `${element}<br>`
-                });
-            }
-            if (response.error) {
-                document.getElementById('mensaje').classList.remove('hidden')
-                document.getElementById('mensaje-error').innerHTML += `${response.error} <a href="registroDemo.html">Registrar</a>`
-            } */
-          }
-
+          } 
 
           /* this.formRegister *///buscar como limpiar formulario.
         },
