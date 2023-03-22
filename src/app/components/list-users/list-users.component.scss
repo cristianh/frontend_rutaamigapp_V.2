@@ -3,10 +3,13 @@ $border-color_1: #FF3D00 transparent;
 
 .list-users-containers{
 	width: 100%;
-	height: 100%;
-	display: flex;
+    height: 100vh;
+    position: relative;
+    display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    align-items: baseline;
+    margin: 30px;
 }
 
 /* Loading */
@@ -18,47 +21,8 @@ $border-color_1: #FF3D00 transparent;
 		transform: rotate(360deg);
 	}
 }
-.my-btn-primary {
-	background-color: $background-color_1;
-	border: 0.2em solid $color_2;
-	border-radius: 5px;
-	padding: 0.2em 1em;
-	color: $color_1;
-	font-weight: 500;
-	transition: .3s;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin: 0px auto;
-	width: 100%;
-	&:hover {
-		background-color: $background-color_2;
-		color: $color_2;
-		font-weight: 500;
-	}
-}
 
-.my-btn-danger {
-	background-color: $background-color_1;
-	border: 0.2em solid rgb(221, 54, 54);
-	border-radius: 5px;
-	padding: 0.2em 1em;
-	color: $color_1;
-	font-weight: 500;
-	transition: .3s;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin: 0px auto;
-	width: 100%;
-	&:hover {
-		background-color: $background-color_2;
-		color: $color_2;
-		font-weight: 500;
-	}
-}
+
 
 .contenedor-table {
 	height: 100%;
@@ -82,4 +46,74 @@ a {
 table {
     background-color: white;
     height:280px
+}
+
+//STYLE TABLE
+$color_1: #FFFFFF;
+
+
+table.table-list-users {
+	border: 1px solid #1C6EA4;
+	background-color: #EEEEEE;
+	width: 59em;
+	height: 70vh;
+	text-align: center;
+	border-collapse: collapse;
+	td {
+		border: 1px solid #AAAAAA;
+		padding: 3px 5px;
+	}
+	th {
+		border: 1px solid #AAAAAA;
+		padding: 3px 5px;
+	}
+	tbody {
+		td {
+			font-size: 1;
+		}
+	}
+	tr {
+		&:nth-child(even) {
+			background: white
+		}
+	}
+	thead {
+		background: #267365;
+		background: -moz-linear-gradient(top, #5c968b 0%, #3b8174 66%, #267365 100%);
+		background: -webkit-linear-gradient(top, #5c968b 0%, #3b8174 66%, #267365 100%);
+		background: linear-gradient(to bottom, #5c968b 0%, #3b8174 66%, #267365 100%);
+		border-bottom: 2px solid #444444;
+		th {
+			font-size: 15px;
+			font-weight: bold;
+			color: $color_1;
+			border-left: 2px solid #D0E4F5;
+			&:first-child {
+				border-left: none;
+			}
+		}
+	}
+	tfoot {
+		font-size: 14px;
+		font-weight: bold;
+		color: $color_1;
+		background: #267365;
+		background: -moz-linear-gradient(top, #5c968b 0%, #3b8174 66%, #267365 100%);
+		background: -webkit-linear-gradient(top, #5c968b 0%, #3b8174 66%, #267365 100%);
+		background: linear-gradient(to bottom, #5c968b 0%, #3b8174 66%, #267365 100%);
+		border-top: 2px solid #444444;
+		td {
+			font-size: 14px;
+		}
+		.links {
+			text-align: right;
+			a {
+				display: inline-block;
+				background: #3CB6A0;
+				color: $color_1;
+				padding: 2px 8px;
+				border-radius: 5px;
+			}
+		}
+	}
 }

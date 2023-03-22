@@ -1,38 +1,48 @@
 <article class="list-users-containers">
-    <div class="mx-auto container center-container center d-flex justify-content-center align-content-center">
+    <div class="contenedor-table-list">
         <div class="row">
-            <div class="col-2 pb-2">                
+            <div class="col-2 pb-2">
                 <button [routerLink]="['/dashboard/nuevo-usuario']" class="my-btn-primary">NUEVO USUARIO</button>
             </div>
             <div class="col-12 contenedor-table">
 
-                <span *ngIf="usuarios.length<=1; else showThis"></span>
+                <!-- <span *ngIf="usuarios.length<=1; else showThis"></span>
                 <ng-template #showThis>
                     <span>Numero de usuarios:{{usuarios.length}}</span>
-                </ng-template>
-
-                <table
-                    class=" text-center table table-bordered table-responsive table-center table-hover table-striped table table-sm">
+                </ng-template> -->
+                <br>
+                <table class="table-list-users">
                     <thead>
                         <tr>
-                            <th scope="col">idUsuario</th>
-                            <th scope="col">Nombre Usuario</th>
-                            <th scope="col">Apellido Usuario</th>
-                            <th scope="col">Correo Usuario</th>
-                            <th scope="col">Estado Usuario</th>
-                            <th scope="col">Fecha creacion</th>
-                            <th scope="col">Actions</th>
+                            <th>Id</th>
+                            <th>Nombre Usuario</th>
+                            <th>Apellido Usuario</th>
+                            <th>Correo Usuario</th>
+                            <th>Estado Usuario</th>
+                            <th>Fecha creacion</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <div class="links">
+                                    <a href="#">&laquo;</a>
+                                     <a class="active" href="#">1</a> 
+                                     <a href="#">2</a> 
+                                     <a href="#">3</a> 
+                                     <a href="#">4</a> 
+                                     <a href="#">&raquo;</a></div>
+                            </td>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr class="mx-auto text-center" *ngIf="loading; else tableUsuario">
                             <td colspan="7">
                                 <h3>Cargando datos...</h3>
                                 <span class="loader"></span>
                             </td>
-
                         </tr>
-                        <!-- <pre>{{usuarios}}</pre> -->
                         <ng-template #tableUsuario>
                             <tr *ngFor="let usuario of usuarios">
                                 <th scope="row">{{usuario.user_id}}</th>
@@ -46,34 +56,16 @@
                                 <td scope="row">
                                     <button class="my-btn-primary"
                                         (click)="deleteUsuario(usuario.user_id)">ELIMINAR</button>
-                                        <button class="my-btn-danger"
-                                        (click)="deleteUsuario(usuario.user_id)">ACTUALIZAR</button></td>
+                                    <button class="my-btn-danger"
+                                        (click)="deleteUsuario(usuario.user_id)">ACTUALIZAR</button>
+                                </td>
                             </tr>
                         </ng-template>
-                        <tr>
-                            <td colspan="7">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                        <li id="btnAtras" class="page-item disabled">
-                                            <a (click)="atras()" class="page-link" tabindex="-1">Atras</a>
-                                        </li>
-                                        <!-- <li class="page-item" *ngFor='let item of [].constructor(itemsPaginado); let i = index'><a class="page-link" href="#">{{i+1}}</a></li> -->
-                                        <li id="btnSiguiente" class="page-item">
-                                            <a (click)="siguiente()" class="page-link" tabindex="1">Siguiente</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </td>
-                        </tr>
-
                     </tbody>
                 </table>
-
-
             </div>
         </div>
 
 
     </div>
 </article>
-

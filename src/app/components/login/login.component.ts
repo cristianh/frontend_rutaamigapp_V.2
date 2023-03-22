@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,7 +20,7 @@ export class LoginComponent {
   public email!: string;
   public password!: string;
 
-  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService, public auth: AuthService) { }
+  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService, public auth: AuthService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
@@ -43,7 +43,7 @@ export class LoginComponent {
       usuario.user_email = this.formLogin.value.email
       usuario.user_password = this.formLogin.value.password
       //SEND DATA TO SERVICES
-      this.usuarioservice.loginUsuario('/auth/login', usuario).subscribe(
+      this.usuarioservice.loginUsuario('auth/login', usuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
 
@@ -86,7 +86,10 @@ export class LoginComponent {
 
           /* this.formRegister *///buscar como limpiar formulario.
         },
-        error => console.log("Ha ocurrido un error en la llamada: ", error))
+        error => {
+          this.toastr.error("Ha ocurrido un error en la llamada",`${error.message}`);
+          console.log("Ha ocurrido un error en la llamada: ", error)
+        })
 
 
     }

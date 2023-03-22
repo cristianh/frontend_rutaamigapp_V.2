@@ -1,63 +1,67 @@
-<div class="mx-auto container center-container">
-    <h3>Nuevo usuario:</h3>
-    <hr>
-    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-       
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="nombreUsuario">Nombre usuario</label>
-                    <input type="text" class="form-control" id="nombreUsuario" aria-describedby="Ingrese su nombre"
-                        placeholder="Ingrese su nombre" formControlName="nombreUsuario" name="nombre_usuario">
-                    <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
+<div class="container">
+
+    <fieldset>
+        <legend>Nuevo usuario:</legend>
+        <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+            <div class="container-form">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="nombreUsuario">Nombre usuario</label>
+                            <input type="text" class="input" id="nombreUsuario" aria-describedby="Ingrese su nombre"
+                                placeholder="Ingrese su nombre" formControlName="nombreUsuario" name="nombre_usuario">
+                            <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="apellidoUsuario">Apellido usuario</label>
+                            <input type="text" class="input" id="apellidoUsuario" placeholder="Ingrese su apellido"
+                                formControlName="apellidoUsuario" name="apellido_usuario">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label for="apellidoUsuario">Apellido usuario</label>
-                    <input type="text" class="form-control" id="apellidoUsuario" placeholder="Ingrese su apellido"
-                    formControlName="apellidoUsuario" name="apellido_usuario">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group py-4">
+                            <label for="correoUsuario">Correo usuario</label>
+                            <input type="text" class="input" id="correoUsuario" aria-describedby="Ingrese su correo"
+                                placeholder="Ingrese su correo" required formControlName="correoUsuario"
+                                name="correo_usuario">
+                            <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group py-4">
+                            <label for="passwordUsuario">Password usuario</label>
+                            <input type="password" id="password" class="input" id="passwordUsuario"
+                                placeholder="Ingrese su password" required formControlName="passwordUsuario"
+                                name="password_usuario">
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group py-4">
-                    <label for="correoUsuario">Correo usuario</label>
-                    <input type="text" class="form-control" id="correoUsuario" aria-describedby="Ingrese su correo"
-                        placeholder="Ingrese su correo" required formControlName="correoUsuario"
-                        name="correo_usuario">
-                    <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group py-4">
-                    <label for="passwordUsuario">Password usuario</label>
-                    <input type="password" id="password"class="form-control" id="passwordUsuario" placeholder="Ingrese su password"
-                        required formControlName="passwordUsuario" name="password_usuario">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 ">
-                <hr>
-                <!-- <div *ngIf="mensaje" class="alert alert-success alert-dismissible" role="alert">
+                <!--  <div class="row">
+                <div class="col-12 ">                    
+                    <div *ngIf="mensaje" class="alert alert-success alert-dismissible" role="alert">
                     {{mensajeFinal.status}}
                 </div>
                 <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert">
                     {{mensajeFinal.status}}
-                </div> -->
+                </div>
+                </div>
+            </div> -->
+                
             </div>
-        </div>
-        <div class="row">
-            
-            <div class="col-2">
-                <button type="submit" class="my-btn-primary" data-toggle="modal"
-                data-target="#exampleModal">GUARDAR</button>
+            <div class="row-botones">
+
+                <div class="col-2">
+                    <button type="submit" class="my-btn-primary" data-toggle="modal"
+                        data-target="#exampleModal">GUARDAR</button>
+                </div>
+                <div class="col-2">
+                    <button type="button" [routerLink]="['../usuarios']" class="my-btn-primary ">ATRAS</button>
+                </div>
             </div>
-            <div class="col-2">
-                <button type="button" [routerLink]="['../usuarios']" class="my-btn-primary ">ATRAS</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </fieldset>
 </div>
