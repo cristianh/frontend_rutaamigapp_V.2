@@ -2,26 +2,45 @@
     <article class="logo-container-nav">
         <img src="../assets/img/logo1 - banner.png" alt="logo" style="width: 200px;">
     </article>
-    <ul class="navbar-nav mt-4">
+    <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/rutas-usuario']">Mis rutas</a>
+          <div class="nav-item-menu">
+          <div><span href=""><img class="iconos" src="../../../assets/ICONOS/Icon=Rutes, Estilo=Dark.svg" alt=""></span></div>
+          <div><span class="nav-link" aria-current="page" [routerLink]="['/dashboard/rutas-usuario']">Rutas</span></div>
+          <div>></div>
+          </div>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/perfil-usuario']">Mi perfil</a>
+          <div class="nav-item-menu">
+          <div><span href=""><img class="iconos" src="../../../assets/ICONOS/Icon=Profile, Estilo=Dark.svg" alt=""></span></div>
+          <div><span class="nav-link" aria-current="page" [routerLink]="['/dashboard/perfil-usuario']">Perfil</span></div>
+          <div>></div>
+          </div>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/listar-favoritos-usuarios']">Listar
-                favoritos</a>
+          <div class="nav-item-menu">
+          <div><span href=""><img class="iconos" src="../../../assets/ICONOS/Icon=Favorite, Estilo=Dark.svg" alt=""></span></div>
+          <div><span class="nav-link" aria-current="page" [routerLink]="['/dashboard/listar-favoritos-usuarios']">Favoritos</span></div>
+          <div>></div>
+          </div>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" [routerLink]="['/dashboard/mensaje-usuario']">Mensajes</a>
+          <div class="nav-item-menu">
+          <div><span href=""><img class="iconos" src="../../../assets/ICONOS/Icon=Notificacion, Estilo=Dark.svg" alt=""></span></div>
+          <div><span class="nav-link" aria-current="page" [routerLink]="['/dashboard/mensaje-usuario']">Mensajes</span></div>
+          <div>></div>
+          </div>
         </li>
+
         <li class="nav-item">
-            <a class="nav-link" aria-current="page"
-                [routerLink]="['/dashboard/configuracion-usuario']">Configuración</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" aria-current="page" (click)="onLogOut()">Salir</a>
+          <div class="nav-item-menu">
+          <div><span href=""><img class="iconos" src="../../../assets/ICONOS/Icon=Settings, Estilo=Dark.svg" alt=""></span></div>
+          <div><span class="nav-link" aria-current="page" [routerLink]="['/dashboard/configuracion-usuario']">Configuración</span></div>
+          <div>></div>
+          </div>
         </li>
     </ul>
 </nav>

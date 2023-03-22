@@ -1,7 +1,8 @@
 <nav class="navbar">
-    <div class="icon" href="./index.html"></div>
+    <div class="icon" [routerLink]="['']"></div>
     <div class="nav_items" id="_items">
-        <div> <a href="/contacto">Inicio</a></div>
+        <div> <a [routerLink]="['']">Inicio</a></div>
+        <div> <a [routerLink]="['/registrar']">Registro</a></div>
         <div *ngIf="auth.isLoggedIn() | async"><a href="/portafolio"><span>Bienvenid@ {{getUsuario()}}</span></a>
         </div>
         <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"
