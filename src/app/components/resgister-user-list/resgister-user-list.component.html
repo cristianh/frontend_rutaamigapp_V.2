@@ -82,11 +82,13 @@
             </div>
             <div class="row-botones">
                 <div class="col-2">
-                    <button type="submit" class="my-btn-primary" data-toggle="modal"
-                        data-target="#exampleModal">GUARDAR</button>
+                    <!-- <button type="submit" class="my-btn-primary" data-toggle="modal"
+                        data-target="#exampleModal">GUARDAR</button> -->
+                        <app-my-btn-primary  textoBoton="GUARDAR"></app-my-btn-primary>
                 </div>
                 <div class="col-2">
-                    <button type="button" [routerLink]="['../usuarios']" class="my-btn-primary ">ATRAS</button>
+                    <app-my-btn-primary  [routerLink]="['/dashboard/listar-usuarios']" textoBoton="ATRAS"></app-my-btn-primary>
+                    <!-- <button type="button" [routerLink]="['/dashboard/listar-usuarios']" class="my-btn-primary ">ATRAS</button> -->
                 </div>
             </div>
         </form>
