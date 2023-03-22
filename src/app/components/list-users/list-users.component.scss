@@ -1,8 +1,13 @@
-$color_1: rgb(38, 115, 101);
-$color_2: var(--color-white);
-$background-color_1: var(--color-white);
-$background-color_2: var(--btn-primary-bg);
+@import "../../../~variables.scss";
 $border-color_1: #FF3D00 transparent;
+
+.list-users-containers{
+	width: 100%;
+	height: 100%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Loading */
 @keyframes rotation {
@@ -15,7 +20,7 @@ $border-color_1: #FF3D00 transparent;
 }
 .my-btn-primary {
 	background-color: $background-color_1;
-	border: 0.2em solid rgb(38, 115, 101);
+	border: 0.2em solid $color_2;
 	border-radius: 5px;
 	padding: 0.2em 1em;
 	color: $color_1;
@@ -33,9 +38,30 @@ $border-color_1: #FF3D00 transparent;
 		font-weight: 500;
 	}
 }
+
+.my-btn-danger {
+	background-color: $background-color_1;
+	border: 0.2em solid rgb(221, 54, 54);
+	border-radius: 5px;
+	padding: 0.2em 1em;
+	color: $color_1;
+	font-weight: 500;
+	transition: .3s;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 0px auto;
+	width: 100%;
+	&:hover {
+		background-color: $background-color_2;
+		color: $color_2;
+		font-weight: 500;
+	}
+}
+
 .contenedor-table {
-	max-height: 300px;
-	height: 300px;
+	height: 100%;
 }
 a {
 	&:hover {

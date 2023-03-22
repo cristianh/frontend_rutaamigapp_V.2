@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router"
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-register-new-user',
   templateUrl: './register-new-user.component.html',
@@ -17,7 +17,7 @@ export class RegisterNewUserComponent {
   validacionFormulario = false
   mensajeFinal: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService) { }
+  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
@@ -50,19 +50,26 @@ export class RegisterNewUserComponent {
         //SEND DATA TO SERVICES
         this.usuarioservice.saveUsuario('/usuario/registro', usuario).subscribe(
           //SEND NEW USUARIO
-          (data): any => {
+          (data:any): any => {
+            console.log(data)
+            this.toastr.success(`${data.status}`,'Correcto');
             
-            
-              this.mensajeFinal = data
+              /* this.mensajeFinal = data
               this.mensajeSuccess = true
               this.mensajeError = false
-              this.validacionFormulario = false
+              this.validacionFormulario = false */
+
+              setTimeout(() => {
+                this.router.navigate([''])
+              }, 1050);
+              
             
 
             /* this.formRegister *///buscar como limpiar formulario.
           },
           error => {
-            if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
+            this.toastr.error('Ha ocurrido un error',`${error.errors[0].msg}`);
+            /* if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
               console.log(error.errors)
               console.log(error.error.errors[0].msg)
               if (error.error.errors[0].hasOwnProperty("msg")) {
@@ -70,15 +77,16 @@ export class RegisterNewUserComponent {
                 console.log(this.mensajeFinal)
                 this.mensajeError = true
               }
-            } 
+            }  */
 
             console.log("Ha ocurrido un error en la llamada: ", error)
           });
       } else {
-        this.mensajeFinal = "Las contraseñas no coinciden"
+        this.toastr.info('Ha ocurrido un error','Las contraseñas no coinciden.');
+       /*  this.mensajeFinal = "Las contraseñas no coinciden"
         this.mensajeSuccess = false
         this.mensajeError = true
-        this.validacionFormulario = false
+        this.validacionFormulario = false */
       }
     }else{      
       this.validacionFormulario = true

@@ -1,14 +1,11 @@
-$color_1: rgb(38, 115, 101);
-$color_2: var(--color-white);
-$background-color_1: var(--color-white);
-$background-color_2: var(--btn-primary-bg);
+@import "../../../~variables.scss";
 
 .my-btn-primary {
-	background-color: $background-color_1;
-	border: 0.2em solid rgb(38, 115, 101);
+	background-color: $background-color_2;
+	border: 0.2em solid $color_2;
 	border-radius: 5px;
 	padding: 0.2em 1em;
-	color: $color_1;
+	color: $color_2;
 	font-weight: 500;
 	transition: .3s;
 	display: flex;
@@ -17,8 +14,8 @@ $background-color_2: var(--btn-primary-bg);
 	align-items: center;
 	margin: 0px auto;
 	&:hover {
-		background-color: $background-color_2;
-		color: $color_2;
+		background-color: $background-color_1;
+		color: $color_4;
 		font-weight: 500;
 		transition: .3s;
 	}

@@ -1,11 +1,9 @@
-<article class="principal-container">
-    <div class="mx-auto container center-container center">
+<article class="list-users-containers">
+    <div class="mx-auto container center-container center d-flex justify-content-center align-content-center">
         <div class="row">
-            <div class="col-2 pb-2">
-
-                <button [routerLink]="['../usuarioRegister']" class="my-btn-primary">NUEVO USUARIO</button>
+            <div class="col-2 pb-2">                
+                <button [routerLink]="['/dashboard/nuevo-usuario']" class="my-btn-primary">NUEVO USUARIO</button>
             </div>
-
             <div class="col-12 contenedor-table">
 
                 <span *ngIf="usuarios.length<=1; else showThis"></span>
@@ -45,8 +43,11 @@
                                     [ngClass]="{'bg-success':usuario.user_status,'bg-danger':!usuario.user_status}">
                                     {{usuario.user_status?'Activo':'Inactivo'}}</td>
                                 <td scope="row">{{usuario.create_date | date:'MM/dd/yyyy' }}</td>
-                                <td scope="row"><button class="btn btn-danger"
-                                        (click)="deleteUsuario(usuario.user_id)">ELIMINAR</button></td>
+                                <td scope="row">
+                                    <button class="my-btn-primary"
+                                        (click)="deleteUsuario(usuario.user_id)">ELIMINAR</button>
+                                        <button class="my-btn-danger"
+                                        (click)="deleteUsuario(usuario.user_id)">ACTUALIZAR</button></td>
                             </tr>
                         </ng-template>
                         <tr>
@@ -75,3 +76,4 @@
 
     </div>
 </article>
+

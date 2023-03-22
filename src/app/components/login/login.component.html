@@ -8,7 +8,7 @@
             </section>
             <section class="mid-container">
                 <header>
-                    <h1 class="principal-title">LOGIN</h1>
+                    <h1 class="principal-title">Inicio de sesión</h1>
                 </header>
                 <form [formGroup]="formLogin" (ngSubmit)="onIngresar()">
                     <input class="input" type="text" id="email" name="email" placeholder="Correo" formControlName="email" ngModel />
@@ -16,12 +16,11 @@
                         ngModel />
                     <!--   <button class="my-btn-primary"  type="submit" id="ingresar" name="ingresar">INGRESAR</button> -->
                     <app-my-btn-primary textoBoton="INGRESAR"></app-my-btn-primary>
-                    <label class="log-in">¿Ha olvidado su contraseña?  <a [routerLink]="['/reset-password']">Restablecerla</a> </label>
-                    <label class="log-in">Si no tienes cuenta registrate <a [routerLink]="['']">aquí</a> </label>
+                    <label class="log-in">¿Has olvidado tu contraseña?  <a [routerLink]="['/reset-password']">Restablecerla</a> </label>
+                    <label class="log-in">Si no tienes cuenta regístrate <a [routerLink]="['/registrar']">aquí</a> </label>
                 </form>
             </section>
-           
-
         </article>
     </article>
+    <!-- <app-notifications></app-notifications> -->
 </main>

@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,11 +8,22 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 
 export class NavComponent implements OnInit {
-  constructor( public auth : AuthService ) {
+
+  public user: any;
+
+  constructor(public auth: AuthService) {
 
   }
 
   ngOnInit(): void {
+    this.user = this.auth.getCurrentUser();
+  }
 
+  getUsuario(){
+    return JSON.parse(this.user).usuario
+  }
+
+  getUsuarioImg(){
+    return JSON.parse(this.user).imagen
   }
 }

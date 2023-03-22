@@ -53,10 +53,12 @@ export class LoginComponent {
             this.auth.login(data.token)
             //se almacena el nombre del usuario en el almacenamiento de
             //sesion
-            this.auth.setCurrentUser(`${data.usuario.nombre} ${data.usuario.apellido}`)
+            let usuario= `${data.usuario.nombre}-${data.usuario.apellido}`
+            let img= `${data.usuario.img}`
+            this.auth.setCurrentUser(usuario,img)
             //navegamos de nuevo al home, esta vez como usuario
             //logueado
-            this.router.navigate(['/mapa'])
+            this.router.navigate(['/dashboard/listar-usuarios'])
 
             /* document.getElementById('mensaje').classList.add('hidden')
             document.getElementById('mensaje-error').innerHTML = '' */

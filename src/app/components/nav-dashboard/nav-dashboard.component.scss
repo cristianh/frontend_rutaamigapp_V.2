@@ -1,0 +1,59 @@
+@import "../../../~variables.scss";
+
+
+//TODO: recordar convertirlo a scss.
+
+.nav-bar-dashboard {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    box-shadow: 2px 2px 3px 3px;
+    background: #FDFDFD;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px 0px 20px 0px;
+    height: 100vh;
+    font-size: 1.2em;
+    border-right: 2px solid rgb(179, 177, 177);
+}
+
+.navbar-nav {
+    margin:12px 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 12px 12px;
+    height: fit-content;
+}
+
+ul > li {
+    cursor:pointer
+}
+
+.nav-item-menu {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    gap: 10px;
+    padding:13px 13px;
+    background-color: white;
+}
+
+
+
+.nav-item-menu:hover {
+    background-color: #267365;
+    color: $color_4
+}
+
+.nav-item-menu svg :hover {
+    stroke: rgb(0, 183, 255)
+}
+
+.nav-item-menu:hover {
+    color: $color_4;
+}
+
+svg#styled-element path:hover {
+    stroke: #ff0000
+}
