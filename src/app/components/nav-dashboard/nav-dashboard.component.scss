@@ -19,21 +19,27 @@
 }
 
 .navbar-nav {
-    margin:12px 10px;
+    margin:4px 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 12px 12px;
     height: fit-content;
+    width: 80%;
 }
 
 ul > li {
     cursor:pointer
 }
 
+.line{
+    font-weight: 300;
+    font-family: cursive;
+}
+
 .nav-item-menu {
-    display: grid;
-    grid-template-columns: 60px 1fr 1fr;
-    place-items: center;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
     gap: 10px;
     padding:13px 13px;
     background-color: white;
@@ -50,10 +56,10 @@ ul > li {
     stroke: rgb(0, 183, 255)
 }
 
-.nav-item-menu:hover {
-    color: $color_4;
-}
 
-svg#styled-element path:hover {
-    stroke: #ff0000
+
+.nav-item-menu div .filter-white-icon:hover {
+    filter: brightness(2);
+    animation:0.2s filter ease-in-out;
+    color: $color_4;
 }
