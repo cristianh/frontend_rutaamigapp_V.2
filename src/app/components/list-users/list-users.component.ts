@@ -53,7 +53,7 @@ export class ListUsersComponent {
   deleteUsuario(id: number) {
 
     if (confirm("Esta seguro que desea eliminar el usuario.")) {
-      this.usuarioservice.deleteUsuario(`${this.url}/usuario/allusers/${id}`).subscribe(
+      this.usuarioservice.deleteUsuario(`${this.url}/usuario/${id}`).subscribe(
 
         (data): any => {
           this.usuarios = this.usuarios.filter((usuario) => {

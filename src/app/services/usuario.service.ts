@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Usuario } from '../models/usuario';
 import { AuthService } from 'src/app/services/auth.service';
-/* import { environment } from '../../environments/environment'; */
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UsuarioService {
 
   configUrl = 'assets/config.json';
-  //baseUrl=environment.API_URL;
-  baseUrl = 'http://localhost:3000/api/';
+  baseUrl=environment.API_URL;
 
   constructor(private http: HttpClient,private auth:AuthService) { }
 

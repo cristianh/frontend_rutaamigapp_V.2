@@ -44,6 +44,7 @@ export class AuthService {
    //método que nos permite eliminar el nombre de usuario
    private deleteCourrentUser() : void {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
   //método que nos permite romover el token almacenado y el nombre del

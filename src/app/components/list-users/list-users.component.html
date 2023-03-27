@@ -2,7 +2,8 @@
     <div class="contenedor-table-list">
         <div class="row">
             <div class="col-2 pb-2">
-                <app-my-btn-primary style="float: left;" [routerLink]="['/dashboard/nuevo-usuario']"  textoBoton="NUEVO USUARIO"></app-my-btn-primary>
+                <app-my-btn-primary style="float: left;" [routerLink]="['/dashboard/nuevo-usuario']"
+                    textoBoton="NUEVO USUARIO"></app-my-btn-primary>
                 <!-- <button [routerLink]="['/dashboard/nuevo-usuario']" class="my-btn-primary"></button> -->
             </div>
             <div class="col-12 contenedor-table">
@@ -29,11 +30,12 @@
                             <td colspan="7">
                                 <div class="links">
                                     <a href="#">&laquo;</a>
-                                     <a class="active" href="#">1</a> 
-                                     <a href="#">2</a> 
-                                     <a href="#">3</a> 
-                                     <a href="#">4</a> 
-                                     <a href="#">&raquo;</a></div>
+                                    <a class="active" href="#">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                    <a href="#">4</a>
+                                    <a href="#">&raquo;</a>
+                                </div>
                             </td>
                         </tr>
                     </tfoot>
@@ -55,8 +57,12 @@
                                     {{usuario.user_status?'Activo':'Inactivo'}}</td>
                                 <td scope="row">{{usuario.create_date | date:'MM/dd/yyyy' }}</td>
                                 <td scope="row">
-                                    <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)" textoBoton="ELIMINAR"></app-my-btn-primary>
-                                    <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)" textoBoton="ACTUALIZAR"></app-my-btn-primary>                                    
+                                    <div class="boton-actions" >
+                                        <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)"
+                                            textoBoton="ELIMINAR"></app-my-btn-primary>
+                                        <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)"
+                                            textoBoton="ACTUALIZAR"></app-my-btn-primary>
+                                    </div>
                                 </td>
                             </tr>
                         </ng-template>

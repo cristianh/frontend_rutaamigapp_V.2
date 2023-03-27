@@ -73,7 +73,12 @@ export class LoginComponent {
           /* this.formRegister *///buscar como limpiar formulario.
         },
         error => {
-          this.toastr.error("Ha ocurrido un error en la llamada",`${error.message}`);
+          if(error.error.result){
+            this.toastr.error(`${error.error.result}`,"Atencion!");
+          }
+          else{
+            this.toastr.error(`${error.message}`,"Atencion!");
+          }
           console.log("Ha ocurrido un error en la llamada: ", error)
         })
 
