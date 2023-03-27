@@ -17,12 +17,13 @@ import { SettingsUserComponent } from './components/settings-user/settings-user.
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserRoutesComponent } from './components/user-routes/user-routes.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: ContainerLoginComponent },
   { path: 'registrar', component: ContainerRegisterComponent },
   {
-    path: 'dashboard', component: LayoutComponent,
+    path: 'dashboard', component: LayoutComponent, canActivate:[AuthGuard],
     children: [
       { path: '',component: NavComponent, outlet: "header" },
       { path: '',component: NavDashboardComponent, outlet: "sidenav" },
