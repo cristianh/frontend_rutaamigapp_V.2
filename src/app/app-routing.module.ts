@@ -17,6 +17,7 @@ import { SettingsUserComponent } from './components/settings-user/settings-user.
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserRoutesComponent } from './components/user-routes/user-routes.component';
+//Importar guard
 
 const routes: Routes = [
   { path: '', component: ContainerLoginComponent },
