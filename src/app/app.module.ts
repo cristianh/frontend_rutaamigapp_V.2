@@ -35,6 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UserResetPasswordComponent } from './components/user-reset-password/user-reset-password.component';
 import { UserNewPasswordComponent } from './components/user-new-password/user-new-password.component';
+import { ContainerUserResetPasswordComponent } from './components/container-user-reset-password/container-user-reset-password.component';
+import { ContainerUserNewPasswordComponent } from './components/container-user-new-password/container-user-new-password.component';
 /* import { NotificationsComponent } from './components/notifications/notifications.component'; */
 
 const config: SocketIoConfig = {
@@ -71,6 +73,8 @@ const config: SocketIoConfig = {
     ResgisterUserListComponent,
     UserResetPasswordComponent,
     UserNewPasswordComponent,
+    ContainerUserResetPasswordComponent,
+    ContainerUserNewPasswordComponent,
     /*  NotificationsComponent */
   ],
   imports: [
