@@ -59,6 +59,7 @@ export class AuthService {
   //método que nos retorna el BehaviorSubject cómo un observable
   isLoggedIn(): Observable<boolean> {
     let logIn = new BehaviorSubject<boolean>(localStorage?.getItem("currentUser")?true:false);    
+    //Validacion si es admin
     return logIn
    /*  return this.isLogin.asObservable(); */
   }
