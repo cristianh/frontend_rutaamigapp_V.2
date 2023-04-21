@@ -13,6 +13,7 @@ import { ChatService } from 'src/app/services/socket-comunication.service';
 export class MapaComponent {
 
 
+  loading: boolean = true;
 
   // Object that will contain each of the points of the route.
   public dataPointsBus = {
@@ -64,8 +65,8 @@ export class MapaComponent {
   };
 
   constructor(private socketmap: ChatService) {
-    
-    
+
+
     this.socketmap.getMessage().subscribe(
       (data: any) => {
         console.log(data)
@@ -76,9 +77,6 @@ export class MapaComponent {
   }
   /* PROBANDO*/
   ngOnInit(): void {
-
-
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((pos: any) => {
 
@@ -105,6 +103,10 @@ export class MapaComponent {
 
     this.from = turf.point([lng, lat]);
 
+    //Establecemos posiciones indiciales por defecto.
+    this.dataPointsBus.features[0].geometry.coordinates.lon = lng
+    this.dataPointsBus.features[0].geometry.coordinates.lat = lat
+
     mapboxgl as typeof mapboxgl;
 
     this.map = new mapboxgl.Map({
@@ -120,12 +122,8 @@ export class MapaComponent {
     });
 
     this.map.on('load', async () => {
-
+      this.loading = false
       const response = await this.loadPointTest()
-
-
-
-
 
       //VALIDAMOS QUE EL MAPA ESTE COMPLETAMENTE CARGADO
       /* this.map.once('idle', () => { */
@@ -154,12 +152,12 @@ export class MapaComponent {
       el.className = 'marker';
 
       this.popupText = new mapboxgl.Popup({ offset: 25 })
-        .setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
+        .setLngLat([lng, lat])
         .setHTML(`<div><h3>${this.dataPointsBus.features[0].properties.title}</h3><br>Dirección:<span>${this.dataPointsBus.features[0].properties.description}</span><br><span>Velocidad: ${this.velocidad}</span></div>`)
         .addTo(this.map);
 
       // We load the point of the bus on the map with the corridors
-      
+
       this.pointBus = new mapboxgl.Marker(el).setLngLat([lng, lat])
         //this.pointBus = new mapboxgl.Marker(el).setLngLat(this.dataPointsBus.features[0].geometry.coordinates)
         .addTo(this.map)
@@ -201,7 +199,7 @@ export class MapaComponent {
 
       //redondeamos la velocidad.
       this.velocidad = Math.round(this.dataPointsBus.features[point].properties.velocidad * 3.6)
-      
+
 
       /* if (this.dataPointsBus.features[point].properties.velocidad !== null || this.dataPointsBus.features[point].properties.velocidad !== undefined) {
         this.popupText = `<div><h3>${this.dataPointsBus.features[point].properties.title}</h3><span>${this.dataPointsBus.features[point].properties.description}</span><br><span>Velocidad: ${this.velocidad}</span></div>`
@@ -215,9 +213,9 @@ export class MapaComponent {
 
       this.to = turf.point([this.dataPointsBus.features[point].geometry.coordinates.lon, this.dataPointsBus.features[point].geometry.coordinates.lat])
 
-      console.log(this.to,this.from)
+      console.log(this.to, this.from)
 
-      let distance = turf.distance(this.from,this.to, options);
+      let distance = turf.distance(this.from, this.to, options);
       console.log(distance)
       distance = distance * 1000
 
@@ -264,29 +262,34 @@ export class MapaComponent {
 
     this.socketmap.getMessageGPS().subscribe(
       (data: any) => {
-        
+
         const { Latitude, Longitude, Speed } = data
 
-        this.dataPointsBus.features[this.point].geometry= {
+        console.log(Latitude, Longitude, Speed)
+
+        this.dataPointsBus.features[this.point].geometry = {
           coordinates: {
             lat: Latitude,
             lon: Longitude
           }
         }
-        this.dataPointsBus.features[this.point].properties= {
+        this.dataPointsBus.features[this.point].properties = {
           title: 'Ruta 18',
           description: 'Norte/Sur',
           velocidad: Speed == undefined ? '0' : Speed
         }
-                  
+
       },
       error => {
         console.log(error)
       });
+  }
 
+
+  async simulateRuta() {
     // Make a GET request to the API and return the location of the ISS.
-    /* try {
-      await fetch(`https://amigaapp-f2f93-default-rtdb.firebaseio.com/dbrutas/${ruta}.json`)
+    try {
+      await fetch(`https://amigaapp-f2f93-default-rtdb.firebaseio.com/dbrutas.json`)
         .then((resp) => resp.json())
         .then((data) => {
 
@@ -322,7 +325,6 @@ export class MapaComponent {
       // if (updateSource) clearInterval(updateSource);
       throw new Error("Error");
 
-    } */
+    }
   }
-
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/models/usuario';
 import { Router, ActivatedRoute } from "@angular/router"
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-new-password',
@@ -21,7 +21,12 @@ export class UserNewPasswordComponent {
   public mensaje: string = "";
   public mensajeErrors: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private usuarioservice: UsuarioService) { }
+  constructor(private fb: FormBuilder, 
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private usuarioservice: UsuarioService,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
 
@@ -38,7 +43,7 @@ export class UserNewPasswordComponent {
 
       // VALIDATE PASSWORDS MATCH
       if (this.formNewPassword.value.password1 !== this.formNewPassword.value.password2) {
-        alert('las Contraseñas no coinciden')
+        this.toastr.warning("Error las contraseñas no coinciden","Error!");
       } else {
 
         let usuario = {
@@ -47,55 +52,45 @@ export class UserNewPasswordComponent {
           "password_usuario": this.formNewPassword.value.password1
         }
 
-        console.log(usuario)
-
-
-
         //SEND DATA TO SERVICES
         this.usuarioservice.updatePasswordUsuario('/auth/updatePasswordUsuario', usuario).subscribe(
           //SEND NEW EMAIL
           (data: any): any => {
 
-            if (data) {
-              console.log(data)
-              this.mensajeError = false
-              this.mensajeSuccess = true
-              this.mensaje = `${data?.result}`;            
+            if (data) {              
+             /*  this.mensajeError = false
+              this.mensajeSuccess = true */   
+              this.mensajeSuccess = true           
+              this.mensaje = `${data?.result}`;               
+              this.toastr.success(`${this.mensaje}`,"Correcto!");           
             }
           },
           error => {
-
-
-            this.mensajeError = true
-            this.mensajeSuccess = false
+            /* this.mensajeError = true
+            this.mensajeSuccess = false */
 
             if (error.hasOwnProperty("error")) {
               if (error.hasOwnProperty("msg")) {
                 this.mensajeErrors = error.error.msg;
-                console.log(this.mensajeErrors)
+                this.toastr.error(`${this.mensajeErrors}`,"Error!");           
               } else {
                 for (const key in error) {
                   if (Object.prototype.hasOwnProperty.call(error, key)) {
                     const element = error[key];
-
                     if (element.hasOwnProperty("errors")) {
 
 
                       this.mensajeErrors = element.errors[0].msg;
-                      console.log(element.errors[0].msg)
+                      
                     } else {
+                      
                       console.log(element.error)
                     }
-
-
                   }
                 }
               }
 
             }
-
-
-
             console.log("Ha ocurrido un error en la llamada: ", error)
           })
       }

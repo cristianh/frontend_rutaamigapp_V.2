@@ -37,6 +37,7 @@ import { UserResetPasswordComponent } from './components/user-reset-password/use
 import { UserNewPasswordComponent } from './components/user-new-password/user-new-password.component';
 import { ContainerUserResetPasswordComponent } from './components/container-user-reset-password/container-user-reset-password.component';
 import { ContainerUserNewPasswordComponent } from './components/container-user-new-password/container-user-new-password.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 /* import { NotificationsComponent } from './components/notifications/notifications.component'; */
 
 const config: SocketIoConfig = {
@@ -75,6 +76,7 @@ const config: SocketIoConfig = {
     UserNewPasswordComponent,
     ContainerUserResetPasswordComponent,
     ContainerUserNewPasswordComponent,
+    PreloaderComponent,
     /*  NotificationsComponent */
   ],
   imports: [
