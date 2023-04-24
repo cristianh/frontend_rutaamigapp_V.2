@@ -12,7 +12,8 @@ import { environment } from '../../environments/environment';
 export class UsuarioService {
 
   configUrl = 'assets/config.json';
-  baseUrl=environment.API_URL;
+  /* baseUrl=environment.API_URL; */
+  baseUrl='https://backendrutamiappbackservice.onrender.com/api/';
 
   constructor(private http: HttpClient,private auth:AuthService) { }
 

@@ -2,7 +2,9 @@
 
 #map {
     width: 100vw;
-    height: 100vh
+    height: 100vh;
+    z-index: -99999;
+    background-color: rgb(220, 221, 221);
 }
 
 .marker {

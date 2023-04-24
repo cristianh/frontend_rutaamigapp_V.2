@@ -4,6 +4,8 @@ import { ContainerListUsersComponent } from './components/container-list-users/c
 import { ContainerLoginComponent } from './components/container-login/container-login.component';
 import { ContainerMapaComponent } from './components/container-mapa/container-mapa.component';
 import { ContainerRegisterComponent } from './components/container-register/container-register.component';
+import { ContainerUserNewPasswordComponent } from './components/container-user-new-password/container-user-new-password.component';
+import { ContainerUserResetPasswordComponent } from './components/container-user-reset-password/container-user-reset-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FavoritosComponent } from './components/favoritos/favoritos.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -14,14 +16,20 @@ import { NavDashboardComponent } from './components/nav-dashboard/nav-dashboard.
 import { NavComponent } from './components/nav/nav.component';
 import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
+import { UserNewPasswordComponent } from './components/user-new-password/user-new-password.component';
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserRoutesComponent } from './components/user-routes/user-routes.component';
 import { AuthGuard } from './guards/auth.guard';
 
+
+
 const routes: Routes = [
   { path: '', component: ContainerLoginComponent },
   { path: 'registrar', component: ContainerRegisterComponent },
+  { path: 'reset-password', component: ContainerUserResetPasswordComponent },
+  { path: 'reset-new-password', component: UserNewPasswordComponent }, // ruta para ver la ventana rapidamente.
+  { path: 'new-password/:id/:token', component: ContainerUserNewPasswordComponent },
   {
     path: 'dashboard', component: LayoutComponent, canActivate:[AuthGuard],
     children: [

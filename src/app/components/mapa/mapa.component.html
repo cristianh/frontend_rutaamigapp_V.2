@@ -1,3 +1,8 @@
 <div id="map">
+    <div *ngIf="loading; else elseMapa">
+        <app-preloader></app-preloader>
+    </div>
+    <ng-template #elseMapa>
 
+    </ng-template>
 </div>
