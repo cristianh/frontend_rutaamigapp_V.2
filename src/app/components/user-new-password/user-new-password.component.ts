@@ -21,12 +21,12 @@ export class UserNewPasswordComponent {
   public mensaje: string = "";
   public mensajeErrors: any;
 
-  constructor(private fb: FormBuilder, 
-    private router: Router, 
-    private route: ActivatedRoute, 
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
     private usuarioservice: UsuarioService,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -43,7 +43,7 @@ export class UserNewPasswordComponent {
 
       // VALIDATE PASSWORDS MATCH
       if (this.formNewPassword.value.password1 !== this.formNewPassword.value.password2) {
-        this.toastr.warning("Error las contraseñas no coinciden","Error!");
+        this.toastr.warning("Error las contraseñas no coinciden", "Error!");
       } else {
 
         let usuario = {
@@ -57,12 +57,14 @@ export class UserNewPasswordComponent {
           //SEND NEW EMAIL
           (data: any): any => {
 
-            if (data) {              
-             /*  this.mensajeError = false
-              this.mensajeSuccess = true */   
-              this.mensajeSuccess = true           
-              this.mensaje = `${data?.result}`;               
-              this.toastr.success(`${this.mensaje}`,"Correcto!");           
+            if (data) {
+              /*  this.mensajeError = false
+               this.mensajeSuccess = true */
+              this.mensajeSuccess = true
+              this.mensaje = `${data?.result}`;
+              this.toastr.success(`${this.mensaje}`, "Correcto!", {
+                progressAnimation: 'decreasing'
+              });
             }
           },
           error => {
@@ -72,7 +74,7 @@ export class UserNewPasswordComponent {
             if (error.hasOwnProperty("error")) {
               if (error.hasOwnProperty("msg")) {
                 this.mensajeErrors = error.error.msg;
-                this.toastr.error(`${this.mensajeErrors}`,"Error!");           
+                this.toastr.error(`${this.mensajeErrors}`, "Error!");
               } else {
                 for (const key in error) {
                   if (Object.prototype.hasOwnProperty.call(error, key)) {
@@ -81,9 +83,9 @@ export class UserNewPasswordComponent {
 
 
                       this.mensajeErrors = element.errors[0].msg;
-                      
+
                     } else {
-                      
+
                       console.log(element.error)
                     }
                   }
