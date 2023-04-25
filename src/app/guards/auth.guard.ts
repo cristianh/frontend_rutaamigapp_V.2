@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
 
       this.auth.isLoggedIn().subscribe(
         login => {
-          console.log("HOLA")
           if (login) {
             resolve(true);
           } else {
