@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavComponent implements OnInit {
 
   public user: any;
+  public isMenuOpen: boolean = false;
+ 
 
   constructor(public auth: AuthService) {
 
@@ -17,13 +19,21 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.getCurrentUser();
+   
   }
 
-  getUsuario(){
+  getUsuario() {
     return JSON.parse(this.user).usuario
   }
 
-  getUsuarioImg(){
+  getUsuarioImg() {
     return JSON.parse(this.user).imagen
   }
+
+  toogleMenu(){
+    this.isMenuOpen = !this.isMenuOpen
+  }
+
+//Crear un menu tipo hamburguesa en angular
+
 }

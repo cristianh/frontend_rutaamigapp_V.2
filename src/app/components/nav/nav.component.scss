@@ -1,13 +1,13 @@
 @import "../../../~variables.scss";
 
 .navbar {
-    background-color: $background-color_3; 
+    background-color: $background-color_3;
     color: $color_4;
     width: 100vw;
     height: 3rem;
     display: flex;
     position: absolute;
-    top:0;
+    top: 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -31,16 +31,26 @@
     object-fit: cover;
     width: 2.1em;
     height: auto;
-    outline:1px solid rgb(212, 53, 13);
+    outline: 1px solid rgb(212, 53, 13);
 }
 
 .icon {
     width: 7.5rem;
     height: 2.5rem;
+    @extend .img_logo
+}
+
+.icon_sidebar {
+    width: 7.5rem;
+    height: 3.5rem;
+    @extend .img_logo
+}
+
+.img_logo {
     background-image: url("../../../assets/img/icon_amigapp.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
+    background-size: contain;
 }
 
 .nav_items a {
@@ -67,6 +77,53 @@
 
 .nav_toggle {
     display: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: $background-color_3;
+    z-index: 1;
+    overflow: 0.5s;
+    transform: translateX(-250px);
+    transition: all 0.2s linear;
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+
+.sidebar div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: white !important;
+    background-color: orange;
+    padding: 10px 0px 10px;
+    border-bottom: orange;
+}
+
+.sidebar div a {
+    color: white !important;
+}
+
+.sidebar div {
+    &:hover {
+        background-color: #308978 !important;
+        text-decoration: none;
+        transition: .2s;
+    }
+}
+
+
+.item_sidebar>div>a {
+    text-decoration: dotted;
+    color: white !important;
 }
 
 @media (max-width: 768px) {

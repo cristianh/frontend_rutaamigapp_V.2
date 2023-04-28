@@ -6,37 +6,29 @@
             <div> <a [routerLink]="['']">Inicio</a></div>
             <div> <a [routerLink]="['/registrar']">Registro</a></div>
         </ng-template>
-        <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a href="/portafolio"><span>Bienvenid@
+        <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
                     {{getUsuario()}}</span></a>
         </div>
         <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"
                 alt="{{getUsuarioImg()}}"></div>
     </div>
-    <div class="nav_toggle" id="_toggle">
+    <!-- side bar -->
+    <div class="sidebar" [ngClass]="{'sidebar':true,'open':isMenuOpen}">
+        <!-- MOSTRAMOS LO BOTONOS SI NO ESTA LOGUEADO -->
+        <div class="icon_sidebar" [routerLink]="['']"></div>
+        <ng-template #nologin>
+            <div class="item_sidebar"> <a [routerLink]="['']">Inicio</a></div>
+            <div class="item_sidebar"> <a [routerLink]="['/registrar']">Registro</a></div>
+        </ng-template>
+        <div  class="item_sidebar" *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
+                    {{getUsuario()}}</span></a>
+        </div>
+        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"
+                alt="{{getUsuarioImg()}}"></div>
+    </div>
+    <div class="nav_toggle" (click)="toogleMenu()">
         <span></span>
         <span></span>
         <span></span>
     </div>
 </nav>
-<!-- Nav var
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        </button>
-        <div>
-        <div *ngIf="auth.isLoggedIn() | async ; else nologin" class="nav-item active">
-            <a class="nav-link">|Bienvenid@ {{auth.getCurrentUser()}}|<span class="sr-only"></span></a>
-        </div>
-        <ng-template #nologin>
-            <div >
-                <div >
-                    <a class="nav-link" aria-current="page" [routerLink]="['/registrar']">Registro</a>
-                </div>
-                <div >
-                    <a class="nav-link" aria-current="page" [routerLink]="['/']">Ingresar</a>
-                </div>
-            </div>   
-        </ng-template>    
-        </div>
-    </div>
--->
