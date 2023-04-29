@@ -1,4 +1,5 @@
 @import "./~variables.scss";
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -114,6 +115,18 @@ form {
 		margin: 0.4em;
 	}
 
+
+	.view-password::after {
+		content: 'x';
+		border: red 5px solid;
+		/* Se especifica la URL del icono a agregar */
+		background-image: url('assets/img/logo1_banner.png');
+		margin-left: 10px;
+		/* Se agrega un margen izquierdo para separar el icono del campo de entrada */
+		object-fit: cover;
+
+	}
+
 	.input[type="checkbox"] {
 		appearance: none;
 		border: 0.2em solid $color_3;
@@ -196,15 +209,8 @@ form {
 	}
 }
 
-#cbox1{
+#cbox1 {
 	accent-color: $color_2;
-}
-
-input[type="password"]::after {
-	content: url("assets/iconbus.svg"); /* Se especifica la URL del icono a agregar */
-	margin-left: 10px; /* Se agrega un margen izquierdo para separar el icono del campo de entrada */
-	object-fit: cover;
-
 }
 
 @media screen and (max-width: 360px) {
@@ -217,7 +223,8 @@ input[type="password"]::after {
 	}
 
 	.mid-container {
-		padding:0em;
+		padding: 0em;
+
 		&:nth-child(1) {
 			visibility: hidden;
 			display: none;
@@ -236,15 +243,7 @@ input[type="password"]::after {
 		object-fit: fill;
 		background-size: contain;
 		background-repeat: no-repeat;
-		background-image: url('./assets/iconbus.svg');
+		background-image: url('./assets/img/logo1.png');
 		background-position: center;
-
-
-		//
-
-
-
-		//
-		
 	}
 }
