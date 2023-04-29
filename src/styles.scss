@@ -191,9 +191,20 @@ form {
 		object-fit: fill;
 		background-size: contain;
 		background-repeat: no-repeat;
-		background-image: url('./../../../assets/img/logo1_banner.png');
+		background-image: url('assets/img/logo1_banner.png');
 		background-position: center;
 	}
+}
+
+#cbox1{
+	accent-color: $color_2;
+}
+
+input[type="password"]::after {
+	content: url("assets/iconbus.svg"); /* Se especifica la URL del icono a agregar */
+	margin-left: 10px; /* Se agrega un margen izquierdo para separar el icono del campo de entrada */
+	object-fit: cover;
+
 }
 
 @media screen and (max-width: 360px) {
@@ -225,7 +236,15 @@ form {
 		object-fit: fill;
 		background-size: contain;
 		background-repeat: no-repeat;
-		background-image: url('./../../../assets/img/logo1_banner.png');
+		background-image: url('./assets/iconbus.svg');
 		background-position: center;
+
+
+		//
+
+
+
+		//
+		
 	}
 }
