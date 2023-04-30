@@ -1,4 +1,5 @@
 <main>
+    
     <article class="principal-container">
         <article class="form-container">
             <section class="mid-container">
@@ -10,19 +11,53 @@
                 <header>
                     <div alt="logo" class="logo_image_mobile"></div>
                     <h1 class="principal-title">Registro</h1>
+                    <h3>Form Status</h3>
+                
+                    
+                   
                 </header>
                 <form [formGroup]="formRegister" (ngSubmit)="onRegistrar()">
+
                     <input class="input" type="text" id="username" name="username" placeholder="Nombre"
                         formControlName="nombreUsuario" required />
+
+
                     <input class="input" type="text" id="lastname" name="lastname" placeholder="Apellido"
                         formControlName="apellidoUsuario" required />
+
+
                     <input class="input" type="text" id="email" name="email" placeholder="Correo"
                         formControlName="correoUsuario" required />
-                    <input class="input" type="password" id="password" title="8 caracteres y que tenga al menos una letra, un número y un carácter especial" name="password" placeholder="Contraseña"
-                        formControlName="Password1" required />
-                    <input class="input" type="password" id="confirm-password" name="confirm-password"
-                        placeholder="Confirmar Contraseña" formControlName="Password2" required />
-                    <label class="terms-container"><input type="checkbox" id="cbox1" value="checkbox"> Aceptar términos
+
+                    
+                    <div class="input_icon_password" >
+                        <input class="input" (focus)='onshowPasswordIcon()'   [type]='viewPasswordInput?"text":"password"' id="password"
+                            title="8 caracteres y que tenga al menos una letra, un número y un carácter especial"
+                            name="password" placeholder="Contraseña" formControlName="Password1" required />
+                        <div *ngIf="viewPasswordShowInput"  class="icon_password" (click)="onChangeViewPassord()">
+                            <i *ngIf="viewPasswordInput; else eyehide" class="fa fa-eye icon icon_color"></i>
+                            <ng-template #eyehide>
+                                <i class="fa fa-eye-slash icon icon_color"></i>
+                            </ng-template>
+                        </div>
+
+                    </div>
+
+                    <div class="input_icon_password">
+                        <input class="input" (focus)='onshowPasswordIcon()' [type]='viewPasswordConfirmInput?"text":"password"' id="confirm-password"
+                            name="confirm-password" placeholder="Confirmar Contraseña" formControlName="Password2"
+                            required />
+                        <div  *ngIf="viewPasswordShowInput" class="icon_password" (click)="onChangeViewPassordConfirm()">
+                            <i *ngIf="viewPasswordConfirmInput; else eyehide" class="fa fa-eye icon icon_color"></i>
+                            <ng-template #eyehide>
+                                <i class="fa fa-eye-slash icon icon_color"></i>
+                            </ng-template>
+                        </div>
+
+                    </div>
+
+                    <label class="terms-container"><input type="checkbox" id="cbox1" value="checkbox"> Aceptar
+                        términos
                         y condiciones</label>
                     <app-my-btn-primary textoBoton="REGISTARME"></app-my-btn-primary>
                     <label class="log-in">Si ya tienes cuenta ingresa <a [routerLink]="['']">aquí</a> </label>

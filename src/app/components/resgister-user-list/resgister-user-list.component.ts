@@ -51,7 +51,7 @@ export class ResgisterUserListComponent {
       usuario.user_status = true
 
       //SEND DATA TO SERVICES
-      this.usuarioservice.saveUsuario('/usuario/registro', usuario).subscribe(
+      this.usuarioservice.saveUsuario('/user/registro', usuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
           console.log(data)
