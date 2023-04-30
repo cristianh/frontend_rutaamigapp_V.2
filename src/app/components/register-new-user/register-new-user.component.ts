@@ -74,7 +74,7 @@ export class RegisterNewUserComponent {
             /* this.formRegister *///buscar como limpiar formulario.
           },
           error => {
-            this.toastr.error('Ha ocurrido un error', `${error.errors[0].msg}`);
+            this.toastr.error('Ha ocurrido un error',`${error.errors[0]}`);
             /* if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
               console.log(error.errors)
               console.log(error.error.errors[0].msg)
