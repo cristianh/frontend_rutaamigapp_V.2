@@ -1,5 +1,5 @@
 <main>
-    
+
     <article class="principal-container">
         <article class="form-container">
             <section class="mid-container">
@@ -29,12 +29,13 @@
                     <input class="input" type="text" id="email" name="email" placeholder="Correo"
                         formControlName="correoUsuario" required />
 
-                    
-                    <div class="input_icon_password" >
-                        <input class="input" (focus)='onshowPasswordIcon()'   [type]='viewPasswordInput?"text":"password"' id="password"
+
+                    <div class="input_icon_password">
+                        <input class="input" (focus)='onshowPasswordIcon()' [type]='viewPasswordInput?"text":"password"'
+                            id="password"
                             title="8 caracteres y que tenga al menos una letra, un número y un carácter especial"
                             name="password" placeholder="Contraseña" formControlName="Password1" required />
-                        <div *ngIf="viewPasswordShowInput"  class="icon_password" (click)="onChangeViewPassord()">
+                        <div *ngIf="viewPasswordShowInput" class="icon_password" (click)="onChangeViewPassord()">
                             <i *ngIf="viewPasswordInput; else eyehide" class="fa fa-eye icon icon_color"></i>
                             <ng-template #eyehide>
                                 <i class="fa fa-eye-slash icon icon_color"></i>
@@ -44,10 +45,11 @@
                     </div>
 
                     <div class="input_icon_password">
-                        <input class="input" (focus)='onshowPasswordIcon()' [type]='viewPasswordConfirmInput?"text":"password"' id="confirm-password"
+                        <input class="input" (focus)='onshowPasswordIcon()'
+                            [type]='viewPasswordConfirmInput?"text":"password"' id="confirm-password"
                             name="confirm-password" placeholder="Confirmar Contraseña" formControlName="Password2"
                             required />
-                        <div  *ngIf="viewPasswordShowInput" class="icon_password" (click)="onChangeViewPassordConfirm()">
+                        <div *ngIf="viewPasswordShowInput" class="icon_password" (click)="onChangeViewPassordConfirm()">
                             <i *ngIf="viewPasswordConfirmInput; else eyehide" class="fa fa-eye icon icon_color"></i>
                             <ng-template #eyehide>
                                 <i class="fa fa-eye-slash icon icon_color"></i>
