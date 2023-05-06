@@ -21,9 +21,9 @@ export class LoginComponent {
   public password!: string;
 
   constructor(
-    private fb: FormBuilder, 
-    private router: Router, 
-    private usuarioservice: UsuarioService, 
+    private fb: FormBuilder,
+    private router: Router,
+    private usuarioservice: UsuarioService,
     public auth: AuthService,
     private toastr: ToastrService) { }
 
@@ -58,9 +58,14 @@ export class LoginComponent {
             this.auth.login(data.token)
             //se almacena el nombre del usuario en el almacenamiento de
             //sesion
-            let usuario= `${data.usuario.nombre}-${data.usuario.apellido}`
-            let img= `${data.usuario.img}`
-            this.auth.setCurrentUser(usuario,img)
+            let usuario = {
+              nombre: data.usuario.nombre,
+              apellido: data.usuario.apellido,
+              rol: data.usuario.rol,
+              img: data.usuario.img==undefined?"Not found":data.usuario.img
+            }
+
+            this.auth.setCurrentUser(usuario)
             //navegamos de nuevo al home, esta vez como usuario
             //logueado
             this.router.navigate(['/dashboard/listar-usuarios'])
@@ -68,16 +73,16 @@ export class LoginComponent {
             /* document.getElementById('mensaje').classList.add('hidden')
             document.getElementById('mensaje-error').innerHTML = '' */
             //window.location = '/map';
-          } 
+          }
 
           /* this.formRegister *///buscar como limpiar formulario.
         },
         error => {
-          if(error.error.result){
-            this.toastr.error(`${error.error.result}`,"Atencion!");
+          if (error.error.result) {
+            this.toastr.error(`${error.error.result}`, "Atencion!");
           }
-          else{
-            this.toastr.error(`${error.message}`,"Atencion!");
+          else {
+            this.toastr.error(`${error.message}`, "Atencion!");
           }
           console.log("Ha ocurrido un error en la llamada: ", error)
         })

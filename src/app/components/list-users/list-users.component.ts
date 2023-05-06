@@ -29,8 +29,8 @@ export class ListUsersComponent {
     let token = this.auth.getToken()
 
     //Realizamos la peticion de los usuarios
-    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`,!token?'':token).subscribe(
-  /* this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`,!token?'':token).subscribe(  */
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`,!token?'':token).subscribe(
+  /* this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(  */
 
       (data:any): any => { this.usuarios = Object.values(data.usuario); 
         console.log(this.usuarios); 
@@ -39,7 +39,7 @@ export class ListUsersComponent {
 
 
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/usuario/allusers`,!token?'':token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(
 
       (data): any => {
         this.paginado = Object.values(data).length;
@@ -53,7 +53,7 @@ export class ListUsersComponent {
   deleteUsuario(id: number) {
 
     if (confirm("Esta seguro que desea eliminar el usuario.")) {
-      this.usuarioservice.deleteUsuario(`${this.url}/usuario/${id}`).subscribe(
+      this.usuarioservice.deleteUsuario(`${this.url}/user/${id}`).subscribe(
 
         (data): any => {
           this.usuarios = this.usuarios.filter((usuario) => {
@@ -75,7 +75,7 @@ export class ListUsersComponent {
       this.take += 6
       this.loading = true
       this.contadorSaltos += 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
 
         (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
         error => console.log("Ha ocurrido un error en la llamada: ", error))
@@ -91,7 +91,7 @@ export class ListUsersComponent {
       this.take -= 6
       this.loading = true
       this.contadorSaltos -= 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/usuario/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
         (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
         error => console.log("Ha ocurrido un error en la llamada: ", error))
       this.validarPaginado()

@@ -25,8 +25,8 @@ export class AuthService {
     this.isLogin.next(true);
   }
 
-  setCurrentUser(user: string,img:string): void {
-    localStorage.setItem('currentUser', JSON.stringify({usuario:user,imagen:img}));
+  setCurrentUser(user: object): void {
+    localStorage.setItem('currentUser', JSON.stringify({usuario:user}));
   }
 
   //método que nos permite recuperar el nombre del usuario
@@ -69,5 +69,6 @@ export class AuthService {
     return this.admin.asObservable();
   }*/
 
+  
 
 }

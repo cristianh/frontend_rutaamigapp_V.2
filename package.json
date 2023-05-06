@@ -24,11 +24,13 @@
     "@turf/turf": "^6.5.0",
     "@types/mapbox-gl": "^2.7.10",
     "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.5",
     "jquery": "^3.6.4",
     "mapbox-gl": "^2.13.0",
     "ngx-socket-io": "^4.4.0",
     "ngx-toastr": "^16.1.0",
     "rxjs": "~7.5.0",
+    "sass-mq": "^6.0.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -17,7 +17,13 @@ export class RegisterNewUserComponent {
   validacionFormulario = false
   mensajeFinal: any;
 
-  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService,private toastr: ToastrService) { }
+  viewPasswordInput: boolean = false;
+  viewPasswordConfirmInput: boolean = false;
+  viewPasswordInputIcon: boolean = false;
+  viewPasswordShowInput: boolean = false;
+
+
+  constructor(private fb: FormBuilder, private router: Router, private usuarioservice: UsuarioService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.formRegister = this.fb.group({
@@ -48,27 +54,27 @@ export class RegisterNewUserComponent {
       if (this.formRegister.value.Password1 === this.formRegister.value.Password2) {
         usuario.user_password = this.formRegister.value.Password1
         //SEND DATA TO SERVICES
-        this.usuarioservice.saveUsuario('usuario/registro', usuario).subscribe(
+        this.usuarioservice.saveUsuario('user/registro', usuario).subscribe(
           //SEND NEW USUARIO
-          (data:any): any => {
+          (data: any): any => {
             console.log(data)
-            this.toastr.success(`${data.status}`,'Correcto');
-            
-              /* this.mensajeFinal = data
-              this.mensajeSuccess = true
-              this.mensajeError = false
-              this.validacionFormulario = false */
+            this.toastr.success(`${data.status}`, 'Correcto');
 
-              setTimeout(() => {
-                this.router.navigate([''])
-              }, 1050);
-              
-            
+            /* this.mensajeFinal = data
+            this.mensajeSuccess = true
+            this.mensajeError = false
+            this.validacionFormulario = false */
+
+            setTimeout(() => {
+              this.router.navigate([''])
+            }, 1050);
+
+
 
             /* this.formRegister *///buscar como limpiar formulario.
           },
           error => {
-            this.toastr.error('Ha ocurrido un error',`${error.errors[0].msg}`);
+            this.toastr.error('Ha ocurrido un error',`${error.errors[0]}`);
             /* if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
               console.log(error.errors)
               console.log(error.error.errors[0].msg)
@@ -82,15 +88,29 @@ export class RegisterNewUserComponent {
             console.log("Ha ocurrido un error en la llamada: ", error)
           });
       } else {
-        this.toastr.info('Ha ocurrido un error','Las contraseñas no coinciden.');
-       /*  this.mensajeFinal = "Las contraseñas no coinciden"
-        this.mensajeSuccess = false
-        this.mensajeError = true
-        this.validacionFormulario = false */
+        this.toastr.info('Ha ocurrido un error', 'Las contraseñas no coinciden.');
+        /*  this.mensajeFinal = "Las contraseñas no coinciden"
+         this.mensajeSuccess = false
+         this.mensajeError = true
+         this.validacionFormulario = false */
       }
-    }else{      
+    } else {
       this.validacionFormulario = true
     }
+  }
+
+  onChangeViewPassord() {
+    this.viewPasswordInput = !this.viewPasswordInput
+  }
+  onChangeViewPassordConfirm() {
+    this.viewPasswordConfirmInput = !this.viewPasswordConfirmInput
+  }
+
+  onshowPasswordIcon() {
+    this.viewPasswordShowInput = true
+  }
+  onhidePasswordIcon() {
+    this.viewPasswordShowInput = false
   }
 
 }
