@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegisterNewUserComponent } from './register-new-user.component';
 
 describe('RegisterNewUserComponent', () => {

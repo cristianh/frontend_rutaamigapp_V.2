@@ -19,6 +19,7 @@ export class LoginComponent {
 
   public email!: string;
   public password!: string;
+  isLoading:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,12 +39,10 @@ export class LoginComponent {
   onIngresar() {
 
     /* event.preventDefault(); */
-
     let usuario: Usuario
 
-
-
     if (this.formLogin.valid) {
+      this.isLoading = true;
       usuario = new Usuario()
       usuario.user_email = this.formLogin.value.email
       usuario.user_password = this.formLogin.value.password
@@ -70,12 +69,9 @@ export class LoginComponent {
             //logueado
             this.router.navigate(['/dashboard/listar-usuarios'])
 
-            /* document.getElementById('mensaje').classList.add('hidden')
-            document.getElementById('mensaje-error').innerHTML = '' */
-            //window.location = '/map';
           }
-
-          /* this.formRegister *///buscar como limpiar formulario.
+          //Clean form.
+          this.formLogin.reset();
         },
         error => {
           if (error.error.result) {
@@ -85,15 +81,12 @@ export class LoginComponent {
             this.toastr.error(`${error.message}`, "Atencion!");
           }
           console.log("Ha ocurrido un error en la llamada: ", error)
+        },
+        () => {
+          this.isLoading = false;
         })
-
-
+        
     }
-
-
-
-
-
   }
 
 }

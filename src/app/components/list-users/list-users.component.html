@@ -1,18 +1,13 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
 <article class="list-users-containers">
     <div class="contenedor-table-list">
-        <div class="row">
-            <div class="col-2 pb-2">
+        <div>
+            <div>
                 <app-my-btn-primary style="float: left;" [routerLink]="['/dashboard/nuevo-usuario']"
                     textoBoton="NUEVO USUARIO"></app-my-btn-primary>
-                <!-- <button [routerLink]="['/dashboard/nuevo-usuario']" class="my-btn-primary"></button> -->
             </div>
-            <div class="col-12 contenedor-table">
 
-                <!-- <span *ngIf="usuarios.length<=1; else showThis"></span>
-                <ng-template #showThis>
-                    <span>Numero de usuarios:{{usuarios.length}}</span>
-                </ng-template> -->
-                <br>
+            <div class="contenedor-table">
                 <table class="table-list-users">
                     <thead>
                         <tr>
@@ -40,12 +35,6 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr class="mx-auto text-center" *ngIf="loading; else tableUsuario">
-                            <td colspan="7">
-                                <h3>Cargando datos...</h3>
-                                <span class="loader"></span>
-                            </td>
-                        </tr>
                         <ng-template #tableUsuario>
                             <tr *ngFor="let usuario of usuarios">
                                 <th scope="row">{{usuario.user_id}}</th>
@@ -53,11 +42,11 @@
                                 <td scope="row">{{usuario.user_lastname}}</td>
                                 <td scope="row">{{usuario.user_email}}</td>
                                 <td scope="row"
-                                    [ngClass]="{'bg-success':usuario.user_status,'bg-danger':!usuario.user_status}">
+                                    [ngClass]="{'background-color:$color_2':usuario.user_status,'background-color:$color_5':!usuario.user_status}">
                                     {{usuario.user_status?'Activo':'Inactivo'}}</td>
                                 <td scope="row">{{usuario.create_date | date:'MM/dd/yyyy' }}</td>
                                 <td scope="row">
-                                    <div class="boton-actions" >
+                                    <div class="boton-actions">
                                         <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)"
                                             textoBoton="ELIMINAR"></app-my-btn-primary>
                                         <app-my-btn-primary (click)="deleteUsuario(usuario.user_id)"
@@ -70,7 +59,5 @@
                 </table>
             </div>
         </div>
-
-
     </div>
 </article>
