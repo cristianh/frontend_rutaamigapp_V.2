@@ -1,12 +1,15 @@
 @import "./~variables.scss";
 
-h1{
+h1 {
     font-family: 'Exo', sans-serif;
 }
-h2{
+
+h2 {
     font-family: 'Dancing Script', cursive;
 }
-p,label{
+
+p,
+label {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 0.8em;
@@ -16,10 +19,15 @@ p,label{
 * {
     margin: 0px;
     padding: 0px;
-   
     overflow: hidden;
+    box-sizing: border-box;
 }
 
+app-root{
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
 input {
     &:focus {
         outline: none;
@@ -33,6 +41,7 @@ a {
     color: $color_1;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+
     &:hover {
         text-decoration: none;
         color: $color_2;
@@ -61,9 +70,8 @@ a {
 .form-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 45vw;
     place-content: center;
-    width: 40em;
+    width: 40%;
     height: 28em;
     border-radius: 21px 21px 21px 21px;
 }
@@ -130,23 +138,23 @@ form {
     }
 
 
-	.view-password::after {
-		content: 'x';
-		border: red 5px solid;
-		/* Se especifica la URL del icono a agregar */
-		background-image: url('assets/img/logo1_banner.png');
-		margin-left: 10px;
-		/* Se agrega un margen izquierdo para separar el icono del campo de entrada */
-		object-fit: cover;
+    .view-password::after {
+        content: 'x';
+        border: red 5px solid;
+        /* Se especifica la URL del icono a agregar */
+        background-image: url('assets/img/logo1_banner.png');
+        margin-left: 10px;
+        /* Se agrega un margen izquierdo para separar el icono del campo de entrada */
+        object-fit: cover;
 
-	}
+    }
 
-	.input[type="checkbox"] {
-		appearance: none;
-		border: 0.2em solid $color_3;
-		width: 1.1em;
-		height: 1.1em;
-		cursor: pointer;
+    .input[type="checkbox"] {
+        appearance: none;
+        border: 0.2em solid $color_3;
+        width: 1.1em;
+        height: 1.1em;
+        cursor: pointer;
 
         &:checked {
             background-color: $background-color_3;
@@ -226,7 +234,7 @@ form {
 }
 
 #cbox1 {
-	accent-color: $color_2;
+    accent-color: $color_2;
 }
 
 @media screen and (max-width: 360px) {
@@ -238,12 +246,12 @@ form {
         transition: all;
     }
 
-	.mid-container {
-		padding: 0em;
+    .mid-container {
+        padding: 0em;
 
-		&:nth-child(1) {
-			visibility: hidden;
-			display: none;
+        &:nth-child(1) {
+            visibility: hidden;
+            display: none;
 
         }
     }
@@ -252,14 +260,14 @@ form {
         text-align: center;
     }
 
-	.logo_image_mobile {
-		max-width: 100%;
-		width: 100%;
-		height: 5.5em;
-		object-fit: fill;
-		background-size: contain;
-		background-repeat: no-repeat;
-		background-image: url('./assets/img/logo1.png');
-		background-position: center;
-	}
+    .logo_image_mobile {
+        max-width: 100%;
+        width: 100%;
+        height: 6.5em;
+        object-fit: fill;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url('./assets/img/logo1.png');
+        background-position: center;
+    }
 }
