@@ -29,8 +29,13 @@ export class AuthService {
     localStorage.setItem('currentUser', JSON.stringify({usuario:user}));
   }
 
-  //método que nos permite recuperar el nombre del usuario
+  //método que nos permite recuperar el  usuario
   getCurrentUser(): string | null {
+    return localStorage?.getItem("currentUser") ;
+  }
+
+  //método que nos permite recuperar el  usuario
+  getCurrentUserRol(): string | null {
     return localStorage?.getItem("currentUser") ;
   }
 
@@ -65,9 +70,9 @@ export class AuthService {
   }
 
   //método que nos retorna el BehaviorSubject admin cómo un observable
-  /*isAdmin(): Observable<boolean> {
+  /* isAdmin(): Observable<boolean> {
     return this.admin.asObservable();
-  }*/
+  } */
 
   
 

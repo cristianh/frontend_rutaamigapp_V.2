@@ -263,6 +263,7 @@ export class MapaComponent {
     this.socketmap.getMessageGPS().subscribe(
       (data: any) => {
 
+        console.log('recibiendo datos',data)
         const { Latitude, Longitude, Speed } = data
 
         console.log(Latitude, Longitude, Speed)
@@ -286,45 +287,5 @@ export class MapaComponent {
   }
 
 
-  async simulateRuta() {
-    // Make a GET request to the API and return the location of the ISS.
-    try {
-      await fetch(`https://amigaapp-f2f93-default-rtdb.firebaseio.com/dbrutas.json`)
-        .then((resp) => resp.json())
-        .then((data) => {
-
-          let dataPoints = Object.values(data)
-
-          console.log(dataPoints)
-
-          dataPoints.forEach((coordenadas: any) => {
-
-            const { Latitude, Longitude, Speed } = coordenadas
-
-            this.dataPointsBus.features.push(
-              {
-                type: 'Feature',
-                geometry: {
-                  coordinates: {
-                    lat: Latitude,
-                    lon: Longitude
-                  }
-                },
-                properties: {
-                  title: 'Ruta 18',
-                  description: 'Norte/Sur',
-                  velocidad: Speed == undefined ? '0' : Speed
-                }
-              }
-            )
-          });
-
-        })
-    } catch (err) {
-      // If the updateSource interval is defined, clear the interval to stop updating the source.
-      // if (updateSource) clearInterval(updateSource);
-      throw new Error("Error");
-
-    }
-  }
+  
 }

@@ -55,7 +55,7 @@ export class LoginComponent {
           if (data) {
             console.log('Success:', data)
             //se almacena el token usando el servicio Auth
-            this.auth.login(data.token)
+            this.auth.login(data.usuario.result)
             //se almacena el nombre del usuario en el almacenamiento de
             //sesion
             let usuario = {

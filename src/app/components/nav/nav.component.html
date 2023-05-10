@@ -7,10 +7,16 @@
             <div> <a [routerLink]="['/registrar']">Registro</a></div>
         </ng-template>
         <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
-                    {{getUsuario()}}</span></a>
+                    {{getUsuario().nombre + " " + getUsuario().apellido}}</span></a>
         </div>
-        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"
-                alt="{{getUsuarioImg()}}"></div>
+        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">            
+            <div *ngIf="getUsuario().img==='Not found' else noavatar">
+                <img src="{{getUsuario().img}}" alt="{{getUsuario().img}}">                
+            </div>
+            <ng-template #noavatar>
+                <img src="../../../assets/ICONOS/Icon=ProfileUser, Estilo=Dark.svg" alt="" class="iconos filter-white-icon">
+            </ng-template>
+        </div>
     </div>
     <!-- side bar -->
     <div class="sidebar" [ngClass]="{'sidebar':true,'open':isMenuOpen}">
@@ -20,7 +26,7 @@
             <div class="item_sidebar"> <a [routerLink]="['']">Inicio</a></div>
             <div class="item_sidebar"> <a [routerLink]="['/registrar']">Registro</a></div>
         </ng-template>
-        <div  class="item_sidebar" *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
+        <div class="item_sidebar" *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
                     {{getUsuario()}}</span></a>
         </div>
         <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"

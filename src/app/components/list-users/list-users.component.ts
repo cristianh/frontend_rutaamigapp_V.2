@@ -29,7 +29,7 @@ export class ListUsersComponent {
     let token = this.auth.getToken()
 
     //Realizamos la peticion de los usuarios
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`,!token?'':token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?all=true`,!token?'':token).subscribe(
   /* this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(  */
 
       (data:any): any => { this.usuarios = Object.values(data.usuario); 
