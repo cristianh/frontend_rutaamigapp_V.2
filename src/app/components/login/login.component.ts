@@ -19,7 +19,11 @@ export class LoginComponent {
 
   public email!: string;
   public password!: string;
-  isLoading:boolean = false;
+  isLoading: boolean = false;
+
+  viewPasswordInput: boolean = false;
+  viewPasswordInputIcon: boolean = false;
+  viewPasswordShowInput: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -61,7 +65,7 @@ export class LoginComponent {
               nombre: data.usuario.nombre,
               apellido: data.usuario.apellido,
               rol: data.usuario.rol,
-              img: data.usuario.img==undefined?"Not found":data.usuario.img
+              img: data.usuario.img == undefined ? "Not found" : data.usuario.img
             }
 
             this.auth.setCurrentUser(usuario)
@@ -85,10 +89,19 @@ export class LoginComponent {
         () => {
           this.isLoading = false;
         })
-        
+
     }
   }
+  onChangeViewPassord() {
+    this.viewPasswordInput = !this.viewPasswordInput
+  }
 
+  onshowPasswordIcon() {
+    this.viewPasswordShowInput = true
+  }
+  onhidePasswordIcon() {
+    this.viewPasswordShowInput = false
+  }
 }
 
 
