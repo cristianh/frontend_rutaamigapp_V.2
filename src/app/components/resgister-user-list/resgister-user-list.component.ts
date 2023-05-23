@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ResgisterUserListComponent {
 
   formRegister!: FormGroup;
+  mensajeError: string = ''
 
   constructor(
     private fb: FormBuilder,
@@ -62,19 +63,33 @@ export class ResgisterUserListComponent {
 
         },
         error => {
-          this.toastr.error("Ha ocurrido un error en la llamada", `${error.message}`);
-          /* if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
-            console.log(error.errors)
-            console.log(error.error.errors[0].msg)
-            if (error.error.errors[0].hasOwnProperty("msg")) {
+          if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
 
-            }
-          } */
+            this.mensajeError= this.getMessageError(error.error.errors.slice())
+
+            console.log(this.mensajeError.replace(/,/g, ''))
+
+            this.toastr.error(this.mensajeError, '¡Atencion!', {
+              enableHtml: true,
+            });
+          }
+          //this.toastr.error("Ha ocurrido un error en la llamada", `${error.message}`);
+          
 
           console.log("Ha ocurrido un error en la llamada: ", error)
         });
 
     }
+  }
+
+  getMessageError(messages:any){
+    return `
+    <ul type="disc">
+    ${messages.map((message: any) => {
+      return `<li>${message.msg}</li>`
+    })
+    }
+    </ul>`
   }
 
 }

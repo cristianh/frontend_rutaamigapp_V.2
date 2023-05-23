@@ -78,13 +78,20 @@ export class LoginComponent {
           this.formLogin.reset();
         },
         error => {
+          if(Array.isArray(error.error)){
+              console.log(Object.values(error.error))
+          }
+
           if (error.error.result) {
             this.toastr.error(`${error.error.result}`, "Atencion!");
+            
           }
           else {
             this.toastr.error(`${error.message}`, "Atencion!");
+            
           }
           console.log("Ha ocurrido un error en la llamada: ", error)
+          this.isLoading=false
         },
         () => {
           this.isLoading = false;

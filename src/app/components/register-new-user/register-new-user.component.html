@@ -57,45 +57,7 @@
                         y condiciones</label>
                     <app-my-btn-primary textoBoton="REGISTARME"></app-my-btn-primary>
                     <label class="log-in">Si ya tienes cuenta ingresa <a [routerLink]="['']">aquí</a> </label>
-                </form>
-
-                <div class="row">
-                    <div class="col-12 ">
-                        <div *ngIf="mensajeSuccess" class="alert alert-success alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal.status}}
-                        </div>
-                        <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal.status}}
-                        </div>
-                        <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal}}
-                        </div>
-                        <div *ngIf="validacionFormulario" class="alert alert-danger alert-dismissible" role="alert"
-                            style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            Por favor revise los campos.
-                        </div>
-                    </div>
-                </div>
+                </form>               
             </section>
 
         </article>

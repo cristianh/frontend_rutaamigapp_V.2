@@ -12,10 +12,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterNewUserComponent implements OnInit {
   formRegister!: FormGroup;
-  mensajeSuccess:boolean = false
-  mensajeError:boolean = false
-  validacionFormulario:boolean = false
-  isLoading:boolean = false;
+  mensajeSuccess: boolean = false
+  mensajeError: string = ''
+  validacionFormulario: boolean = false
+  isLoading: boolean = false;
   mensajeFinal: any;
 
   viewPasswordInput: boolean = false;
@@ -65,7 +65,22 @@ export class RegisterNewUserComponent implements OnInit {
 
           },
           error => {
-            //this.toastr.error('Ha ocurrido un error', `${error.errors[0]}`);
+
+
+            if (error.hasOwnProperty("errors") || error.hasOwnProperty("error")) {
+
+              this.mensajeError= this.getMessageError(error.error.errors.slice())
+
+              console.log(this.mensajeError.replace(/,/g, ''))
+
+              this.toastr.error(this.mensajeError, '¡Atencion!', {
+                enableHtml: true,
+              });
+            }
+
+
+
+            this.isLoading = false;
             console.log("Ha ocurrido un error en la llamada: ", error)
           },
           () => {
@@ -77,6 +92,16 @@ export class RegisterNewUserComponent implements OnInit {
     } else {
       this.validacionFormulario = true
     }
+  }
+
+  getMessageError(messages:any){
+    return `
+    <ul type="disc">
+    ${messages.map((message: any) => {
+      return `<li>${message.msg}</li>`
+    })
+    }
+    </ul>`
   }
 
   onChangeViewPassord() {

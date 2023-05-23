@@ -89,7 +89,8 @@ const config: SocketIoConfig = {
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-      progressAnimation: 'increasing'
+      progressAnimation: 'increasing',
+      progressBar: true
     })
   ],
   providers: [],
