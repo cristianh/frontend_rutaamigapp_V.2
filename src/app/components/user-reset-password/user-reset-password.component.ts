@@ -13,20 +13,19 @@ import { ToastrService } from 'ngx-toastr';
 export class UserResetPasswordComponent {
 
   constructor(
-    private fb: FormBuilder, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private router: Router,
     private usuarioservice: UsuarioService,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   formResetPassword: any;
 
-  public email: string ="";
-  public mensajeSuccess: boolean = false;
-  public mensajeError: boolean = false;
-  public mensaje: string = "";
+  public email: string = "";
 
-  
+  isLoading: boolean = false;
+
+
 
   ngOnInit(): void {
     this.formResetPassword = this.fb.group({
@@ -34,11 +33,9 @@ export class UserResetPasswordComponent {
     })
   }
 
-
-
   onSubmit() {
     if (this.formResetPassword.valid) {
-
+      this.isLoading = true;
       let dataUsuario = { "user_email": `${this.formResetPassword.value.email}` }
 
       //SEND DATA TO SERVICES
@@ -47,30 +44,26 @@ export class UserResetPasswordComponent {
         (data: any): any => {
           console.log(data)
           if (data) {
-            
+
             if (data.hasOwnProperty("status")) {
               if (data.status == 'not-find') {
-                
-                this.mensaje = data?.result;
-                this.toastr.warning(`${this.mensaje}`,"Atencion!");
+                this.toastr.warning(`${data?.result}`, "Atencion!");
               } else {
-              
-                this.mensaje = data?.result;
-                this.toastr.success(`${this.mensaje}`,"Correcto!");
+                this.toastr.success(`${data?.result}`, "Correcto!");
               }
-            } else {                   
-                this.mensaje = data?.result;
-                this.toastr.success(`${this.mensaje}`,"Correcto!");  
+            } else {
+              this.toastr.success(`${data?.result}`, "Correcto!");
             }
           }
         },
         error => {
-          this.toastr.error(`${this.mensaje}`,"Atencion!");
-          
+          this.toastr.error(`${error[0]}`, "Atencion!");
+
           console.log("Ha ocurrido un error en la llamada: ", error)
-        })
+        },
+        () => {
+          this.isLoading = false;
+        });
     }
   }
-
-
 }
