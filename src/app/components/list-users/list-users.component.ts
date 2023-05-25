@@ -13,7 +13,7 @@ export class ListUsersComponent {
 
   constructor(private usuarioservice: UsuarioService, private auth: AuthService) { }
 
-  usuarios: Usuario[] = []
+  usuarios:any;
   paginado: number = 0
   itemsPaginado: number = 0
   contadorSaltos: number = 0
@@ -27,25 +27,25 @@ export class ListUsersComponent {
 
     let token = this.auth.getToken()
     this.isLoading = true;
-    //Realizamos la peticion de los usuarios
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?all=true`,!token?'':token).subscribe(
-  /* this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(  */
 
-      (data: any): any => {
-        this.usuarios = Object.values(data.usuario);
-        console.log(this.usuarios);
-      },
-      error => console.log("Ha ocurrido un error en la llamada: ", error))
 
 
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`, !token ? '' : token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=5&skip=0`, !token ? '' : token).subscribe(
 
-      (data): any => {
-        this.paginado = Object.values(data).length;
-        console.log(Object.values(data).length);
-        this.itemsPaginado = Math.round(this.paginado / this.pageLimit)
+      (data: any) => {
+
+
+        const { usuario, totalUsers, limit } = data
+        console.log(data);
+        console.log(usuario);
+        this.usuarios = usuario;
+        this.paginado = totalUsers;
+        console.log(this.paginado, "Paginado");
         this.pageLimit = Math.round(this.paginado / 2)
+        this.itemsPaginado = Math.round(this.paginado / limit)
+        console.log(this.itemsPaginado, "itemsPaginado");
+
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
       () => {
@@ -59,7 +59,7 @@ export class ListUsersComponent {
       this.usuarioservice.deleteUsuario(`${this.url}/user/${id}`).subscribe(
 
         (data): any => {
-          this.usuarios = this.usuarios.filter((usuario) => {
+          this.usuarios = this.usuarios.filter((usuario: { user_id: number; }) => {
             return usuario.user_id !== id
           })
         }, error => console.log("Ha ocurrido un error en la llamada: ", error),

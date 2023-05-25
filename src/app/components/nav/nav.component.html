@@ -9,12 +9,13 @@
         <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
                     {{getUsuario().nombre + " " + getUsuario().apellido}}</span></a>
         </div>
-        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">            
+        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">                
             <div *ngIf="getUsuario().img==='Not found' else noavatar">
-                <img src="{{getUsuario().img}}" alt="{{getUsuario().img}}">                
+                <img src="../../../assets/ICONOS/Icon=ProfileUser, Estilo=Dark.svg" alt="" class="iconos filter-white-icon">
+                
             </div>
             <ng-template #noavatar>
-                <img src="../../../assets/ICONOS/Icon=ProfileUser, Estilo=Dark.svg" alt="" class="iconos filter-white-icon">
+                <img src="{{getUsuario().img}}">                
             </ng-template>
         </div>
     </div>

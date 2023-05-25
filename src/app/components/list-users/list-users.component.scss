@@ -32,11 +32,11 @@
 				}
 
 				tbody{
-					height: 30rem;
+					height: 23rem;
 				}
 
 				tbody tr:nth-child(even) {
-					background-color: $color_8;
+					background-color: $color_9;
 				}
 
 				tfoot td {
@@ -107,5 +107,12 @@
 				}
 			}
 		}
+	}
+
+	.boton-actions{
+		display:flex;
+		flex-direction:row;
+		flex-wrap: wrap;
+		gap:5px
 	}
 }

@@ -17,6 +17,7 @@ export class RegisterNewUserComponent implements OnInit {
   validacionFormulario: boolean = false
   isLoading: boolean = false;
   mensajeFinal: any;
+  terminosCondiciones=false
 
   viewPasswordInput: boolean = false;
   viewPasswordConfirmInput: boolean = false;
