@@ -32,6 +32,21 @@ export class UsuarioService {
     return this.http.get(route,config);
   }
 
+  getUserById(route: string,token:string) {
+
+    console.log(token); 
+    let config:any = {
+      responseType: "json"
+    }
+    if (token){
+      const header = new HttpHeaders().set('api-token', ` ${token}`);
+      config["headers"] = header;
+    }
+    console.log(config);
+    
+    return this.http.get(route,config);
+  }
+
   saveUsuario(route: string, usuariodata: Usuario) {
     let config: any = {
       responseType: "json"

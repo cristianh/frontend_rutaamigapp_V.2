@@ -1,1 +1,39 @@
 <h1>PERFIL DE USUARIO</h1>
+<article class="list-users-containers">
+    <div class="contenedor-table-list">
+        <div class="row">
+
+            <div class="col-12 contenedor-table">
+                <br>
+                <table class="table-list-users">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- *ngIf="loading; else tableUsuario" -->
+                        <tr class="mx-auto text-center">
+                            <td colspan="7">
+                                <h3>Cargando datos...</h3>
+                                <span class="loader"></span>
+                            </td>
+                        </tr>
+                        <ng-template #tableUsuario>
+<!--                             *ngFor="let usuario of user" -->
+                            <tr>
+                                <!-- <th scope="row">{{usuario.user_id}}</th>
+                                <td scope="row">{{usuario.user_name}}</td>
+                                <td scope="row">{{usuario.user_lastname}}</td>
+                                <td scope="row">{{usuario.user_email}}</td> -->
+                            </tr>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</article>

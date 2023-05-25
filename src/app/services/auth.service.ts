@@ -24,14 +24,24 @@ export class AuthService {
     localStorage.setItem('token', token);
     this.isLogin.next(true);
   }
-
+  /* Save all user info */
   setCurrentUser(user: object): void {
     localStorage.setItem('currentUser', JSON.stringify({usuario:user}));
   }
 
+  /* Save user id */
+  setIdUser(id: string): void {
+    localStorage.setItem('userId', JSON.stringify({Id:id}));
+  }
+  
   //método que nos permite recuperar el  usuario
   getCurrentUser(): string | null {
     return localStorage?.getItem("currentUser") ;
+  }
+
+  //método que nos permite recuperar el  id delusuario
+  getUserId(): string | null {
+    return localStorage?.getItem("userId") ;
   }
 
   //método que nos permite recuperar el  usuario
