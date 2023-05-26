@@ -1,11 +1,36 @@
-<h1>PERFIL DE USUARIO</h1>
 <article class="list-users-containers">
     <div class="contenedor-table-list">
         <div class="row">
 
             <div class="col-12 contenedor-table">
                 <br>
-                <table class="table-list-users">
+
+                <div class="container-profile">
+                    <fieldset>
+                        <legend>Mi Perfil</legend>
+                        <div>
+                            <div >
+                                <img  src="https://res.cloudinary.com/dl7oqoile/image/upload/v1679183393/uploads/bzeq6lv7yvz7qhuczadf.jpg"
+                                    class="responsive img-profile">
+                            
+                            </div>
+                        </div>
+                        <div>
+                            <div class="info">
+                                <section *ngFor="let usuario of usuarios">
+                                    <div class="profile-user" scope="row"><span>Nombre: </span>{{usuario.user_name}}
+                                        {{usuario.user_lastname}}</div>
+                                    <div class="profile-user" scope="row"><span>Email: </span>{{usuario.user_email}}</div>
+                                    <div class="profile-user" scope="row"><span>Estado:
+                                        </span>{{usuario.user_status?'Activo':'Inactivo'}}</div>
+                                </section>
+                            </div>                           
+                        </div>
+
+                    </fieldset>
+                </div>
+
+                <!-- <table class="table-list-users">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -15,24 +40,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- *ngIf="loading; else tableUsuario" -->
-                        <tr class="mx-auto text-center">
+                        
+                        <tr class="mx-auto text-center" *ngIf="isLoading; else tableUsuario">
                             <td colspan="7">
                                 <h3>Cargando datos...</h3>
                                 <span class="loader"></span>
                             </td>
                         </tr>
-                        <ng-template #tableUsuario>
-<!--                             *ngFor="let usuario of user" -->
-                            <tr>
-                                <!-- <th scope="row">{{usuario.user_id}}</th>
+
+                        <ng-template #tableUsuario>                            
+                            <tr *ngFor="let usuario of usuarios">
+                                <th scope="row">{{usuario.user_id}}</th>
                                 <td scope="row">{{usuario.user_name}}</td>
                                 <td scope="row">{{usuario.user_lastname}}</td>
-                                <td scope="row">{{usuario.user_email}}</td> -->
+                                <td scope="row">{{usuario.user_email}}</td>
                             </tr>
                         </ng-template>
                     </tbody>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 //import { environment } from '../../../environments/environment';
 
+
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -28,33 +29,10 @@ export class ListUsersComponent {
   ngOnInit(): void {
     let token = this.auth.getToken()
     this.isLoading = true;
-    let userId: string | any = this.auth.getUserId()
-
-    const { Id } = JSON.parse(userId)
-    console.log(Id)
-
-    //Realizamos la peticion de los usuarios
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?all=true`, !token ? '' : token).subscribe(
-
-      (data: any): any => {
-        this.usuarios = Object.values(data.usuario);
-
-        this.isLoading = false
-      },
-      error => console.log("Ha ocurrido un error en la llamada: ", error))
-
-    this.usuarioservice.getUserById(`${this.url}/user/${Id}`, !token ? '' : token).subscribe(
-      (data: any): any => {
-        console.log(data)
-        /* this.usuarios = Object.values(data.usuario);
-        console.log(this.usuarios);
-        this.loading = false */
-      },
-      error => console.log("Ha ocurrido un error en la llamada: ", error)
-    )
-
+   
+    
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=5&skip=0`,!token?'':token).subscribe(
 
       (data:any): any => {
 
