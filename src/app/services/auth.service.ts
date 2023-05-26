@@ -17,7 +17,7 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  private checkUser(): boolean {
+  private checkUserLogin(): boolean {
     return !!localStorage.getItem('currentUser');
   }
 
@@ -76,7 +76,7 @@ export class AuthService {
 
   //método que nos retorna el BehaviorSubject cómo un observable
   isLoggedIn(): Observable<boolean> {
-    let logIn = new BehaviorSubject<boolean>(this.checkUser());    
+    let logIn = new BehaviorSubject<boolean>(this.checkUserLogin());    
     //Validacion si es admin
     return logIn
    /*  return this.isLogin.asObservable(); */
