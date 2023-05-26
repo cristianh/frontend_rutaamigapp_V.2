@@ -1,5 +1,9 @@
 @import "../../../~variables.scss";
 
+.my-btn-info,.my-btn-primary,.my-btn-danger{
+	cursor:pointer
+}
+
 .my-btn-primary {
 	background-color: $background-color_2;
 	border: 0.2em solid $color_2;
@@ -22,3 +26,52 @@
 		transition: .3s;
 	}
 }
+
+.my-btn-danger {
+	background-color: rgb(206 86 86);
+    border: 0.2em solid #d64343;
+	border-radius: 5px;
+	padding: 0.2em 1em;
+	color: white;
+	font-weight: 500;
+	transition: .3s;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 0px auto;
+	font-family: 'Exo', sans-serif;
+	font-weight: bold;
+	&:hover {
+		background-color: white;
+		color: red;
+		font-weight: 500;
+		transition: .3s;
+		font-weight: 500;
+	}
+}
+
+.my-btn-info {
+	background-color: #00796B;
+    border: 0.2em solid #00796B;
+	border-radius: 5px;
+	padding: 0.2em 1em;
+	color: white;
+	font-weight: 500;
+	transition: .3s;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 0px auto;
+	font-family: 'Exo', sans-serif;
+	font-weight: bold;
+	&:hover {
+		background-color: white;
+		color: #00796B;
+		font-weight: 500;
+		transition: .3s;
+		font-weight: 500;
+	}
+}
+

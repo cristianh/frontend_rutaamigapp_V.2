@@ -19,6 +19,11 @@ export class LoginComponent {
 
   public email!: string;
   public password!: string;
+  isLoading: boolean = false;
+
+  viewPasswordInput: boolean = false;
+  viewPasswordInputIcon: boolean = false;
+  viewPasswordShowInput: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -38,17 +43,15 @@ export class LoginComponent {
   onIngresar() {
 
     /* event.preventDefault(); */
-
     let usuario: Usuario
 
-
-
     if (this.formLogin.valid) {
+      this.isLoading = true;
       usuario = new Usuario()
       usuario.user_email = this.formLogin.value.email
       usuario.user_password = this.formLogin.value.password
       //SEND DATA TO SERVICES
-      this.usuarioservice.loginUsuario('auth/login', usuario).subscribe(
+      this.usuarioservice.loginUsuario('/auth/login', usuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
 
@@ -62,7 +65,7 @@ export class LoginComponent {
               nombre: data.usuario.nombre,
               apellido: data.usuario.apellido,
               rol: data.usuario.rol,
-              img: data.usuario.img==undefined?"Not found":data.usuario.img
+              img: data.usuario.img == undefined ? "Not found" : data.usuario.img
             }
 
             this.auth.setCurrentUser(usuario)
@@ -71,32 +74,42 @@ export class LoginComponent {
             //logueado
             this.router.navigate(['/dashboard/listar-usuarios'])
 
-            /* document.getElementById('mensaje').classList.add('hidden')
-            document.getElementById('mensaje-error').innerHTML = '' */
-            //window.location = '/map';
           }
-
-          /* this.formRegister *///buscar como limpiar formulario.
+          //Clean form.
+          this.formLogin.reset();
         },
         error => {
+          if(Array.isArray(error.error)){
+              console.log(Object.values(error.error))
+          }
+
           if (error.error.result) {
             this.toastr.error(`${error.error.result}`, "Atencion!");
+            
           }
           else {
             this.toastr.error(`${error.message}`, "Atencion!");
+            
           }
           console.log("Ha ocurrido un error en la llamada: ", error)
+          this.isLoading=false
+        },
+        () => {
+          this.isLoading = false;
         })
 
-
     }
-
-
-
-
-
+  }
+  onChangeViewPassord() {
+    this.viewPasswordInput = !this.viewPasswordInput
   }
 
+  onshowPasswordIcon() {
+    this.viewPasswordShowInput = true
+  }
+  onhidePasswordIcon() {
+    this.viewPasswordShowInput = false
+  }
 }
 
 

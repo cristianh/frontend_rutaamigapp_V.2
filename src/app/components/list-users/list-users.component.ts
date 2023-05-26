@@ -13,20 +13,21 @@ export class ListUsersComponent {
 
   constructor(private usuarioservice: UsuarioService, private auth: AuthService) { }
 
-  usuarios: Usuario[] = []
+  usuarios:any;
   paginado: number = 0
-  itemsPaginado = 0
-  contadorSaltos = 0
-  pageLimit = 6
-  take = 0
-  loading = true
+  itemsPaginado: number = 0
+  contadorSaltos: number = 0
+  pageLimit: number = 6
+  take: number = 0
+  isLoading: boolean = false;
+
   //url = environment.API_URL;
   url = 'http://localhost:3000/api';
 
 
   ngOnInit(): void {
-
     let token = this.auth.getToken()
+    this.isLoading = true;
     let userId: string | any = this.auth.getUserId()
 
     const { Id } = JSON.parse(userId)
@@ -38,7 +39,7 @@ export class ListUsersComponent {
       (data: any): any => {
         this.usuarios = Object.values(data.usuario);
 
-        this.loading = false
+        this.isLoading = false
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error))
 
@@ -53,46 +54,55 @@ export class ListUsersComponent {
     )
 
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`, !token ? '' : token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers`,!token?'':token).subscribe(
 
-      (data): any => {
-        this.paginado = Object.values(data).length;
+      (data:any): any => {
 
-        this.itemsPaginado = Math.round(this.paginado / this.pageLimit)
-        this.pageLimit = Math.round(this.paginado / 2)
+        const { usuario, totalUsers, limit } = data
+        console.log(data);
+        console.log(usuario);
+        this.usuarios = usuario;
+        this.paginado = totalUsers;
+        console.log(this.paginado, "Paginado");
+
       },
-      error => console.log("Ha ocurrido un error en la llamada: ", error))
+      error => console.log("Ha ocurrido un error en la llamada: ", error),
+      () => {
+        this.isLoading = false;
+      })
   }
 
   deleteUsuario(id: number) {
-
+    this.isLoading = true;
     if (confirm("Esta seguro que desea eliminar el usuario.")) {
       this.usuarioservice.deleteUsuario(`${this.url}/user/${id}`).subscribe(
 
         (data): any => {
-          this.usuarios = this.usuarios.filter((usuario) => {
+          this.usuarios = this.usuarios.filter((usuario: { user_id: number; }) => {
             return usuario.user_id !== id
           })
-        }, error => console.log("Ha ocurrido un error en la llamada: ", error))
+        }, error => console.log("Ha ocurrido un error en la llamada: ", error),
+        () => {
+          this.isLoading = false;
+        })
     }
-
-
-
   }
 
   siguiente() {
-
+    this.isLoading = true;
     if (this.contadorSaltos > this.itemsPaginado) {
       this.validarPaginado()
     } else {
       /* this.pageLimit = this.pageLimit + 10 */
       this.take += 6
-      this.loading = true
       this.contadorSaltos += 1
       this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
 
-        (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
-        error => console.log("Ha ocurrido un error en la llamada: ", error))
+        (data): any => { this.usuarios = Object.values(data); console.log(data) },
+        error => console.log("Ha ocurrido un error en la llamada: ", error),
+        () => {
+          this.isLoading = false;
+        })
       this.validarPaginado()
     }
   }
@@ -100,14 +110,16 @@ export class ListUsersComponent {
 
 
   atras() {
-
+    this.isLoading = true;
     if (this.contadorSaltos != 0) {
       this.take -= 6
-      this.loading = true
       this.contadorSaltos -= 1
       this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
-        (data): any => { this.usuarios = Object.values(data); console.log(data); this.loading = false },
-        error => console.log("Ha ocurrido un error en la llamada: ", error))
+        (data): any => { this.usuarios = Object.values(data); console.log(data) },
+        error => console.log("Ha ocurrido un error en la llamada: ", error),
+        () => {
+          this.isLoading = false;
+        })
       this.validarPaginado()
     }
   }

@@ -6,7 +6,9 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./my-btn-primary.component.scss']
 })
 export class MyBtnPrimaryComponent {
+  //my-btn-primary
   @Input() textoBoton: string | undefined;
+  @Input() classBoton: string | undefined = "my-btn-primary";
   
   constructor() { }
 

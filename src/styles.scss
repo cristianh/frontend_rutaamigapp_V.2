@@ -9,12 +9,14 @@ h2 {
 }
 
 p,
-label,span {
+label,
+th,
+td,
+tbody {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 0.8em;
 }
-
 
 * {
     margin: 0px;
@@ -23,11 +25,12 @@ label,span {
     box-sizing: border-box;
 }
 
-app-root{
+app-root {
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
 }
+
 input {
     &:focus {
         outline: none;
@@ -80,6 +83,11 @@ a {
     border: 1px solid $color_1;
     padding: 2em;
 
+    .form_logo {
+        width: 20rem;
+        height: 20rem;
+    }
+
     &:nth-child(1) {
         background: linear-gradient(180deg, #F2CB05 0%, #F29F05 45.31%, #F28705 100%);
         box-shadow: 4px -4px 4px $shadow_1;
@@ -87,7 +95,8 @@ a {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 300pc;
+        height: 100%;
+        width: 100%;
     }
 
     &:nth-child(2) {
@@ -104,15 +113,91 @@ a {
         flex-direction: column;
         grid-gap: 12px;
         align-items: center;
-    }
-}
 
-.logo-container {
-    width: 90%;
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        #cbox1 {
+            accent-color: $color_2;
+        }
+
+        .icon_password {
+            position: absolute;
+            right: 30px;
+            top: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input_icon_password {
+            position: relative;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .icon_color {
+            color: $color_2;
+        }
+
+        .input {
+            width: 80%;
+            margin: 0px auto;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border: none;
+            /* para eliminar los bordes predeterminados del input */
+            border-bottom: 2px solid $color_3;
+            border-radius: 0 0 6px 6px;
+            margin: 0.4em;
+        }
+
+
+        .view-password::after {
+            content: 'x';
+            border: red 5px solid;
+            /* Se especifica la URL del icono a agregar */
+            background-image: url('assets/img/logo1_banner.png');
+            margin-left: 10px;
+            /* Se agrega un margen izquierdo para separar el icono del campo de entrada */
+            object-fit: cover;
+
+        }
+
+        .input[type="checkbox"] {
+            appearance: none;
+            border: 0.2em solid $color_3;
+            width: 1.1em;
+            height: 1.1em;
+            cursor: pointer;
+
+            &:checked {
+                background-color: $background-color_3;
+                color: $color_2;
+                position: relative;
+
+                &::after {
+                    content: "x";
+                    color: $color_3;
+                    width: 18px;
+                    height: 17px;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-9px, -11px);
+                    font-weight: 500;
+                    z-index: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                }
+            }
+        }
+
+        .terms-container {
+            text-align: center;
+        }
+    }
 }
 
 .principal-title {
@@ -120,68 +205,6 @@ a {
     font-weight: bold;
     margin-bottom: 0.5em;
     color: $color_1;
-    text-align: center;
-}
-
-form {
-    .input {
-        width: 80%;
-        margin: 0px auto;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        border: none;
-        /* para eliminar los bordes predeterminados del input */
-        border-bottom: 2px solid $color_3;
-        border-radius: 0 0 6px 6px;
-        margin: 0.4em;
-    }
-
-
-    .view-password::after {
-        content: 'x';
-        border: red 5px solid;
-        /* Se especifica la URL del icono a agregar */
-        background-image: url('assets/img/logo1_banner.png');
-        margin-left: 10px;
-        /* Se agrega un margen izquierdo para separar el icono del campo de entrada */
-        object-fit: cover;
-
-    }
-
-    .input[type="checkbox"] {
-        appearance: none;
-        border: 0.2em solid $color_3;
-        width: 1.1em;
-        height: 1.1em;
-        cursor: pointer;
-
-        &:checked {
-            background-color: $background-color_3;
-            color: $color_2;
-            position: relative;
-
-            &::after {
-                content: "x";
-                color: $color_3;
-                width: 18px;
-                height: 17px;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-9px, -11px);
-                font-weight: 500;
-                z-index: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
-            }
-        }
-    }
-}
-
-.terms-container {
     text-align: center;
 }
 
@@ -196,7 +219,6 @@ form {
 .border-danger {
     border-left: 2px solid $color_5;
 }
-
 
 
 //MEDIA QUERYS

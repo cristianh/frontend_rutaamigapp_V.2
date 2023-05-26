@@ -1,13 +1,11 @@
 <main>
-
+    <app-preloader *ngIf="isLoading"></app-preloader>
     <article class="principal-container">
         <article class="form-container">
             <section class="mid-container">
-                <article class="logo-container">
-                    <img src="../../../assets/img/logo.png" alt="logo" class="responsive">
-                </article>
+                <img src="../../../assets/img/logo.png" alt="logo" class="form_logo">                
             </section>
-            <section class="mid-container">
+            <section class="mid-container" *ngIf="!terminosCondiciones; else tyc" >
                 <header>
                     <div alt="logo" class="logo_image_mobile"></div>
                     <h1 class="principal-title">Registro</h1>
@@ -54,51 +52,59 @@
 
                     </div>
 
-                    <label class="terms-container"><input type="checkbox" id="cbox1" value="checkbox"> Aceptar
+                    <label class="terms-container"><input type="checkbox" id="cbox1" value="checkbox" formControlName="isCheckedTyC" (change)="onCheckboxChange()"> Aceptar
                         términos
                         y condiciones</label>
                     <app-my-btn-primary textoBoton="REGISTARME"></app-my-btn-primary>
                     <label class="log-in">Si ya tienes cuenta ingresa <a [routerLink]="['']">aquí</a> </label>
+                    
                 </form>
-                <div class="row">
-                    <div class="col-12 ">
-                        <div *ngIf="mensajeSuccess" class="alert alert-success alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal.status}}
+            </section>
+            <ng-template #tyc>
+                <div #modal class="modal">
+                    <div class="content" >
+                        <h1>Terminos y condiciones Ruta-Amigapp</h1>
+                        <div #content  class="modal-content" (scroll)="onScroll()">
+                            <p>Estos términos y condiciones rigen su acceso y uso del aplicativo web de rutas de transporte público y seguimiento en tiempo real en Armenia, proporcionado por RutaAmigapp
+
+                                Al utilizar el Servicio, usted acepta estar sujeto a estos Términos y acepta cumplir con ellos. Si no está de acuerdo con estos Términos, no use el Servicio.
+                                
+                                Descripción del Servicio
+                                El Servicio proporciona información en tiempo real sobre las rutas de transporte público en Armenia, incluyendo la ubicación de los vehículos brindada por los usuarios, la hora estimada de llegada y la tarifa aproximada del pasaje. El Servicio también puede proporcionar información adicional, como reseñas de usuarios y la disponibilidad de transporte accesible.
+                                
+                                Uso del Servicio
+                                Usted acepta usar el Servicio sólo para fines legales y de acuerdo con estos Términos. Usted reconoce que cualquier uso del Servicio que viole estos Términos puede resultar en la suspensión o terminación de su acceso al Servicio.
+                                
+                                Usted acepta que no utilizará el Servicio para:
+                                
+                                a. Violar cualquier ley o regulación aplicable;
+                                
+                                b. Hacerse pasar por otra persona o entidad, o falsear su afiliación con cualquier persona o entidad;
+                                
+                                c. Publicar o transmitir cualquier contenido que sea ilegal, amenazante, difamatorio, obsceno, ofensivo, pornográfico, violento o que infrinja los derechos de propiedad intelectual o de privacidad de otra persona;
+                                
+                                d. Acceder o utilizar el Servicio de manera que pueda dañar, desactivar, sobrecargar o deteriorar el rendimiento del Servicio o interferir con el uso del Servicio por parte de otros usuarios.
+                                
+                                Propiedad intelectual
+                                Nosotros somos dueños de todos los derechos de propiedad intelectual en el Servicio, incluyendo sin limitación, patentes, marcas comerciales, derechos de autor, diseños, bases de datos, código fuente, textos, gráficos, imágenes, fotografías, videos y otros contenidos ("Propiedad Intelectual"). Usted acepta no utilizar la Propiedad Intelectual de ninguna manera que infrinja nuestros derechos o los derechos de cualquier tercero.
+                                
+                                Privacidad
+                                Nosotros recopilamos y utilizamos información sobre usted de acuerdo con nuestra Política de Privacidad. Al utilizar el Servicio, usted acepta nuestra Política de Privacidad.
+                                
+                                Modificaciones al Servicio y a los Términos
+                                Nos reservamos el derecho de modificar o discontinuar el Servicio en cualquier momento, sin previo aviso y sin responsabilidad hacia usted.
+                                
+                                También podemos modificar estos Términos en cualquier momento, publicando los Términos actualizados en el Servicio. Su uso continuado del Servicio después de la publicación de los Términos actualizados significa que acepta los Términos actualizados.
+                                
+                                Exención de responsabilidad
+                                El Servicio se proporciona "tal cual" y "según disponibilidad". No garantizamos la exactitud, integridad, calidad, confiabilidad o puntualidad de la información proporcionada a través del Servicio.
+                                </p>
                         </div>
-                        <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal.status}}
-                        </div>
-                        <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert" style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            {{mensajeFinal}}
-                        </div>
-                        <div *ngIf="validacionFormulario" class="alert alert-danger alert-dismissible" role="alert"
-                            style="
-                    position: absolute;
-                    bottom: -130px;
-                    left: 20px;
-                    width: 300px;
-                ">
-                            Por favor revise los campos.
-                        </div>
+                        <button #button class="scroll-btn" [disabled]="!isEndOfScroll" (click)="onChangeTyC()">CONTINUAR</button>
                     </div>
                 </div>
-            </section>
-
+            </ng-template>            
         </article>
     </article>
+   
 </main>
