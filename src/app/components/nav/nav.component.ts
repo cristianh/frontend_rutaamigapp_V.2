@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.auth.getCurrentUser();
-   
+    this.user = JSON.parse(this.user)
   }
 
   getUsuario() {

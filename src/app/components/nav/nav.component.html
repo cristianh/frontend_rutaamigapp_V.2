@@ -1,21 +1,21 @@
 <nav class="navbar">
     <div class="icon" [routerLink]="['']"></div>
-    <div class="nav_items" id="_items">
+    <div class="nav_items" id="_items">        
         <!-- MOSTRAMOS LO BOTONOS SI NO ESTA LOGUEADO -->
         <ng-template #nologin>
             <div> <a [routerLink]="['']">Inicio</a></div>
             <div> <a [routerLink]="['/registrar']">Registro</a></div>
         </ng-template>
         <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
-                    {{getUsuario().nombre + " " + getUsuario().apellido}}</span></a>
+                    {{user.usuario.nombre + " " + user.usuario.apellido}}</span></a>
         </div>
-        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">                
-            <div *ngIf="getUsuario().img==='Not found' else noavatar">
-                <img src="../../../assets/ICONOS/Icon=ProfileUser, Estilo=Dark.svg" alt="" class="iconos filter-white-icon">
+        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">            
+            <div *ngIf="user.usuario.img=='Not found'; else noavatar">
+                <img src="https://res.cloudinary.com/dl7oqoile/image/upload/v1685113217/Icon_ProfileUser_Estilo_Dark_bjlzax.svg" alt="" class="iconos filter-white-icon">
                 
             </div>
             <ng-template #noavatar>
-                <img src="{{getUsuario().img}}">                
+                <img src="{{user.usuario.img}}">                
             </ng-template>
         </div>
     </div>
@@ -28,10 +28,10 @@
             <div class="item_sidebar"> <a [routerLink]="['/registrar']">Registro</a></div>
         </ng-template>
         <div class="item_sidebar" *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
-                    {{getUsuario()}}</span></a>
+                    {{user.usuario.nombre}}</span></a>
         </div>
-        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{getUsuarioImg()}}"
-                alt="{{getUsuarioImg()}}"></div>
+        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async"> <img src="{{user.usuario.img}}"
+                alt="{{user.usuario.img}}"></div>
     </div>
     <div class="nav_toggle" (click)="toogleMenu()">
         <span></span>
