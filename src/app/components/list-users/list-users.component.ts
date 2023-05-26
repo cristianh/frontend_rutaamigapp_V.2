@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 //import { environment } from '../../../environments/environment';
 
 
@@ -22,8 +23,8 @@ export class ListUsersComponent {
   take: number = 0
   isLoading: boolean = false;
 
-  //url = environment.API_URL;
-  url = 'http://localhost:3000/api';
+  url = environment.API_URL;
+  //url = 'http://localhost:3000/api';
 
 
   ngOnInit(): void {
