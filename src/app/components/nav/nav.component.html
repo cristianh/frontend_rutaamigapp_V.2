@@ -1,23 +1,30 @@
 <nav class="navbar">
     <div class="icon" [routerLink]="['']"></div>
-    <div class="nav_items" id="_items">        
+    <div class="nav_items" id="_items">
         <!-- MOSTRAMOS LO BOTONOS SI NO ESTA LOGUEADO -->
         <ng-template #nologin>
             <div> <a [routerLink]="['']">Inicio</a></div>
             <div> <a [routerLink]="['/registrar']">Registro</a></div>
-        </ng-template>
-        <div *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
-                    {{user.usuario.nombre + " " + user.usuario.apellido}}</span></a>
-        </div>
-        <div class="nav_items_contenedor--avatar" *ngIf="auth.isLoggedIn() | async">            
-            <div *ngIf="user.usuario.img=='Not found'; else noavatar">
-                <img src="https://res.cloudinary.com/dl7oqoile/image/upload/v1685113217/Icon_ProfileUser_Estilo_Dark_bjlzax.svg" alt="" class="iconos filter-white-icon">
-                
+            <div> <a href="https://socket-maptracker.onrender.com/" target="_blank">Mapa</a></div>
+        </ng-template>                
+        <div  style="display: flex;justify-content: center;align-items: center;" *ngIf="auth.isLoggedIn() | async ; else nologin">
+            <div>
+                <a><span>Bienvenid@
+                        {{user.usuario.nombre + " " + user.usuario.apellido}}</span></a>
             </div>
-            <ng-template #noavatar>
-                <img src="{{user.usuario.img}}">                
-            </ng-template>
+            <div class="nav_items_contenedor--avatar">
+                <div *ngIf="user.usuario.img=='Not found'; else noavatar">
+                    <img src="https://res.cloudinary.com/dl7oqoile/image/upload/v1685113217/Icon_ProfileUser_Estilo_Dark_bjlzax.svg"
+                        alt="" class="iconos filter-white-icon">
+
+                </div>
+                <ng-template #noavatar>
+                    <img src="{{user.usuario.img}}">
+                </ng-template>
+            </div>
         </div>
+
+
     </div>
     <!-- side bar -->
     <div class="sidebar" [ngClass]="{'sidebar':true,'open':isMenuOpen}">
@@ -26,6 +33,7 @@
         <ng-template #nologin>
             <div class="item_sidebar"> <a [routerLink]="['']">Inicio</a></div>
             <div class="item_sidebar"> <a [routerLink]="['/registrar']">Registro</a></div>
+            <div> <a href="https://socket-maptracker.onrender.com/" target="_blank">Mapa</a></div>
         </ng-template>
         <div class="item_sidebar" *ngIf="auth.isLoggedIn() | async ; else nologin"><a><span>Bienvenid@
                     {{user.usuario.nombre}}</span></a>
