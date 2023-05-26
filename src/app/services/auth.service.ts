@@ -28,14 +28,24 @@ export class AuthService {
     localStorage.setItem('token', token);
     this.isLogin.next(true);
   }
-
+  /* Save all user info */
   setCurrentUser(user: object): void {
     localStorage.setItem('currentUser', JSON.stringify({usuario:user}));
   }
 
+  /* Save user id */
+  setIdUser(id: string): void {
+    localStorage.setItem('userId', JSON.stringify({Id:id}));
+  }
+  
   //método que nos permite recuperar el  usuario
   getCurrentUser(): string | null {
     return localStorage?.getItem("currentUser") ;
+  }
+
+  //método que nos permite recuperar el  id delusuario
+  getUserId(): string | null {
+    return localStorage?.getItem("userId") ;
   }
 
   //método que nos permite recuperar el  usuario
@@ -59,9 +69,8 @@ export class AuthService {
   //método que nos permite romover el token almacenado y el nombre del
   //usuario actual y enviar una señal al BehaviorSubject para establecer
   //su nuevo valor, en este caso false para indicar que no estamos logueados
-  logout(): void {
-    localStorage.removeItem('token');
-    this.deleteCourrentUser();
+  logout(): void {    
+    localStorage.clear()    
     this.isLogin.next(false);
   }
 

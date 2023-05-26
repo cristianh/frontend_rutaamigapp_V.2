@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 //import { environment } from '../../../environments/environment';
 
+
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -23,18 +24,17 @@ export class ListUsersComponent {
 
   //url = environment.API_URL;
   url = 'http://localhost:3000/api';
-  ngOnInit(): void {
 
+
+  ngOnInit(): void {
     let token = this.auth.getToken()
     this.isLoading = true;
-
-
-
+   
+    
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=5&skip=0`, !token ? '' : token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=5&skip=0`,!token?'':token).subscribe(
 
-      (data: any) => {
-
+      (data:any): any => {
 
         const { usuario, totalUsers, limit } = data
         console.log(data);
@@ -42,9 +42,6 @@ export class ListUsersComponent {
         this.usuarios = usuario;
         this.paginado = totalUsers;
         console.log(this.paginado, "Paginado");
-        this.pageLimit = Math.round(this.paginado / 2)
-        this.itemsPaginado = Math.round(this.paginado / limit)
-        console.log(this.itemsPaginado, "itemsPaginado");
 
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
