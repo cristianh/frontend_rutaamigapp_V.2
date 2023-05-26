@@ -1,95 +1,136 @@
 <div class="container">
-    <fieldset>
-        <legend>Nuevo usuario:</legend>
-        <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
-            <div class="container-form">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="nombreUsuario">Nombre usuario</label>
-                            <input type="text" class="input" id="nombreUsuario"  aria-describedby="Ingrese su nombre"
-                                placeholder="Ingrese su nombre" formControlName="nombreUsuario" name="nombre_usuario">
-                            <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
-                        </div>
-                        <div class="errors">
-                            <span
-                                *ngIf="formRegister.controls['nombreUsuario'].invalid && (formRegister.controls['nombreUsuario'].dirty || formRegister.controls['nombreUsuario'].touched)"
-                                class="alert">
-                                Nombre de usuario es requerido
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="apellidoUsuario">Apellido usuario</label>
-                            <input type="text" class="input" id="apellidoUsuario" placeholder="Ingrese su apellido"
-                                formControlName="apellidoUsuario" name="apellido_usuario">
-                        </div>
-                        <div class="errors">
-                            <span
-                                *ngIf="formRegister.controls['apellidoUsuario'].invalid && (formRegister.controls['apellidoUsuario'].dirty || formRegister.controls['apellidoUsuario'].touched)"
-                                class="alert">
-                                Apellido de usuario es requerido
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="correoUsuario">Correo usuario</label>
-                            <input type="text" class="input" id="correoUsuario" aria-describedby="Ingrese su correo"
-                                placeholder="Ingrese su correo" required formControlName="correoUsuario"
-                                name="correo_usuario">
-                            <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
-                        </div>
-                        <div class="errors">
-                            <span
-                                *ngIf="formRegister.controls['correoUsuario'].invalid && (formRegister.controls['correoUsuario'].dirty || formRegister.controls['correoUsuario'].touched)"
-                                class="alert">
-                                Corrreo de usuario es requerido
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group py-4">
-                            <label for="passwordUsuario">Password usuario</label>
-                            <input type="password" id="password" class="input" id="passwordUsuario"
-                                placeholder="Ingrese su password" required formControlName="passwordUsuario"
-                                name="password_usuario">
-                        </div>
-                        <div class="errors">
-                            <span
-                                *ngIf="formRegister.controls['passwordUsuario'].invalid && (formRegister.controls['passwordUsuario'].dirty || formRegister.controls['passwordUsuario'].touched)"
-                                class="alert">
-                                Password de usuario es requerido
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <!--  <div class="row">
-                <div class="col-12 ">                    
-                    <div *ngIf="mensaje" class="alert alert-success alert-dismissible" role="alert">
-                    {{mensajeFinal.status}}
-                </div>
-                <div *ngIf="mensajeError" class="alert alert-danger alert-dismissible" role="alert">
-                    {{mensajeFinal.status}}
-                </div>
-                </div>
-            </div> -->
-
+  <fieldset class="container-content">
+    <legend>
+      <h1 class="title">Nuevo usuario:</h1>
+    </legend>
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+      <div class="container-form">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="nombreUsuario">Nombre usuario</label>
+              <input
+                type="text"
+                class="input"
+                id="nombreUsuario"
+                aria-describedby="Ingrese su nombre"
+                placeholder="Ingrese su nombre"
+                formControlName="nombreUsuario"
+                name="nombre_usuario"
+              />
+              <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
             </div>
-            <div class="row-botones">
-                <div class="col-2">
-                    <!-- <button type="submit" class="my-btn-primary" data-toggle="modal"
-                        data-target="#exampleModal">GUARDAR</button> -->
-                        <app-my-btn-primary  textoBoton="GUARDAR"></app-my-btn-primary>
-                </div>
-                <div class="col-2">
-                    <app-my-btn-primary  [routerLink]="['/dashboard/listar-usuarios']" textoBoton="ATRAS"></app-my-btn-primary>
-                    <!-- <button type="button" [routerLink]="['/dashboard/listar-usuarios']" class="my-btn-primary ">ATRAS</button> -->
-                </div>
+            <div class="errors">
+              <span
+                *ngIf="
+                  formRegister.controls['nombreUsuario'].invalid &&
+                  (formRegister.controls['nombreUsuario'].dirty ||
+                    formRegister.controls['nombreUsuario'].touched)
+                "
+                class="alert"
+              >
+                Nombre de usuario es requerido
+              </span>
             </div>
-        </form>
-    </fieldset>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="apellidoUsuario">Apellido usuario</label>
+              <input
+                type="text"
+                class="input"
+                id="apellidoUsuario"
+                placeholder="Ingrese su apellido"
+                formControlName="apellidoUsuario"
+                name="apellido_usuario"
+              />
+            </div>
+            <div class="errors">
+              <span
+                *ngIf="
+                  formRegister.controls['apellidoUsuario'].invalid &&
+                  (formRegister.controls['apellidoUsuario'].dirty ||
+                    formRegister.controls['apellidoUsuario'].touched)
+                "
+                class="alert"
+              >
+                Apellido de usuario es requerido
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="correoUsuario">Correo usuario</label>
+              <input
+                type="text"
+                class="input"
+                id="correoUsuario"
+                aria-describedby="Ingrese su correo"
+                placeholder="Ingrese su correo"
+                required
+                formControlName="correoUsuario"
+                name="correo_usuario"
+              />
+              <!-- <small id="nombreUsuarioHelp" class="form-text text-muted">Ingrese su nombre</small> -->
+            </div>
+            <div class="errors">
+              <span
+                *ngIf="
+                  formRegister.controls['correoUsuario'].invalid &&
+                  (formRegister.controls['correoUsuario'].dirty ||
+                    formRegister.controls['correoUsuario'].touched)
+                "
+                class="alert"
+              >
+                Corrreo de usuario es requerido
+              </span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group py-4">
+              <label for="passwordUsuario">Password usuario</label>
+              <input
+                type="password"
+                id="password"
+                class="input"
+                id="passwordUsuario"
+                placeholder="Ingrese su password"
+                required
+                formControlName="passwordUsuario"
+                name="password_usuario"
+              />
+            </div>
+            <div class="errors">
+              <span
+                *ngIf="
+                  formRegister.controls['passwordUsuario'].invalid &&
+                  (formRegister.controls['passwordUsuario'].dirty ||
+                    formRegister.controls['passwordUsuario'].touched)
+                "
+                class="alert"
+              >
+                Password de usuario es requerido
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row-botones">
+          <div class="col-2">
+            <!-- <button type="submit" class="my-btn-primary" data-toggle="modal"
+                          data-target="#exampleModal">GUARDAR</button> -->
+            <app-my-btn-primary textoBoton="GUARDAR"></app-my-btn-primary>
+          </div>
+          <div class="col-2">
+            <app-my-btn-primary
+              [routerLink]="['/dashboard/listar-usuarios']"
+              textoBoton="ATRAS"
+            ></app-my-btn-primary>
+            <!-- <button type="button" [routerLink]="['/dashboard/listar-usuarios']" class="my-btn-primary ">ATRAS</button> -->
+          </div>
+        </div>
+      </div>
+    </form>
+  </fieldset>
 </div>

@@ -69,6 +69,7 @@ export class LoginComponent {
             }
 
             this.auth.setCurrentUser(usuario)
+            this.auth.setIdUser(data.usuario.id)
             //navegamos de nuevo al home, esta vez como usuario
             //logueado
             this.router.navigate(['/dashboard/listar-usuarios'])
