@@ -65,3 +65,24 @@ ul > li {
     animation:0.2s filter ease-in-out;
     color: $color_4;
 }
+
+.mobile-message{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    background-color: #ddd4d4;
+    outline: thick double #32a1ce;
+    padding: 23px;
+    z-index: 999;   
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center
+}
+
+.logo{
+    width:90%;
+}

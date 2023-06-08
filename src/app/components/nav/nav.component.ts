@@ -10,23 +10,23 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavComponent implements OnInit {
 
   public user: any;
+  public isLoginUser: any;
   public isMenuOpen: boolean = false;
- 
+
 
   constructor(public auth: AuthService) {
 
   }
 
   ngOnInit(): void {
-    if(localStorage?.getItem("currentUser")){
-      this.user = this.auth.getCurrentUser();
-    }
 
-    console.log(this.auth.isLoggedIn());
+
     
-    
+    this.user = this.auth.getCurrentUser()
+
     this.user = JSON.parse(this.user)
   }
+
 
   getUsuario() {
     return JSON.parse(this.user).usuario
@@ -36,10 +36,10 @@ export class NavComponent implements OnInit {
     return JSON.parse(this.user).imagen
   }
 
-  toogleMenu(){
+  toogleMenu() {
     this.isMenuOpen = !this.isMenuOpen
   }
 
-//Crear un menu tipo hamburguesa en angular
+  //Crear un menu tipo hamburguesa en angular
 
 }
