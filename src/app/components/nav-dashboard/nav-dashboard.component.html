@@ -58,4 +58,13 @@
     </li>
   </ul>
 </nav>
+<!-- Mensaje solo mobile -->
+<div class="mobile-message" *ngIf="isMobile">
+  <div>
+    <img src="../assets/img/logo.png" alt="logo" class="logo">
+  </div>
+  <div>
+    Lamentamos informarle que esta seccion de la página no está habilitada en la versión móvil. Le recomendamos amablemente ingresar a la versión de escritorio para acceder a todos los contenidos y funciones disponibles. Apreciamos su comprensión.
+  </div>
+</div>
 <router-outlet></router-outlet>
