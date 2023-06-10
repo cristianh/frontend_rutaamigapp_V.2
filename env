@@ -1,0 +1,23 @@
+PORT=3000
+# URLDESARROLLO='https://backrutaamigaapptestnotification-com.onrender.com'  
+URLDESARROLLO='http://localhost:3000'
+URLDESARROLLOFRONT='http://localhost:4200'
+USER_GMAIL='rutaamigapp2023@hotmail.com'  
+PASSWORD_GMAIL='$Teamloki1209$'  
+SECRETORPRIVATEKEY=L^S1Gw1wwT%x1U8^AJLhhNDvX
+
+#DATOS DB LOCAL
+DBHOST= localhost
+DBPORT= 3306
+DBUSER= root
+DBPASSWORD= 
+DBNAME= test
+
+# !NO MODIFICAR!
+#DATTOS DB REMOTE
+DBURLREMOTE= postgres://rutaamigappadmin001:9dLv*8k6R0rL@dbapprutaamigapp001.postgres.database.azure.com/postgres?sslmode=require
+DBPORTREMOTE= 5432
+DBUSERREMOTE= rutaamigappadmin001
+DBPASSWORDREMOTE= 9dLv*8k6R0rL
+DBNAMEREMOTE= test
+

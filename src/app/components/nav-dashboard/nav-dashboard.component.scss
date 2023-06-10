@@ -68,14 +68,14 @@ ul > li {
 
 .mobile-message{
     position:absolute;
-    top:0px;
+    top:50px;
     left:0px;
     width:100vw;
     height:100vh;
     background-color: #ddd4d4;
     outline: thick double #32a1ce;
     padding: 23px;
-    z-index: 999;   
+    z-index: 999;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -85,4 +85,58 @@ ul > li {
 
 .logo{
     width:90%;
+}
+
+.container-modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(63 62 62 / 72%);
+  z-index: 999999999;
+}
+
+
+.modal {
+  width: 25em;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  z-index: 999999999;
+  color: white;
+  background-color: #267265;
+  padding: 1.5em;
+}
+
+/* Ocultamos el modal por inactividad (aun no esta implementado) */
+.inactivity {
+  display: none
+}
+
+.content {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  margin: 0px auto;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background-color: #eceff1;
+  border-radius: 7px;
+  padding: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.title_container {
+  width: 100%;
+  text-align: center;
+  color: white;
+  padding-bottom: 1em;
 }

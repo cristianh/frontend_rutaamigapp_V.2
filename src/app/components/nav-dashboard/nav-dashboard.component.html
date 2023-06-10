@@ -58,13 +58,26 @@
     </li>
   </ul>
 </nav>
+<!-- *ngIf="isMobile" -->
 <!-- Mensaje solo mobile -->
-<div class="mobile-message" *ngIf="isMobile">
-  <div>
-    <img src="../assets/img/logo.png" alt="logo" class="logo">
+<div class="container-modal" >
+  <!-- GPS ACTIVO -->
+  <div class="modal mobile-message">
+      <div class="title_container">
+          <h2>Advertencia</h2>
+      </div>
+
+      <div class="content">
+          <div class="info_error">
+            <p> Lamentamos informarle que esta seccion de la página no está habilitada en la versión móvil.
+              Le recomendamos amablemente ingresar a la versión de escritorio para acceder a todos los contenidos
+              y funciones disponibles. Apreciamos su comprensión.</p>
+          </div>
+          <div class="icon_container">
+              <img src="../../../assets/ICONOS/fix.svg" alt="fixing">
+          </div>
+      </div>
   </div>
-  <div>
-    Lamentamos informarle que esta seccion de la página no está habilitada en la versión móvil. Le recomendamos amablemente ingresar a la versión de escritorio para acceder a todos los contenidos y funciones disponibles. Apreciamos su comprensión.
-  </div>
-</div>
+
+<!--dsdklsjksdljal-->
 <router-outlet></router-outlet>
