@@ -51,7 +51,7 @@ export class LoginComponent {
       usuario.user_email = this.formLogin.value.email
       usuario.user_password = this.formLogin.value.password
       //SEND DATA TO SERVICES
-      this.usuarioservice.loginUsuario('/auth/login', usuario).subscribe(
+      this.usuarioservice.loginUsuario('auth/login', usuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
 
