@@ -3,6 +3,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/models/usuario';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 /* Importar servicios y servicio de auth */
 @Component({
   selector: 'app-user-profile',
@@ -13,8 +14,8 @@ export class UserProfileComponent {
 
   usuarios: any;
   isLoading: boolean = false;
-  //url = environment.API_URL;
-  url = 'http://localhost:3000/api';
+  url = environment.API_URL;
+  //url = 'http://localhost:3000/api';
 
   constructor(
     private usuarioservice: UsuarioService,
