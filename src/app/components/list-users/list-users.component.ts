@@ -36,13 +36,10 @@ export class ListUsersComponent {
 
       (data:any): any => {
 
-        const { usuario, totalUsers, limit } = data
-        console.log(data);
-        console.log(usuario);
+        const { usuario, totalUsers, limit } = data        
         this.usuarios = usuario;
+        this.usuarios = this.usuarios.reverse()      
         this.paginado = totalUsers;
-        console.log(this.paginado, "Paginado");
-
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
       () => {
@@ -59,6 +56,7 @@ export class ListUsersComponent {
           this.usuarios = this.usuarios.filter((usuario: { user_id: number; }) => {
             return usuario.user_id !== id
           })
+          
         }, error => console.log("Ha ocurrido un error en la llamada: ", error),
         () => {
           this.isLoading = false;

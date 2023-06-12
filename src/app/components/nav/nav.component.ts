@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavComponent implements OnInit {
 
   public user: any;
-  public isLoginUser: any;
+  public isLoginUser: boolean = false;
   public isMenuOpen: boolean = false;
 
 
@@ -20,7 +20,14 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.auth.isLoggedIn().subscribe((data: any): any => { 
+      console.log(typeof (data))     
+      this.isLoginUser=data 
 
+    },
+    error => {
+      console.error(error)
+    })  
     
     this.user = this.auth.getCurrentUser()
 

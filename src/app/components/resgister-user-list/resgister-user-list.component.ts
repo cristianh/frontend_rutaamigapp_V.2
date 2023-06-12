@@ -36,11 +36,7 @@ export class ResgisterUserListComponent {
   onSubmit() {
     console.log(this.formRegister.valid)
     if (!this.formRegister.valid) {
-      console.log(this.formRegister)
-      console.log(this.formRegister.controls['nombreUsuario'].errors)
-      console.log(this.formRegister.controls['apellidoUsuario'].errors)
-      console.log(this.formRegister.controls['correoUsuario'].errors)
-      console.log(this.formRegister.controls['passwordUsuario'].errors)
+      
       this.toastr.error("Error en el formulario","Revise por favor");
     } else {
       let usuario: Usuario;
@@ -55,7 +51,7 @@ export class ResgisterUserListComponent {
       this.usuarioservice.saveUsuario('/user/registro', usuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
-          console.log(data)
+          
           /* this.formRegister *///buscar como limpiar formulario.
           this.formRegister.reset()
           this.toastr.success(`${data.status}`, "Correcto!");
