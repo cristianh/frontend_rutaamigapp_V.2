@@ -15,6 +15,8 @@ export class UserProfileComponent {
   usuarios: any;
   isLoading: boolean = false;
   url = environment.API_URL;
+  imgProfileUser:any
+  imgProfile:string='https://res.cloudinary.com/dl7oqoile/image/upload/v1685113568/Icon_ProfileUser_Estilo_Grey_2_ttzzns.svg'
   //url = 'http://localhost:3000/api';
 
   constructor(
@@ -27,6 +29,16 @@ export class UserProfileComponent {
     let token = this.auth.getToken()
     this.isLoading = true;
     let userId: string | any = this.auth.getUserId()
+
+    this.imgProfileUser = this.auth.getCurrentUser()
+
+    this.imgProfileUser= JSON.parse(this.imgProfileUser)
+
+    if(this.imgProfileUser?.usuario?.img!=="Not found"){
+      this.imgProfile=this.imgProfileUser?.usuario?.img;
+    }else{
+      this.imgProfile ='https://res.cloudinary.com/dl7oqoile/image/upload/v1685113568/Icon_ProfileUser_Estilo_Grey_2_ttzzns.svg'
+    }
 
     const { Id } = JSON.parse(userId)
     console.log(Id)
