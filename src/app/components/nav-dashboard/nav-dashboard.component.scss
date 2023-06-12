@@ -4,111 +4,96 @@
 //TODO: recordar convertirlo a scss.
 
 .nav-bar-dashboard {
-    display: flex;
-    background-color: white;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    box-shadow: 2px 2px 3px 3px;
-    background: #FDFDFD;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 20px 0px 20px 0px;
-    height: 100vh;
-    font-size: 1em;
-    border-right: 2px solid rgb(179, 177, 177);
-    padding-top: 3rem;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  box-shadow: 2px 2px 3px 3px;
+  background: #FDFDFD;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 20px 0px 20px 0px;
+  height: 100vh;
+  font-size: 1em;
+  border-right: 2px solid rgb(179, 177, 177);
+  padding-top: 3rem;
 }
 
 .navbar-nav {
-    margin:4px 10px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    border-radius: 12px 12px;
-    height: fit-content;
-    width: 80%;
+  margin: 4px 10px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 12px 12px;
+  height: fit-content;
+  width: 80%;
 }
 
-ul > li {
-    list-style-type: none;
-    cursor:pointer
+ul>li {
+  list-style-type: none;
+  cursor: pointer
 }
 
-.line{
-    font-weight: 300;
-    font-family: cursive;
+.line {
+  font-weight: 300;
+  font-family: cursive;
 }
 
 .nav-item-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    gap: 10px;
-    padding:13px 13px;
-    background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  padding: 13px 13px;
+  background-color: white;
 }
 
 
 
 .nav-item-menu:hover {
-    background-color: #267365;
-    color: $color_4
+  background-color: #267365;
+  color: $color_4
 }
 
 .nav-item-menu svg :hover {
-    stroke: rgb(0, 183, 255)
+  stroke: rgb(0, 183, 255)
 }
 
 
 
 .nav-item-menu div .filter-white-icon:hover {
-    filter: brightness(2);
-    animation:0.2s filter ease-in-out;
-    color: $color_4;
+  filter: brightness(2);
+  animation: 0.2s filter ease-in-out;
+  color: $color_4;
 }
 
-.mobile-message{
-    position:absolute;
-    top:50px;
-    left:0px;
-    width:100vw;
-    height:100vh;
-    background-color: #ddd4d4;
-    outline: thick double #32a1ce;
-    padding: 23px;
-    z-index: 999;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center
-}
-
-.logo{
-    width:90%;
+.logo {
+  width: 90%;
 }
 
 .container-modal {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgb(63 62 62 / 72%);
   z-index: 999999999;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 
 .modal {
-  width: 25em;
-  height: fit-content;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  transform: translate(-50%, -50%);
-  border-radius: 12px;
   z-index: 999999999;
   color: white;
   background-color: #267265;
@@ -121,7 +106,8 @@ ul > li {
 }
 
 .content {
-  width: 75%;
+  width: 85%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   margin: 0px auto;
@@ -130,8 +116,10 @@ ul > li {
   align-items: center;
   background-color: #eceff1;
   border-radius: 7px;
-  padding: 1em;
-  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2rem;
+  gap: 80px;
+  color: #155248;
+  font-size: large;
 }
 
 .title_container {
@@ -139,4 +127,14 @@ ul > li {
   text-align: center;
   color: white;
   padding-bottom: 1em;
+  font-size: xx-larger;
+}
+
+.icon_container{
+  height: 40%;
+  width: 60%;
+}
+
+.image_fix{
+  width: 100%;
 }
