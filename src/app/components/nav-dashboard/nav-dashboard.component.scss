@@ -54,6 +54,11 @@ ul>li {
   color: $color_4
 }
 
+.nav-item-menu-active {
+  background-color: #267365;
+  color: $color_4
+}
+
 .nav-item-menu svg :hover {
   stroke: rgb(0, 183, 255)
 }
