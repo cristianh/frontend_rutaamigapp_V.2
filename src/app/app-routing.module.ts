@@ -16,6 +16,7 @@ import { NavDashboardComponent } from './components/nav-dashboard/nav-dashboard.
 import { NavComponent } from './components/nav/nav.component';
 import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserNewPasswordComponent } from './components/user-new-password/user-new-password.component';
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
@@ -25,7 +26,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [
-  { path: '', component: ContainerLoginComponent },
+  { path: '', component: ContainerLoginComponent,canActivate:[AuthGuard] },
   { path: 'registrar', component: ContainerRegisterComponent },
   { path: 'reset-password', component: ContainerUserResetPasswordComponent },
   { path: 'reset-new-password', component: UserNewPasswordComponent }, // ruta para ver la ventana rapidamente.
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: '',component: NavComponent, outlet: "header" },
       { path: '',component: NavDashboardComponent, outlet: "sidenav" },
       { path: 'listar-usuarios', component: ListUsersComponent},
+      { path: 'actualizar-usuario/:id', component: UserEditComponent},
       { path: 'perfil-usuario', component: UserProfileComponent},
       { path: 'mensaje-usuario', component: UserNotifityComponent},
       { path: 'listar-favoritos-usuarios', component: FavoritosComponent},

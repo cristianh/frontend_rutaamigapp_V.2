@@ -32,9 +32,7 @@ export class UsuarioService {
     return this.http.get(route,config);
   }
 
-  getUserById(route: string,token:string) {
-
-    console.log(token); 
+  getUserById(route: string,token:string) {     
     let config:any = {
       responseType: "json"
     }
@@ -42,7 +40,7 @@ export class UsuarioService {
       const header = new HttpHeaders().set('api-token', ` ${token}`);
       config["headers"] = header;
     }
-    console.log(config);
+   
     
     return this.http.get(route,config);
   }
@@ -55,15 +53,41 @@ export class UsuarioService {
     return this.http.post(`${this.baseUrl}${route}`, usuariodata, config);
   }
 
+  updateUsuarioById(route: string, usuariodata: Usuario,token:string) {
+    let config:any = {
+      responseType: "json"
+    }
+    if (token){
+      const header = new HttpHeaders().set('api-token', ` ${token}`);
+      config["headers"] = header;
+    }
+
+    return this.http.put(`${this.baseUrl}${route}`, usuariodata, config);
+  }
+
+  findUsuarioByEmail(route: string, usuarioemail: string) {
+    let config:any = {
+      responseType: "json"
+    }
+    return this.http.get(`${this.baseUrl}${route}/${usuarioemail}`, config);
+  }
+
   deleteUsuario(route: string) {
     let config: any = {
       responseType: "json"
     }
-    return this.http.delete(route, config);
+    return this.http.delete(`${this.baseUrl}${route}`, config);
   }
 
-  navegacionUsuario(route: string) {
-    return this.http.get(route)
+  navegacionUsuario(route: string,token:string) {
+    let config:any = {
+      responseType: "json"
+    }
+    if (token){
+      const header = new HttpHeaders().set('api-token', ` ${token}`);
+      config["headers"] = header;
+    }
+    return this.http.get(route,config)
   }
 
   loginUsuario(route: string, usuario: Usuario) {
