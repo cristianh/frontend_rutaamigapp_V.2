@@ -18,20 +18,25 @@ export class NavComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
-    this.auth.isLoggedIn().subscribe((data: any): any => { 
-      console.log(typeof (data))     
-      this.isLoginUser=data 
-
-    },
-    error => {
-      console.error(error)
-    })  
-    
+  validaUser(){
     this.user = this.auth.getCurrentUser()
 
-    this.user = JSON.parse(this.user)
+    this.user = JSON.parse(this.user) 
+  }
+
+  ngOnInit(): void {
+
+    this.auth.isLoggedIn().subscribe((data: any): any => {
+      console.log(typeof (data))
+      this.isLoginUser = data
+      
+
+    },
+      error => {
+        console.error(error)
+      })
+
+
   }
 
 

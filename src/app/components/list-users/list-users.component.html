@@ -3,10 +3,16 @@
     <div class="contenedor-table-list">
         <div>
             <div>
-                <app-my-btn-primary style="float: left;" [routerLink]="['/dashboard/nuevo-usuario']"
+                <form >
+                    <input class="input" type="text" style="float: left;" id="buscar" name="buscar"  placeholder="Buscar por email..." [(ngModel)]="usuarioFind" >
+                    <app-my-btn-primary style="float: left;" textoBoton="BUSCAR" (click)="onFindUser($event)"></app-my-btn-primary>
+                    <app-my-btn-primary style="float: left;" textoBoton="LIMPIAR" (click)="onLimpiar()"></app-my-btn-primary>
+                    <app-my-btn-primary style="float: right;" [routerLink]="['/dashboard/nuevo-usuario']"
                     textoBoton="NUEVO USUARIO"></app-my-btn-primary>
-            </div>            
-            <div class="contenedor-table">               
+                </form>
+                
+            </div>
+            <div class="contenedor-table">
                 <table class="table-list-users">
                     <thead>
                         <tr>
@@ -23,17 +29,15 @@
                         <tr>
                             <td colspan="7">
                                 <div class="links">
-                                    <a href="#">&laquo;</a>
-                                    <a class="active" href="#">1</a>
-                                    <a>2</a>
-                                    <a>3</a>
-                                    <a>4</a>
-                                    <a>&raquo;</a>
+                                    <a (click)="atras()">&laquo;</a>
+                                    <a *ngFor="let item of usuarios;let i=index" (click)="saltarPagina(i+1)">{{i+1}}</a>
+                                    <a (click)="siguiente()">&raquo;</a>
                                 </div>
                             </td>
                         </tr>
                     </tfoot>
-                    <tbody>                        
+                    <tbody>
+                       
                             <tr *ngFor="let usuario of usuarios">
                                 <th scope="row">{{usuario.user_id}}</th>
                                 <td scope="row">{{usuario.user_name}}</td>
@@ -45,13 +49,15 @@
                                 <td scope="row">{{usuario.user_create_date | date:'MM/dd/yyyy' }}</td>
                                 <td scope="row">
                                     <div class="boton-actions">
-                                        <app-my-btn-primary classBoton="my-btn-danger" (click)="deleteUsuario(usuario.user_id)"
-                                            textoBoton="ELIMINAR"></app-my-btn-primary>
-                                        <!-- <app-my-btn-primary classBoton="my-btn-info" (click)="deleteUsuario(usuario.user_id)"
-                                            textoBoton="ACTUALIZAR"></app-my-btn-primary> -->
+                                        <app-my-btn-primary classBoton="my-btn-danger"
+                                            (click)="deleteUsuario(usuario.user_id)" textoBoton="ELIMINAR">
+                                        </app-my-btn-primary>
+                                        <app-my-btn-primary classBoton="my-btn-info"
+                                            (click)="updateUrlUser('/dashboard/actualizar-usuario/',usuario.user_id)"
+                                            textoBoton="ACTUALIZAR"></app-my-btn-primary>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>          
                         
                     </tbody>
                 </table>

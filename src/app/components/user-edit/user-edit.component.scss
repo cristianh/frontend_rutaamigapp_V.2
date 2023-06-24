@@ -22,13 +22,13 @@
 
 .row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   place-content: center;
   margin: 23px 32px
 }
 
 .row-botones {
-  width: 12rem;
+  width: 13rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-content: center;
@@ -80,6 +80,13 @@ legend {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 50em;
+}
+
+input[type="text"]{
+    text-align: center !important;
+    font-family: "Exo", sans-serif;
+    font-weight: 800;
 }
 
 label {

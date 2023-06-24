@@ -3,7 +3,9 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { environment } from '../../../environments/environment';
-
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-users',
@@ -12,34 +14,49 @@ import { environment } from '../../../environments/environment';
 })
 export class ListUsersComponent {
 
-  constructor(private usuarioservice: UsuarioService, private auth: AuthService) { }
+  constructor(
+    private router: Router,
+    private usuarioservice: UsuarioService,
+    private auth: AuthService,
+    private toastr: ToastrService
+  ) { }
 
-  usuarios:any;
-  paginado: number = 0
+  usuarios: any;
+  usuariosCopy: any;
+  paginado: number = 10
   itemsPaginado: number = 0
   contadorSaltos: number = 0
-  pageLimit: number = 6
+  pageLimit: number = 5
   take: number = 0
   isLoading: boolean = false;
+  token: string | null = "";
+
+  //FIND
+  usuarioFind: string = ""
+  isFind: boolean = false
 
   url = environment.API_URL;
   //url = 'http://localhost:3000/api';
 
 
   ngOnInit(): void {
-    let token = this.auth.getToken()
+    this.token = this.auth.getToken()
     this.isLoading = true;
-   
-    
+
+
     //Capturamos todos los registros para saber la paginación
-    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=5&skip=0`,!token?'':token).subscribe(
+    this.usuarioservice.getAllUsuarios(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`, !this.token ? '' : this.token).subscribe(
 
-      (data:any): any => {
+      (data: any): any => {
 
-        const { usuario, totalUsers, limit } = data        
+        const { usuario, totalUsersPage, limit, totalUsers } = data
         this.usuarios = usuario;
-        this.usuarios = this.usuarios.reverse()      
-        this.paginado = totalUsers;
+        this.usuarios= this.usuarios.filter((user:any)=>{
+          return user.user_status==true
+        })
+        this.usuarios = this.usuarios.reverse()
+        this.paginado = totalUsersPage / totalUsers
+        this.itemsPaginado = Math.round(this.paginado)
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
       () => {
@@ -50,13 +67,19 @@ export class ListUsersComponent {
   deleteUsuario(id: number) {
     this.isLoading = true;
     if (confirm("Esta seguro que desea eliminar el usuario.")) {
-      this.usuarioservice.deleteUsuario(`${this.url}/user/${id}`).subscribe(
+      this.usuarioservice.deleteUsuario(`/user/${id}`).subscribe(
 
-        (data): any => {
+        (data:any): any => {
+          console.log(data)
+
+          this.toastr.success(`${data.status}`, "¡Correcto!");
+
           this.usuarios = this.usuarios.filter((usuario: { user_id: number; }) => {
             return usuario.user_id !== id
           })
+
           
+
         }, error => console.log("Ha ocurrido un error en la llamada: ", error),
         () => {
           this.isLoading = false;
@@ -64,17 +87,79 @@ export class ListUsersComponent {
     }
   }
 
+  updateUrlUser(url: string, data: string) {
+    this.router.navigate([url, data]);
+  }
+
+  onCopyArray() {
+    this.usuariosCopy = [...this.usuarios]
+    console.log(this.usuariosCopy)
+  }
+
+  onRestoryCopy() {
+    this.usuarios = this.usuariosCopy
+    console.log(this.usuarios)
+    this.usuariosCopy = []
+  }
+
+  onLimpiar() {
+
+    this.onRestoryCopy()
+    this.isFind = true
+    this.usuarioFind = ''
+  }
+
+  onFindUser(event: Event) {
+    event.preventDefault()
+    this.onCopyArray()
+    this.usuarioservice.findUsuarioByEmail(`/user/buscarporemail`, this.usuarioFind.trim()).subscribe(
+      (data: any): any => {
+
+        if (data.hasOwnProperty('user_id')) {
+          console.log(data)          
+          this.usuarios = [data];
+         /*  this.usuarios = this.usuarios.reverse() */
+          this.isFind = true
+        } else {
+
+          this.isFind = false
+          this.toastr.info(`Usuario con correo '${this.usuarioFind}', no encontrado`, "¡Atencion!");
+
+        }
+
+
+
+      },
+      error => console.log("Ha ocurrido un error en la llamada: ", error),
+      () => {
+        this.isLoading = false;
+      })
+
+
+
+  }
+
+
+  saltarPagina(page: number) {
+    this.take = page
+    this.siguiente()
+  }
+
   siguiente() {
     this.isLoading = true;
-    if (this.contadorSaltos > this.itemsPaginado) {
-      this.validarPaginado()
-    } else {
-      /* this.pageLimit = this.pageLimit + 10 */
-      this.take += 6
-      this.contadorSaltos += 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
+    if (this.contadorSaltos < this.itemsPaginado) {
 
-        (data): any => { this.usuarios = Object.values(data); console.log(data) },
+    } else {
+      this.take += 1
+      this.contadorSaltos += 1
+      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`, !this.token ? '' : this.token).subscribe(
+
+        (data: any): any => {
+          const { usuario, totalUsersPage, limit, totalUsers } = data
+          this.usuarios = usuario;
+          this.usuarios = this.usuarios.reverse()
+
+        },
         error => console.log("Ha ocurrido un error en la llamada: ", error),
         () => {
           this.isLoading = false;
@@ -86,12 +171,17 @@ export class ListUsersComponent {
 
 
   atras() {
-    this.isLoading = true;
+
     if (this.contadorSaltos != 0) {
-      this.take -= 6
+      this.isLoading = true;
+      this.take -= 1
       this.contadorSaltos -= 1
-      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`).subscribe(
-        (data): any => { this.usuarios = Object.values(data); console.log(data) },
+      this.usuarioservice.navegacionUsuario(`${this.url}/user/allusers?limit=${this.pageLimit}&skip=${this.take}`, !this.token ? '' : this.token).subscribe(
+        (data: any): any => {
+          const { usuario, totalUsersPage, limit, totalUsers } = data
+          this.usuarios = usuario;
+          this.usuarios = this.usuarios.reverse()
+        },
         error => console.log("Ha ocurrido un error en la llamada: ", error),
         () => {
           this.isLoading = false;
@@ -101,18 +191,7 @@ export class ListUsersComponent {
   }
 
   validarPaginado() {
-    //TODO: Paginado en la lista de usuarios inabilitado.(modificar);
-    /* if (this.contadorSaltos == this.itemsPaginado) {
-      document.getElementById('btnAtras').classList.remove('disabled')
-      document.getElementById('btnSiguiente').classList.add('disabled')
 
-    } else if (this.take < this.itemsPaginado) {
-      document.getElementById('btnAtras').classList.add('disabled')
-      document.getElementById('btnSiguiente').classList.remove('disabled')
-    } else {
-      document.getElementById('btnAtras').classList.remove('disabled')
-      document.getElementById('btnSiguiente').classList.remove('disabled')
-    } */
   }
 
 }

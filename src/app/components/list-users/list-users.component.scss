@@ -2,6 +2,8 @@
 
 .list-users-containers {
 
+	
+
 	.contenedor-table-list {
 		margin: 2rem;
 		display: flex;
@@ -27,7 +29,7 @@
 				th,
 				td {
 					padding: 10px;
-					text-align: left;
+					text-align: center;
 					white-space: nowrap;
 				}
 
@@ -39,6 +41,10 @@
 					background-color: $color_9;
 				}
 
+				tfoot {
+					background-color: rgb(38, 115, 101);
+				}
+
 				tfoot td {
 					padding: 0;
 				}
@@ -47,7 +53,7 @@
 					display: flex;
 					justify-content: center;
 					margin-top: 10px;
-					background-color: $background-color_1;
+					background-color: rgb(38, 115, 101);
 					color: $color_4;
 
 					a {
@@ -71,7 +77,7 @@
 		th,
 		td {
 			padding: 10px;
-			text-align: left;
+			text-align: center;
 			white-space: nowrap;
 		}
 
@@ -115,4 +121,20 @@
 		flex-wrap: wrap;
 		gap:5px
 	}
+
+	a:hover{
+		cursor:pointer
+	}
+}
+
+#buscar {
+	width: 40%;
+    margin: 0px auto;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border: none;
+    border-bottom: 2px solid rgb(63, 95, 89);
+    border-radius: 0 0 6px 6px;
+    margin: 0.4em;
 }

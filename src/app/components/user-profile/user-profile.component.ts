@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
 /* Importar servicios y servicio de auth */
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
