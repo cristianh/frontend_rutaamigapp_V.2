@@ -57,7 +57,6 @@ export class ListUsersComponent {
         this.usuarios = this.usuarios.reverse()
         this.paginado = totalUsersPage / totalUsers
         this.itemsPaginado = Math.round(this.paginado)
-        alert(this.itemsPaginado)
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
       () => {
