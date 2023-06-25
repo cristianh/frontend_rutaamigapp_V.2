@@ -18,10 +18,10 @@
                         <div>
                             <div class="info">
                                 <section *ngFor="let usuario of usuarios">
-                                    <div class="profile-user" scope="row"><span>Nombre: </span>{{usuario.user_name}}
+                                    <div class="profile-user" scope="row"><span><b>Nombre:</b> </span>{{usuario.user_name}}
                                         {{usuario.user_lastname}}</div>
-                                    <div class="profile-user" scope="row"><span>Email: </span>{{usuario.user_email}}</div>
-                                    <div class="profile-user" scope="row"><span>Estado:
+                                    <div class="profile-user" scope="row"><span><b>Correo:</b> </span>{{usuario.user_email}}</div>
+                                    <div class="profile-user" scope="row"><span><b>Estado:</b>
                                         </span>{{usuario.user_status?'Activo':'Inactivo'}}</div>
                                 </section>
                             </div>                           

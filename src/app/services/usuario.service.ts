@@ -65,11 +65,15 @@ export class UsuarioService {
     return this.http.put(`${this.baseUrl}${route}`, usuariodata, config);
   }
 
-  findUsuarioByEmail(route: string, usuarioemail: string) {
+  findUsuarioByEmail(route: string, usuarioemail: string,token:string) {
     let config:any = {
       responseType: "json"
     }
-    return this.http.get(`${this.baseUrl}${route}/${usuarioemail}`, config);
+    if (token){
+      const header = new HttpHeaders().set('api-token', ` ${token}`);
+      config["headers"] = header;
+    }
+    return this.http.post(`${this.baseUrl}${route}`,{email:usuarioemail}, config);
   }
 
   deleteUsuario(route: string) {

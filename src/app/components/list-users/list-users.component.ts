@@ -66,7 +66,7 @@ export class ListUsersComponent {
 
   deleteUsuario(id: number) {
     this.isLoading = true;
-    if (confirm("Esta seguro que desea eliminar el usuario.")) {
+    if (confirm("¿Esta seguro que desea eliminar el usuario.?")) {
       this.usuarioservice.deleteUsuario(`/user/${id}`).subscribe(
 
         (data:any): any => {
@@ -112,7 +112,7 @@ export class ListUsersComponent {
   onFindUser(event: Event) {
     event.preventDefault()
     this.onCopyArray()
-    this.usuarioservice.findUsuarioByEmail(`/user/buscarporemail`, this.usuarioFind.trim()).subscribe(
+    this.usuarioservice.findUsuarioByEmail(`/user/buscarporemail`, this.usuarioFind.trim(),!this.token ? '' : this.token).subscribe(
       (data: any): any => {
 
         if (data.hasOwnProperty('user_id')) {
