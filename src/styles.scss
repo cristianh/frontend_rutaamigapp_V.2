@@ -293,3 +293,68 @@ a {
         background-position: center;
     }
 }
+
+/* Alertifycss custom*/
+.alertify .ajs-header {
+    border-bottom: 1px solid #e5e5e5;
+    border-radius: 6px 6px 0 0;
+    font-family: 'Exo', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 1em;
+    background-color: orange !important;
+    color: white !important;
+    text-transform: uppercase !important;
+}
+
+.alertify .ajs-footer .ajs-buttons.ajs-primary .ajs-button {
+    margin: 4px;
+    font-family: 'Exo', sans-serif !important;
+    font-weight: bold !important;
+}
+
+.alertify .ajs-body .ajs-content{
+    font-family: 'Exo', sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.ajs-button:first-child{
+    background-color: #00796B;
+    border: 0.2em solid #00796B;
+    border-radius: 5px;
+    padding: 0.2em 1em;
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    margin: 0px auto;
+    font-family: "Exo", sans-serif;
+    font-weight: bold;
+    cursor:pointer;
+    &:hover {
+		background-color: white;
+        color: #00796B;
+        transition: 0.3s;
+            font-weight: 500;
+	}  
+	
+}
+
+.ajs-button:last-child{
+    background-color: rgb(206 86 86);
+    border: 0.2em solid #d64343;
+	border-radius: 5px;
+    padding: 0.2em 1em;
+    color: white;
+    align-items: center;
+    margin: 0px auto;
+    font-family: 'Exo', sans-serif;
+    font-weight: bold;
+    cursor:pointer;
+    &:hover {
+		background-color: white;
+		color: red;
+		font-weight: 500;
+		transition: .3s;
+		font-weight: 500;
+	} 
+	
+}

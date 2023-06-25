@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+declare let alertify:any
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -39,7 +39,7 @@ export class ListUsersComponent {
   //url = 'http://localhost:3000/api';
 
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.token = this.auth.getToken()
     this.isLoading = true;
 
@@ -57,6 +57,7 @@ export class ListUsersComponent {
         this.usuarios = this.usuarios.reverse()
         this.paginado = totalUsersPage / totalUsers
         this.itemsPaginado = Math.round(this.paginado)
+        alert(this.itemsPaginado)
       },
       error => console.log("Ha ocurrido un error en la llamada: ", error),
       () => {
@@ -66,7 +67,9 @@ export class ListUsersComponent {
 
   deleteUsuario(id: number) {
     this.isLoading = true;
-    if (confirm("¿Esta seguro que desea eliminar el usuario.?")) {
+    alertify.confirm('labels changed!').set('labels', {ok:'Aceptar', cancel:'Cancelar'}); 
+    alertify.confirm("¡Atención!","¿Seguro que desea eliminar el usuario?",
+    ()=>{
       this.usuarioservice.deleteUsuario(`/user/${id}`).subscribe(
 
         (data:any): any => {
@@ -84,7 +87,11 @@ export class ListUsersComponent {
         () => {
           this.isLoading = false;
         })
-    }
+    },
+    ()=>{
+      this.isLoading = false;
+    })
+   
   }
 
   updateUrlUser(url: string, data: string) {
@@ -114,10 +121,10 @@ export class ListUsersComponent {
     this.onCopyArray()
     this.usuarioservice.findUsuarioByEmail(`/user/buscarporemail`, this.usuarioFind.trim(),!this.token ? '' : this.token).subscribe(
       (data: any): any => {
-
-        if (data.hasOwnProperty('user_id')) {
-          console.log(data)          
-          this.usuarios = [data];
+        console.log(data.length) 
+        if (data.length>=1) {
+                   
+          this.usuarios = data;
          /*  this.usuarios = this.usuarios.reverse() */
           this.isFind = true
         } else {
