@@ -39,7 +39,7 @@ export class UserResetPasswordComponent {
       let dataUsuario = { "user_email": `${this.formResetPassword.value.email}` }
 
       //SEND DATA TO SERVICES
-      this.usuarioservice.resetPassword('auth/forgetPassword', dataUsuario).subscribe(
+      this.usuarioservice.resetPassword('/auth/forgetPassword', dataUsuario).subscribe(
         //SEND NEW USUARIO
         (data: any): any => {
           console.log(data)
