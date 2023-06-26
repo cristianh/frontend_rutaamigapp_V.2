@@ -1,2 +1,102 @@
-<!-- <p>notifications works!</p>
-<button (click)="showSuccess()">Success</button> -->
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div class="container">    
+    <fieldset class="container-content">
+      <legend>
+        <h1 class="title">Notificacion usuarios:</h1>
+      </legend>
+     
+      <form [formGroup]="formMensaje" (ngSubmit)="onSubmit()">
+        <div class="container-form">
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label for="tituloMensaje">Titulo</label>
+                <input
+                  type="text"                  
+                  class="input"
+                  id="tituloMensaje"
+                  aria-describedby="Ingrese su nombre"
+                  placeholder="Titulo mensaje"
+                  formControlName="tituloMensaje"
+                  name="nombre_usuario"
+                 
+                  
+                  
+                />                
+              </div>
+              <!-- <div class="errors">
+                <span
+                  *ngIf="
+                  formUpdate.controls['nombreUsuario'].invalid &&
+                    (formUpdate.controls['nombreUsuario'].dirty ||
+                    formUpdate.controls['nombreUsuario'].touched)
+                  "
+                  class="alert"
+                >
+                  Nombre de usuario es requerido
+                </span>
+              </div> -->
+            <div class="form-group py-2">
+                <div style="display: flex;flex-direction: column;width: 90%;justify-content: left;align-items: flex-start;">
+                    <div>
+                        <label for="mensaje">Mensaje:</label>
+                    </div>
+                    <div style="display: flex;flex-direction: row;align-items: center;width:100%;">
+                        <div style="
+                        width: 50%;
+                    ">
+                            <textarea style="width: 90%; height: 150px;"
+                        id="mensaje"
+                        aria-describedby="Mensaje"
+                        placeholder="Mensaje"
+                        formControlName="mensajebody"
+                        name="mensajebody"
+                        >
+                      </textarea>
+                        </div>
+                        <div style="
+                        width: 50%;
+                    ">
+                    
+                            <form  enctype="multipart/form-data">
+                                <input type="file" name="file" accept=".jpg, .png, image/jpeg, image/png" (change)="onFileSelected($event)"/>
+                                <app-my-btn-primary textoBoton="SUBIR" (click)="onLoadFile()"></app-my-btn-primary>
+                            </form>  
+                            <img [src]="imgDemo" width="100" height="100" >    
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- <label for="mensaje">Mensaje:</label>
+                <textarea 
+                  id="mensaje"
+                  aria-describedby="Mensaje"
+                  placeholder="Mensaje"
+                  formControlName="mensajebody"
+                  name="mensajebody"
+                  ></textarea> -->
+             
+              </div>
+            </div>
+        </div>
+            
+                
+          <div class="row-botones">
+            <div class="col-4">
+              <!-- <button type="submit" class="my-btn-primary" data-toggle="modal"
+                            data-target="#exampleModal">GUARDAR</button> -->
+              <app-my-btn-primary textoBoton="ENVIAR"></app-my-btn-primary>
+            </div>
+            <div class="col-4">
+              <app-my-btn-primary
+                [routerLink]="['/dashboard/listar-usuarios']"
+                textoBoton="ATRAS"
+              ></app-my-btn-primary>
+              <!-- <button type="button" [routerLink]="['/dashboard/listar-usuarios']" class="my-btn-primary ">ATRAS</button> -->
+            </div>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+  

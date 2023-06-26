@@ -70,7 +70,7 @@ export class UserEditComponent {
     }
 
     onSubmit() {
-    console.log(this.formUpdate.valid)
+    
     if (!this.formUpdate.valid) {
       
       this.toastr.error("Error en el formulario","Revise por favor");

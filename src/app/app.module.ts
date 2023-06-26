@@ -39,7 +39,7 @@ import { ContainerUserResetPasswordComponent } from './components/container-user
 import { ContainerUserNewPasswordComponent } from './components/container-user-new-password/container-user-new-password.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
-/* import { NotificationsComponent } from './components/notifications/notifications.component'; */
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 const config: SocketIoConfig = {
   url: 'https://socket-maptracker.onrender.com/', options: {
@@ -79,7 +79,7 @@ const config: SocketIoConfig = {
     ContainerUserNewPasswordComponent,
     PreloaderComponent,
     UserEditComponent,
-    /*  NotificationsComponent */
+    NotificationsComponent
   ],
   imports: [
     [BrowserModule, SocketIoModule.forRoot(config)],

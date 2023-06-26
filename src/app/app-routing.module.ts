@@ -21,6 +21,8 @@ import { UserNewPasswordComponent } from './components/user-new-password/user-ne
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserRoutesComponent } from './components/user-routes/user-routes.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+
 import { AuthGuard } from './guards/auth.guard';
 
 
@@ -44,6 +46,7 @@ const routes: Routes = [
       { path: 'rutas-usuario', component: UserRoutesComponent},
       { path: 'configuracion-usuario', component: SettingsUserComponent},
       { path: 'nuevo-usuario', component: ResgisterUserListComponent},
+      { path: 'notificaciones', component: NotificationsComponent},
       { path: '', component: FooterComponent, outlet: "footer" },
     ]
   },
