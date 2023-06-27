@@ -115,4 +115,12 @@ export class UsuarioService {
     }
     return this.http.post(`${this.baseUrl}${route}`, data, config);
   }
+
+  activateAcoountUsuario(route: string, data: any) {
+    let config: any = {
+      responseType: "json",
+
+    }
+    return this.http.post(`${this.baseUrl}${route}`, data, config);
+  }
 }

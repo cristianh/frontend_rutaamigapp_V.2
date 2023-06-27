@@ -42,8 +42,8 @@
                                 <td scope="row">{{usuario.user_lastname}}</td>
                                 <td scope="row">{{usuario.user_email}}</td>
                                 <td scope="row"
-                                    [ngClass]="{'background-color:$color_2':usuario.user_status,'background-color:$color_5':!usuario.user_status}">
-                                    {{usuario.user_status?'Activo':'Inactivo'}}</td>
+                                    [ngClass]="{'background-color:red':usuario.user_isactive,'background-color:green':!usuario.user_isactive}">
+                                    {{usuario.user_isactive?'Activo':'Inactivo'}}</td>
                                 <td scope="row">{{usuario.user_create_date | date:'MM/dd/yyyy' }}</td>
                                 <td scope="row">
                                     <div class="boton-actions">

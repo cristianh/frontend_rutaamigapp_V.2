@@ -16,6 +16,7 @@ import { NavDashboardComponent } from './components/nav-dashboard/nav-dashboard.
 import { NavComponent } from './components/nav/nav.component';
 import { ResgisterUserListComponent } from './components/resgister-user-list/resgister-user-list.component';
 import { SettingsUserComponent } from './components/settings-user/settings-user.component';
+import { UserActivateAcountComponent } from './components/user-activate-acount/user-activate-acount.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserNewPasswordComponent } from './components/user-new-password/user-new-password.component';
 import { UserNotifityComponent } from './components/user-notifity/user-notifity.component';
@@ -28,8 +29,8 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: '', component: ContainerLoginComponent,canActivate:[AuthGuard] },
   { path: 'registrar', component: ContainerRegisterComponent },
+  { path: 'activate-account/:id/:token', component: UserActivateAcountComponent },
   { path: 'reset-password', component: ContainerUserResetPasswordComponent },
-  { path: 'reset-new-password', component: UserNewPasswordComponent }, // ruta para ver la ventana rapidamente.
   { path: 'new-password/:id/:token', component: ContainerUserNewPasswordComponent },
   {
     path: 'dashboard', component: LayoutComponent, canActivate:[AuthGuard],
