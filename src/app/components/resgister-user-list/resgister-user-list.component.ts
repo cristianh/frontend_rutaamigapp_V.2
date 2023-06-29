@@ -14,6 +14,7 @@ export class ResgisterUserListComponent {
 
   formRegister!: FormGroup;
   mensajeError: string = ''
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,6 +40,7 @@ export class ResgisterUserListComponent {
       
       this.toastr.error("Error en el formulario","Revise por favor");
     } else {
+      this.isLoading = true
       let usuario: Usuario;
       usuario = new Usuario()
       usuario.user_name = this.formRegister.value.nombreUsuario
@@ -54,6 +56,7 @@ export class ResgisterUserListComponent {
           
           /* this.formRegister *///buscar como limpiar formulario.
           this.formRegister.reset()
+          this.isLoading = false;
           this.toastr.success(`${data.status}`, "Correcto!");
           this.router.navigate(['/dashboard/listar-usuarios'])
 
@@ -69,6 +72,7 @@ export class ResgisterUserListComponent {
               enableHtml: true,
             });
           }
+          this.isLoading = false
           //this.toastr.error("Ha ocurrido un error en la llamada", `${error.message}`);
           
 
