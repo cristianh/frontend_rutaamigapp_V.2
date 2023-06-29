@@ -94,7 +94,7 @@ export class RegisterNewUserComponent implements OnInit {
       if (this.formRegister.value.Password1 === this.formRegister.value.Password2) {
         usuario.user_password = this.formRegister.value.Password1
         //SEND DATA TO SERVICES
-        this.usuarioservice.saveUsuario('user/registro', usuario).subscribe(
+        this.usuarioservice.saveUsuario('/user/registro', usuario).subscribe(
           //SEND NEW USUARIO
           (data: any): any => {
             console.log(data)
