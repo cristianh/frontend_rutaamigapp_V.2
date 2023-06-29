@@ -10,7 +10,7 @@
                     <div alt="logo" class="logo_image_mobile"></div>
                     <h1 class="principal-title">Inicio de sesión</h1>
                 </header>
-                <form [formGroup]="formLogin" (ngSubmit)="onIngresar()">
+                <form [formGroup]="formLogin" (ngSubmit)="onIngresar()" autocomplete="off">
                     <input class="input" type="text" id="email" name="email" placeholder="Correo"
                         formControlName="email" ngModel />
                     <div class="input_icon_password">
